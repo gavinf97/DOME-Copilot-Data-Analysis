@@ -6,17 +6,42 @@ import time
 import os
 import xml.etree.ElementTree as ET
 
+"""
+DOI to Metadata Converter
+
+This script retrieves standardized metadata for a given DOI from multiple sources.
+It is designed to handle messy inputs and automatically fallback to different APIs
+depending on the nature of the publication (e.g., Journal Article, Preprint, Dataset).
+
+Workflow:
+1.  CLEAN: Extract a clean DOI from the input string (removing URLs, whitespace, etc.).
+2.  RESOLVE: Use NCBI PMC ID Converter to find PMID/PMCID if available.
+3.  FETCH: Attempt to retrieve metadata from sources in this order:
+    a) CrossRef (Standard for most DOI-minted content)
+    b) Zenodo (For datasets/software, generic search or direct lookup)
+    c) arXiv (For physics/CS preprints)
+    d) BioRxiv & MedRxiv (For biology/medical preprints)
+    e) Europe PMC (Last resort fallback using PMID)
+4.  OUTPUT: Save the combined metadata to a JSON file.
+"""
+
 def clean_and_extract_doi(input_string):
     """
     Extracts and standardizes a DOI from a potentially messy input string.
     Handles URLs, prefixes, and whitespace.
+    
+    Args:
+        input_string (str): The raw input which might be a DOI, URL, or text.
+        
+    Returns:
+        str: A clean DOI string (e.g., '10.1000/xyz') or None.
     """
     if not input_string:
         return None
         
     s = input_string.strip()
     
-    # 1. URL Decoding (in case of encoded chars)
+    # 1. URL Decoding (in case of encoded chars like %2F)
     try:
         from urllib.parse import unquote
         s = unquote(s)
@@ -24,14 +49,16 @@ def clean_and_extract_doi(input_string):
         pass
         
     # 2. Regex to find the DOI pattern
-    # Looks for '10.' followed by 4+ digits, a slash, and then non-whitespace chars
-    # This captures standard DOIs like 10.1000/xyz
+    # - 10. : The standard DOI prefix
+    # - \d{4,9} : A 4-9 digit registrant code
+    # - / : The suffix separator
+    # - [-._;()/:A-Za-z0-9]+ : The specific article ID (allows most special chars)
     doi_regex = r'(10\.\d{4,9}/[-._;()/:A-Za-z0-9]+)'
     
     match = re.search(doi_regex, s)
     if match:
         raw_doi = match.group(1)
-        # Remove trailing punctuation
+        # Remove common trailing punctuation that might have been captured
         raw_doi = raw_doi.rstrip('.,;)')
         return raw_doi
     
@@ -39,9 +66,11 @@ def clean_and_extract_doi(input_string):
 
 def get_ids_from_pmc_converter(doi):
     """
-    Uses NCBI PMC ID Converter API to translate DOI to PMID and PMCID.
+    Uses NCBI PMC ID Converter API to translate DOI to PMID (PubMed ID) and PMCID (PubMed Central ID).
+    This is useful because finding a PMID allows us to query Europe PMC later if needed.
     """
     url = "https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/"
+    # 'tool' and 'email' are required by NCBI policy
     params = {
         "tool": "dome_copilot",
         "email": "example@example.com",
@@ -57,6 +86,7 @@ def get_ids_from_pmc_converter(doi):
             data = response.json()
             records = data.get('records', [])
             if records:
+                # The API returns a list of records. We only sent one ID, so we take the first.
                 record = records[0]
                 ids['pmid'] = record.get('pmid', '')
                 ids['pmcid'] = record.get('pmcid', '')
@@ -68,10 +98,12 @@ def get_ids_from_pmc_converter(doi):
 def get_crossref_metadata(doi):
     """
     Fetches publication metadata from CrossRef using the DOI.
+    CrossRef is usually the best first source as it covers most publishers.
     """
     # CrossRef API expects the raw DOI in path
     base_url = f"https://api.crossref.org/works/{doi}"
     try:
+        # User-Agent is polite for CrossRef API to avoid rate limiting
         headers = {
             "User-Agent": "DomeCopilotAnalysis/1.0 (mailto:example@example.com)"
         }
@@ -84,16 +116,16 @@ def get_crossref_metadata(doi):
         data = response.json()
         item = data.get('message', {})
         
-        # Title
+        # --- TITLE EXTRACTION ---
         title_list = item.get('title', [])
         title = title_list[0] if title_list else ''
         
-        # If title is missing, consider this a failed lookup to trigger fallbacks
+        # If title is missing, the record is useless for our purpose
         if not title:
             print("  [CrossRef] Record found but title is missing. Treating as failure.")
             return None
 
-        # Authors
+        # --- AUTHOR EXTRACTION ---
         authors_list = item.get('author', [])
         formatted_authors = []
         for a in authors_list:
@@ -103,7 +135,7 @@ def get_crossref_metadata(doi):
                 formatted_authors.append(f"{family} {given}".strip())
         authors = ", ".join(formatted_authors)
         
-        # Journal / Container
+        # --- JOURNAL / SOURCE EXTRACTION ---
         journal = ''
         container_title = item.get('container-title', [])
         if container_title:
@@ -128,15 +160,17 @@ def get_crossref_metadata(doi):
             if publisher:
                 journal = publisher
 
-        # Strict Check: If we have a CSHL DOI (10.1101) but still only have generic 
-        # "Cold Spring Harbor Laboratory" as journal/publisher, we should FAIL (return None)
-        # to ensure the specific BioRxiv/MedRxiv APIs are called to get the correct source.
+        # --- PREPRINT IDENTIFICATION LOGIC ---
+        # Strict Check: If we have a Cold Spring Harbor Laboratory DOI (10.1101) 
+        # but couldn't identify the specific server (BioRxiv or MedRxiv) from the metadata,
+        # we return None to force the script to use the specific BioRxiv/MedRxiv APIs.
         if '10.1101/' in doi:
             if not journal or journal == 'Cold Spring Harbor Laboratory':
                 print("  [CrossRef] CSHL DOI found but cannot distinguish BioRxiv/MedRxiv. Falling back to specific APIs.")
                 return None
             
-        # Year
+        # --- YEAR EXTRACTION ---
+        # Try multiple date fields in order of preference
         year = ''
         date_parts = item.get('published-print', {}).get('date-parts')
         if not date_parts:
@@ -424,6 +458,7 @@ def main():
     print(f"Input: {raw_input}")
     
     # 1. Clean DOI
+    # We must have a valid DOI structure to proceed with any API
     doi = clean_and_extract_doi(raw_input)
     if not doi:
         print("Error: Could not extract a valid DOI structure from input.")
@@ -431,6 +466,7 @@ def main():
     print(f"Cleaned DOI: {doi}")
     
     # 2. Get Identifiers (PMID/PMCID)
+    # This pre-fetch helps us cross-reference IDs later
     print("Fetching IDs from PMC Converter...")
     ids = get_ids_from_pmc_converter(doi)
     if ids['pmid']: print(f"  Found PMID: {ids['pmid']}")
@@ -438,7 +474,11 @@ def main():
     
     metadata = None
 
+    # --- FALLBACK STRATEGY ---
+    # We try sources in order of likelihood and specificity.
+    
     # 3. Try CrossRef (Primary)
+    # CrossRef is the DOI registration agency for most scholarly content.
     print("Attempting CrossRef...")
     metadata = get_crossref_metadata(doi)
     
@@ -446,26 +486,27 @@ def main():
     if not metadata:
         print("CrossRef failed. Trying fallback sources sequentially...")
         
-        # Zenodo
+        # Zenodo: For datasets and software.
         print("Checking Zenodo...")
         metadata = get_zenodo_metadata(doi)
     
     if not metadata:
-        # ArXiv
+        # ArXiv: For physics, math, CS preprints.
         print("Checking arXiv...")
         metadata = get_arxiv_metadata(doi)
         
     if not metadata:
-        # BioRxiv
+        # BioRxiv: For biology preprints.
         print("Checking BioRxiv...")
         metadata = get_biorxiv_medrxiv_metadata(doi, 'biorxiv')
 
     if not metadata:
-        # MedRxiv
+        # MedRxiv: For medical health sciences preprints.
         print("Checking MedRxiv...")
         metadata = get_biorxiv_medrxiv_metadata(doi, 'medrxiv')
     
     # 5. Fallback 2: Europe PMC (via PMID)
+    # If standard DOI lookups fail but we found a PMID earlier, we can try Europe PMC.
     if not metadata and ids['pmid']:
         print(f"Direct DOI lookups failed. Attempting Europe PMC with PMID {ids['pmid']}...")
         metadata = get_europe_pmc_metadata(ids['pmid'], doi)
@@ -475,6 +516,7 @@ def main():
         sys.exit(1)
         
     # Inject found IDs if missing from source
+    # Some sources (like CrossRef) don't include PMID, so we backfill it if we found it.
     if not metadata['publication/pmid'] and ids['pmid']:
         metadata['publication/pmid'] = ids['pmid']
     if not metadata['publication/pmcid'] and ids['pmcid']:
@@ -486,6 +528,7 @@ def main():
     print(json_output)
     
     # Determine output path
+    # Use PMID in filename if available, otherwise safe-encoded DOI
     script_dir = os.path.dirname(os.path.abspath(__file__))
     
     if metadata.get("publication/pmid"):
