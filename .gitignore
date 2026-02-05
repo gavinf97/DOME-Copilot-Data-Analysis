@@ -1,5 +1,7 @@
 # PDF and Data Folders
 Positive_PMC_Supplementary/
+1012_Positive_PMC_Full_Text_and_Supplementary/
+Copilot_Processed_Datasets_JSON/*
 
 # Python
 __pycache__/
