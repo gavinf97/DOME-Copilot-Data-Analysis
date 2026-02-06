@@ -9,7 +9,7 @@ import sys
 from datetime import datetime
 
 # Configuration
-DATA_DIR = "../30_human_evaluation"
+DATA_DIR = "30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs"
 OUTPUT_FILE = "evaluation_results.tsv"
 BACKUP_FILE = "evaluation_results_backup.tsv"
 
@@ -207,20 +207,13 @@ class EvaluationApp:
         self.doi_to_user_oid = {}
         self.user_details = {}
         
-        # Paths - DATA_DIR is "../30_human_evaluation"
-        # We need to go up one level from DATA_DIR to find DOME_Registry_JSON_Files
-        workspace_root = os.path.dirname(DATA_DIR) # "../"
-        raw_reviews_path = os.path.join(workspace_root, "DOME_Registry_JSON_Files", "dome_review_raw_human_20260128.json")
-        users_path = os.path.join(workspace_root, "DOME_Registry_JSON_Files", "dome_users_20260130.json")
-        
-        # Verify paths - the script runs from Human_Evaluation_Interface/
-        # DATA_DIR is relative to script location. 
-        # Actually, let's use os.path.abspath to be safe.
+        # Paths relative to script location (Human_30_Copilot_vs_Human_Evaluations_Interface/)
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        registry_dir = os.path.join(os.path.dirname(script_dir), "DOME_Registry_JSON_Files")
+        workspace_root = os.path.dirname(script_dir) # Go up one level to root
         
-        raw_reviews_path = os.path.join(registry_dir, "dome_review_raw_human_20260128.json")
-        users_path = os.path.join(registry_dir, "dome_users_20260130.json")
+        # New Registry Files
+        raw_reviews_path = os.path.join(workspace_root, "DOME_Registry_Human_Reviews_258_20260205.json")
+        users_path = os.path.join(workspace_root, "DOME_Registry_Users_20260202.json")
 
         print(f"Loading curator mappings from {users_path}...")
 
