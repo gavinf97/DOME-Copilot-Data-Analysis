@@ -9,9 +9,10 @@ import sys
 from datetime import datetime
 
 # Configuration
-DATA_DIR = "30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs"
-OUTPUT_FILE = "evaluation_results.tsv"
-BACKUP_FILE = "evaluation_results_backup.tsv"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(script_dir, "30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs")
+OUTPUT_FILE = os.path.join(script_dir, "evaluation_results.tsv")
+BACKUP_FILE = os.path.join(script_dir, "evaluation_results_backup.tsv")
 
 # Fields to evaluate
 FIELDS = [
@@ -207,9 +208,8 @@ class EvaluationApp:
         self.doi_to_user_oid = {}
         self.user_details = {}
         
-        # Paths relative to script location (Human_30_Copilot_vs_Human_Evaluations_Interface/)
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        workspace_root = os.path.dirname(script_dir) # Go up one level to root
+        # Paths relative to script location (already defined in global conf)
+        workspace_root = os.path.dirname(script_dir) # Go up one level from script_dir defined above
         
         # New Registry Files
         raw_reviews_path = os.path.join(workspace_root, "DOME_Registry_Human_Reviews_258_20260205.json")
@@ -309,9 +309,11 @@ class EvaluationApp:
             self.results_df = pd.concat([self.results_df, pd.DataFrame([new_row])], ignore_index=True)
             
         try:
+            print(f"Saving to {OUTPUT_FILE}...")
             self.results_df.to_csv(OUTPUT_FILE, sep='\t', index=False)
             self.results_df.to_csv(BACKUP_FILE, sep='\t', index=False)
         except Exception as e:
+            print(f"ERROR Saving: {e}")
             messagebox.showerror("Save Error", f"Could not save to file: {e}")
 
     def load_current_data(self):
