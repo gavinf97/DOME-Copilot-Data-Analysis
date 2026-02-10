@@ -4,14 +4,28 @@ This directory contains the tools and data for the comparative analysis between 
 
 ## Contents
 
-- **`evaluation_app.py`**: A Python application (likely Streamlit or similar dashboard) used to visualize and facilitate the human evaluation process.
-- **`Analysis_Evaluation_Results.ipynb`**: A Jupyter Notebook for analyzing the results of the comparison, calculating agreement metrics (precision, recall, F1, Cohen's kappa, etc.).
+- **`evaluation_app.py`**: A Python application (Tkinter-based) used to visualize and facilitate the human evaluation process.
+- **`generate_statistical_analysis.py`**: A robust statistical analysis script that processes `evaluation_results.tsv`. It performs T-tests and Binomial tests to validate the significance of the results and generates `statistical_analysis_report.txt`.
+- **`generate_evaluation_analysis_plots.py`**: Generates a comprehensive suite of visualization plots (Diversity, Performance, Precision/Recall, etc.) saved to the `evaluation_analysis_plots/` directory. Handles anonymization of curator IDs to protect privacy.
+- **`Analysis_Evaluation_Results.ipynb`**: (Legacy) A Jupyter Notebook originally used for analyzing the results.
 - **`30_human_evaluation/`**: Directory containing the specific subset of 30 papers selected for detailed human review.
 - **`evaluation_results.tsv`**: The recorded results of the evaluation session.
+- **`statistical_analysis_report.txt`**: The output report containing p-values and statistical findings.
 
 ## Purpose
 
 To validate the accuracy of the DOME Copilot, a subset of 30 papers was randomly selected and manually reviewed. This interface supports the workflow of comparing the AI-generated metadata against the ground truth established by human experts.
+
+## Analysis & Visualization
+
+In addition to the evaluation interface, this folder contains the analytical engine for the study:
+
+1.  **Statistical Analysis**: Run `python generate_statistical_analysis.py` to calculate significance tests between Copilot and Human performance.
+2.  **Visualization**: Run `python generate_evaluation_analysis_plots.py` to create the 6 key evaluation plots (saved to `evaluation_analysis_plots/`). These plots include:
+    *   Agreement/Disagreement rates.
+    *   Data Diversity (Categories/Tasks).
+    *   Evaluation Time metrics.
+    *   Curator Performance comparisons (Anonymized).
 
 ## Running with Docker
 
