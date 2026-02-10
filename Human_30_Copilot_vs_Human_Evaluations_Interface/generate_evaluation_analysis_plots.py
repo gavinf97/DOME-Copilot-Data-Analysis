@@ -118,6 +118,7 @@ def plot_performance_by_field(df):
     plt.title('Evaluation Results by Field (Excluding Publication Info)')
     plt.xlabel('Count')
     
+    plt.tight_layout()
     filepath = os.path.join(PLOTS_DIR, '03_Performance_By_Field_Stacked.png')
     plt.savefig(filepath)
     plt.close()
@@ -142,6 +143,7 @@ def plot_copilot_win_rate_per_field(df):
     plt.title('Copilot Win Rate by Field (%) (Excluding Publication Info)')
     plt.xlabel('Win Rate (%)')
     
+    plt.tight_layout()
     filepath = os.path.join(PLOTS_DIR, '04_Copilot_Win_Rate_By_Field.png')
     plt.savefig(filepath)
     plt.close()
