@@ -28,10 +28,10 @@ PLOTS_DIR = os.path.join(SCRIPT_DIR, "Evaluation_Plots")
 # Input Files
 EVAL_RESULTS_FILE = os.path.join(SCRIPT_DIR, 'evaluation_results.tsv')
 
-# Directory defaults from notebook (adjusted to be robust)
-REGISTRY_DIR = os.path.join(SCRIPT_DIR, "../DOME_Registry_JSON_Files")
-RAW_REVIEWS_FILE = "dome_review_raw_human_20260128.json"
-USERS_FILE = "dome_users_20260130.json"
+# Registry Files (Located in the parent directory)
+REGISTRY_DIR = os.path.dirname(SCRIPT_DIR) # Points to DOME-Copilot-Data-Analysis root
+RAW_REVIEWS_FILE = "DOME_Registry_Human_Reviews_258_20260205.json"
+USERS_FILE = "DOME_Registry_Users_20260202.json"
 
 # Attempt to locate the data dir 
 # (Notebook used '../30_human_evaluation', but repo structure suggests it might be different now)
@@ -224,8 +224,9 @@ def run_diversity_analysis(doi_to_oid, oid_to_user):
     # Plot 1: Journal Distribution (ALL)
     ax1 = fig5.add_subplot(gs5[0])
     journal_counts = df_stats['Journal'].value_counts()
+    unique_journals = len(journal_counts)
     sns.barplot(x=journal_counts.values, y=journal_counts.index, ax=ax1, palette="viridis", hue=journal_counts.index, legend=False)
-    ax1.set_title(f'Distribution by Journal (Sample of {len(df_stats)} Papers)', fontsize=14, fontweight='bold')
+    ax1.set_title(f'Distribution by Journal (Total Unique: {unique_journals} | Sample: {len(df_stats)} Papers)', fontsize=14, fontweight='bold')
     ax1.set_xlabel('Count')
     ax1.set_ylabel('')
     # Add count labels
@@ -235,9 +236,10 @@ def run_diversity_analysis(doi_to_oid, oid_to_user):
     # Plot 2: Curator Distribution 
     ax2 = fig5.add_subplot(gs5[1])
     curator_counts = df_stats['Curator'].value_counts()
+    unique_curators = len(curator_counts)
     # Using a simple bar plot to show the count of papers per curator in this sample
     sns.barplot(x=curator_counts.values, y=curator_counts.index, ax=ax2, palette="magma", hue=curator_counts.index, legend=False)
-    ax2.set_title(f'Distribution by Human Curator (Sample of {len(df_stats)} Papers)', fontsize=14, fontweight='bold')
+    ax2.set_title(f'Distribution by Human Curator (Total Unique: {unique_curators} | Sample: {len(df_stats)} Papers)', fontsize=14, fontweight='bold')
     ax2.set_xlabel('Number of Papers Annotated in this Set')
     ax2.set_ylabel('')
     # Add count labels
@@ -311,6 +313,9 @@ def load_registry_mappings():
         print("Registry JSON files not found. Skipping mapping load.")
         return {}, {}
 
+    all_encountered_oids = set()
+
+    # 1. First Pass: Collect OIDs from Reviews
     try:
         with open(reviews_path, 'r', encoding='utf-8') as f:
             reviews_data = json.load(f)
@@ -319,23 +324,29 @@ def load_registry_mappings():
                 oid = entry.get('user', {}).get('$oid', '')
                 if doi and oid:
                     doi_to_oid[doi.strip()] = oid
+                    all_encountered_oids.add(oid)
     except Exception as e:
         print(f"Error loading reviews: {e}")
 
+    # 2. Second Pass: Collect OIDs from Users file (to ensure we cover everyone even if not reviewing)
     try:
         with open(users_path, 'r', encoding='utf-8') as f:
             users_data = json.load(f)
             for u in users_data:
                 oid = u.get('_id', {}).get('$oid', '')
                 if oid:
-                    name = f"{u.get('name', '')} {u.get('surname', '')}".strip()
-                    if not name and u.get('email'):
-                        name = u.get('email')
-                    if not name:
-                        name = "Unknown"
-                    oid_to_user[oid] = name
+                    all_encountered_oids.add(oid)
     except Exception as e:
         print(f"Error loading users: {e}")
+        
+    # 3. Create Deterministic Anonymized Mapping
+    # Sort OIDs to guarantee that the same OID always gets the same "Curator N" label across runs
+    sorted_oids = sorted(list(all_encountered_oids))
+    
+    for i, oid in enumerate(sorted_oids):
+        oid_to_user[oid] = f"Curator {i+1}"
+        
+    print(f"Mapped {len(sorted_oids)} unique user OIDs to anonymous labels.")
         
     return doi_to_oid, oid_to_user
 
