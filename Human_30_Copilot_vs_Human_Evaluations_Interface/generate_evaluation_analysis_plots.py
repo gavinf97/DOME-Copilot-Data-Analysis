@@ -110,9 +110,12 @@ def plot_win_rate_analysis(df):
     print(f"Saved: {filepath}")
 
 def plot_performance_by_field(df):
+    # Filter out publication fields
+    df_filtered = df[~df['Field'].str.startswith('publication/')]
+    
     plt.figure(figsize=(12, 10))
-    sns.histplot(data=df, y='Field', hue='Rank', multiple='stack', hue_order=['Tie_High', 'Tie_Low', 'A_Better', 'B_Better'], palette='viridis')
-    plt.title('Evaluation Results by Field')
+    sns.histplot(data=df_filtered, y='Field', hue='Rank', multiple='stack', hue_order=['Tie_High', 'Tie_Low', 'A_Better', 'B_Better'], palette='viridis')
+    plt.title('Evaluation Results by Field (Excluding Publication Info)')
     plt.xlabel('Count')
     
     filepath = os.path.join(PLOTS_DIR, '03_Performance_By_Field_Stacked.png')
@@ -121,8 +124,11 @@ def plot_performance_by_field(df):
     print(f"Saved: {filepath}")
 
 def plot_copilot_win_rate_per_field(df):
+    # Filter out publication fields
+    df_filtered = df[~df['Field'].str.startswith('publication/')]
+
     # Calculate B_Better percentage per field
-    field_stats = df.groupby('Field')['Rank'].value_counts(normalize=True).unstack().fillna(0)
+    field_stats = df_filtered.groupby('Field')['Rank'].value_counts(normalize=True).unstack().fillna(0)
     
     if 'B_Better' in field_stats.columns:
         field_stats['Copilot_Win_Rate'] = field_stats['B_Better'] * 100
@@ -133,7 +139,7 @@ def plot_copilot_win_rate_per_field(df):
 
     plt.figure(figsize=(12, 8))
     sns.barplot(x=field_stats['Copilot_Win_Rate'], y=field_stats.index, palette='Blues_r')
-    plt.title('Copilot Win Rate by Field (%)')
+    plt.title('Copilot Win Rate by Field (%) (Excluding Publication Info)')
     plt.xlabel('Win Rate (%)')
     
     filepath = os.path.join(PLOTS_DIR, '04_Copilot_Win_Rate_By_Field.png')
@@ -176,7 +182,11 @@ def run_diversity_analysis(doi_to_oid, oid_to_user):
                     # Resolve Curator
                     if doi in doi_to_oid:
                         oid = doi_to_oid[doi]
-                        curator = oid_to_user.get(oid, "Unknown ID")
+                        # curator = oid_to_user.get(oid, "Unknown ID") # Map to name
+                        # Just use ID or resolved name if available, but let's stick to Name for readability if possible
+                        # The user asked to show "number of publications annotated by the curator"
+                        curator = oid_to_user.get(oid, "Assigned Curator") 
+
             except:
                 pass
                 
@@ -206,46 +216,77 @@ def run_diversity_analysis(doi_to_oid, oid_to_user):
 
     # Visualization
     sns.set_style("whitegrid")
-    fig = plt.figure(figsize=(24, 20)) # Increased size for readability 
-    gs = fig.add_gridspec(3, 2, height_ratios=[1, 1, 1])
+
+    # --- Plot 05: Diversity (Journal + Curator) ---
+    fig5 = plt.figure(figsize=(16, 12)) 
+    gs5 = fig5.add_gridspec(2, 1, height_ratios=[1, 1])
 
     # Plot 1: Journal Distribution (ALL)
-    ax1 = fig.add_subplot(gs[0, :])
+    ax1 = fig5.add_subplot(gs5[0])
     journal_counts = df_stats['Journal'].value_counts()
     sns.barplot(x=journal_counts.values, y=journal_counts.index, ax=ax1, palette="viridis", hue=journal_counts.index, legend=False)
-    ax1.set_title(f'Distribution by Journal (All {len(journal_counts)} Unique Journals)', fontsize=14, fontweight='bold')
+    ax1.set_title(f'Distribution by Journal (Sample of {len(df_stats)} Papers)', fontsize=14, fontweight='bold')
     ax1.set_xlabel('Count')
     ax1.set_ylabel('')
+    # Add count labels
+    for container in ax1.containers:
+        ax1.bar_label(container, padding=3)
 
-    # Plot 2: Curator Distribution (ALL)
-    ax2 = fig.add_subplot(gs[1, :])
+    # Plot 2: Curator Distribution 
+    ax2 = fig5.add_subplot(gs5[1])
     curator_counts = df_stats['Curator'].value_counts()
+    # Using a simple bar plot to show the count of papers per curator in this sample
     sns.barplot(x=curator_counts.values, y=curator_counts.index, ax=ax2, palette="magma", hue=curator_counts.index, legend=False)
-    ax2.set_title(f'Distribution by Curator (All {len(curator_counts)} Unique Curators)', fontsize=14, fontweight='bold')
-    ax2.set_xlabel('Count')
+    ax2.set_title(f'Distribution by Human Curator (Sample of {len(df_stats)} Papers)', fontsize=14, fontweight='bold')
+    ax2.set_xlabel('Number of Papers Annotated in this Set')
     ax2.set_ylabel('')
+    # Add count labels
+    for container in ax2.containers:
+        ax2.bar_label(container, padding=3)
 
-    # Plot 3: PDF Size (Content Length)
-    ax3 = fig.add_subplot(gs[2, 0])
-    sns.histplot(data=df_stats, x='Main_PDF_Size_MB', bins=10, ax=ax3, kde=True, color='teal')
-    ax3.set_title('Main PDF File Size Distribution (Content Length Proxy)', fontsize=12, fontweight='bold')
-    ax3.set_xlabel('Size (MB)')
-
-    # Plot 4: Supplementary Files Count (Stacked by PMCID)
-    ax4 = fig.add_subplot(gs[2, 1])
-    sns.histplot(data=df_stats, x='Supplementary_Files_Count', hue='PMCID', multiple='stack', ax=ax4, legend=False, palette='tab20')
-    ax4.set_title('Number of Supplementary Files per Entry (Stacked PMCIDs)', fontsize=12, fontweight='bold')
-    ax4.set_xlabel('Number of Supplementary Files')
-    ax4.set_ylabel('Count of Entries')
-    ax4.xaxis.set_major_locator(MaxNLocator(integer=True))
-    ax4.yaxis.set_major_locator(MaxNLocator(integer=True))
-
-    plt.tight_layout(rect=[0, 0.03, 1, 0.98])
-    
-    filepath = os.path.join(PLOTS_DIR, '05_Diversity_Analysis_Panel.png')
-    plt.savefig(filepath)
+    plt.tight_layout()
+    filepath_05 = os.path.join(PLOTS_DIR, '05_Diversity_Journal_Curator.png')
+    plt.savefig(filepath_05)
     plt.close()
-    print(f"Saved: {filepath}")
+    print(f"Saved: {filepath_05}")
+
+
+    # --- Plot 06: File Statistics (PDF Size + Supplementary) ---
+    fig6 = plt.figure(figsize=(16, 8))
+    gs6 = fig6.add_gridspec(1, 2)
+
+    # Plot 3: PDF Size (Simple Histogram with Counts)
+    ax3 = fig6.add_subplot(gs6[0])
+    # Binning the sizes for better readability
+    # Round sizes to nearest 0.5 MB for grouping? Or just standard histograms
+    sns.histplot(data=df_stats, x='Main_PDF_Size_MB', bins=10, ax=ax3, kde=False, color='#2e86c1')
+    ax3.set_title('Main PDF File Size Distribution', fontsize=12, fontweight='bold')
+    ax3.set_xlabel('Size (MB)')
+    ax3.set_ylabel('Count of Papers')
+    # Label counts on bars
+    for container in ax3.containers:
+        ax3.bar_label(container)
+
+    # Plot 4: Supplementary Files Count (Simple Bar Dist)
+    ax4 = fig6.add_subplot(gs6[1])
+    
+    # Get frequency of counts (e.g., how many papers have 0 supps, 1 supp, etc.)
+    supp_dist = df_stats['Supplementary_Files_Count'].value_counts().sort_index()
+    
+    sns.barplot(x=supp_dist.index, y=supp_dist.values, ax=ax4, color='#2ca02c')
+    ax4.set_title('Supplementary Files Distribution', fontsize=12, fontweight='bold')
+    ax4.set_xlabel('Number of Supplementary Files per Paper')
+    ax4.set_ylabel('Count of Papers')
+    # Label counts
+    for container in ax4.containers:
+        ax4.bar_label(container)
+
+    plt.tight_layout()
+    filepath_06 = os.path.join(PLOTS_DIR, '06_File_Statistics.png')
+    plt.savefig(filepath_06)
+    plt.close()
+    print(f"Saved: {filepath_06}")
+
 
     # Display Summary Stats
     print("\n=== Diversity Summary ===")
@@ -256,6 +297,7 @@ def run_diversity_analysis(doi_to_oid, oid_to_user):
     print(f"Avg Supplementary Files: {df_stats['Supplementary_Files_Count'].mean():.1f}")
     if 'Supplementary_Files_Count' in df_stats:
         print(f"Entries with 0 Supplementary Files: {len(df_stats[df_stats['Supplementary_Files_Count'] == 0])}")
+
 
 def load_registry_mappings():
     print("Loading User and DOI Mappings from Registry...")

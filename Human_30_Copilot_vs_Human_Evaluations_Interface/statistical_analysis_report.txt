@@ -1,0 +1,72 @@
+Statistical Analysis Report: DOME Copilot vs Human Evaluation
+============================================================
+
+## 1. Methodology
+### Data Source
+The analysis is based on the manual evaluation of 30 randomly selected papers.
+The results are loaded from `evaluation_results.tsv`.
+Note: `publication/*` fields (title, year, etc.) were EXCLUDED from this analysis as they are effectively ground-truth extraction tasks where variance is minimal and not indicative of intelligent assistance capability.
+
+### Variable Encoding
+- **Human Better (A_Better)**: -1
+- **Tie (Tie_High/Low)**: 0. Both High Quality (correct extraction) and Low Quality (both hallucinated/wrong) are treated as neutral outcomes (0) for the comparative statistics, as neither the Human nor the Copilot is superior to the other in these cases. However, their distinction is preserved in the detailed counts.
+- **Copilot Better (B_Better)**: +1
+
+### Statistical Tests Performed
+1. **Global One-Sample T-Test**: Tests if the mean preference score across all valid observations is significantly different from 0 (where 0 represents a Tie).
+2. **Binomial Sign Test**: Tests if the proportion of Copilot Wins is significantly different from Human Wins (ignoring ties). Ho: p(Win) = 0.5.
+3. **Per-Field One-Sample T-Test**: Applied to each field individually to determine if the mean score for that specific field is significantly different from 0.
+
+## 2. Global Overview
+Total Valid Observations (after filtering): 633
+Copilot Better (Wins): 376 (59.4%)
+Human Better (Wins):   67 (10.6%)
+Ties:                  190 (30.0%)
+    - High Quality Tie (Both Good): 121 (19.1%)
+    - Low Quality Tie (Both Poor):  69 (10.9%)
+
+Mean Preference Score (-1 Human, 0 Tie, +1 Copilot): 0.488
+
+## 3. Global Statistical Significance
+### A. One-Sample T-Test
+Method: Two-sided test against pop. mean = 0
+T-statistic: 18.064
+P-value: 4.05e-59
+Result: Significant difference found. favoring Copilot
+
+### B. Binomial Sign Test
+Method: Exact test, H0: p=0.5 (excluding ties)
+P-value: 3.10e-53
+Result: Reject H0. The win rate is not 50/50.
+
+
+## 4. Per-Field Analysis
+Ordering: Descending by Mean Score (Copilot Advantage).
+
+P-Val Column: Result of one-sample t-test for that specific field vs 0 (Tie).
+
+Field                               | Mean   | Copilot  | Human  | Tie    | P-Val   
+------------------------------------------------------------------------------------
+optimization/regularization         |  0.833 |       25 |      0 |      5 |  8.3e-13 *
+evaluation/method                   |  0.800 |       27 |      3 |      0 |  6.6e-08 *
+optimization/encoding               |  0.800 |       26 |      2 |      2 |  9.0e-09 *
+evaluation/comparison               |  0.767 |       24 |      1 |      5 |  3.5e-09 *
+evaluation/confidence               |  0.767 |       23 |      0 |      7 |  1.1e-10 *
+dataset/provenance                  |  0.710 |       22 |      0 |      9 |  1.5e-09 *
+optimization/fitting                |  0.700 |       24 |      3 |      3 |  2.2e-06 *
+dataset/redundancy                  |  0.677 |       22 |      1 |      8 |  9.5e-08 *
+optimization/features               |  0.633 |       20 |      1 |      9 |  8.3e-07 *
+evaluation/measure                  |  0.633 |       20 |      1 |      9 |  8.3e-07 *
+model/output                        |  0.567 |       18 |      1 |     11 |  7.0e-06 *
+model/interpretability              |  0.467 |       16 |      2 |     12 |  3.4e-04 *
+model/duration                      |  0.400 |       13 |      1 |     16 |  5.4e-04 *
+optimization/parameters             |  0.367 |       15 |      4 |     11 |  9.1e-03 *
+dataset/availability                |  0.367 |       17 |      6 |      7 |  1.9e-02 *
+dataset/splits                      |  0.323 |       13 |      3 |     15 |  9.9e-03 *
+optimization/algorithm              |  0.167 |       12 |      7 |     11 |  2.6e-01 
+optimization/config                 |  0.167 |       13 |      8 |      9 |  2.8e-01 
+evaluation/availability             |  0.067 |        9 |      7 |     14 |  6.3e-01 
+optimization/meta                   |  0.067 |        9 |      7 |     14 |  6.3e-01 
+model/availability                  | -0.033 |        8 |      9 |     13 |  8.1e-01 
+
+(*) indicates p < 0.05: The preference for one system in this field is statistically significant.
