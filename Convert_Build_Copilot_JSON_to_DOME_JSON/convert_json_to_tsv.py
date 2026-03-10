@@ -26,6 +26,7 @@ def process_jsons_to_tsv(input_dir, template_tsv_path, output_tsv_path, qc_faile
         
         row_data = {col: "" for col in columns}
         row_data['isAiGenerated'] = 'TRUE'
+        row_data['user'] = '665a01aa7089c469b4646267'
         
         is_qc_failed = False
         
