@@ -8,6 +8,21 @@ def process_jsons_to_tsv(input_dir, template_tsv_path, output_tsv_path, qc_faile
     # Read the template to get the exact columns
     template_df = pd.read_csv(template_tsv_path, sep="\t")
     columns = template_df.columns.tolist()
+    
+    if 'publication.created' in columns:
+        columns.remove('publication.created')
+        
+    if 'publication.tags[7]' in columns:
+        columns.remove('publication.tags[7]')
+        
+    if 'publication.tags[6]' in columns:
+        idx = columns.index('publication.tags[6]')
+        if 'publication.pmcid' not in columns:
+            columns.insert(idx + 1, 'publication.pmcid')
+    else:
+        if 'publication.pmcid' not in columns:
+            columns.append('publication.pmcid')
+            
     if 'isAiGenerated' not in columns:
         columns.append('isAiGenerated')
 
@@ -26,7 +41,14 @@ def process_jsons_to_tsv(input_dir, template_tsv_path, output_tsv_path, qc_faile
         
         row_data = {col: "" for col in columns}
         row_data['isAiGenerated'] = 'TRUE'
+        row_data['public'] = 'TRUE'
+        row_data['reviewState'] = 'undefined'
         row_data['user'] = '665a01aa7089c469b4646267'
+        row_data['update'] = '0'
+        row_data['__v'] = '2'
+        row_data['created'] = '2026-03-10T22:34:00.000+00:00'
+        row_data['updated'] = '2026-03-10T22:34:00.000+00:00'
+        row_data['publication.updated'] = '10/03/2026 22:34:00'
         
         is_qc_failed = False
         
