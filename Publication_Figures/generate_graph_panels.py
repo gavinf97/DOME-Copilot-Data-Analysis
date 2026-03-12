@@ -265,8 +265,8 @@ def create_joint_stacked_plot(data_df, title_suffix, xlabel, filename):
 
     # Single figure-level legend at top right
     import matplotlib.patches as mpatches
-    full_patch = mpatches.Patch(color='#27AE60', label='Full Yield')
-    partial_patch = mpatches.Patch(color='#2980B9', label='Partial Yield')
+    full_patch = mpatches.Patch(color='#27AE60', label='Full Generation')
+    partial_patch = mpatches.Patch(color='#2980B9', label='Partial Generation')
     total_patch = mpatches.Patch(color='black', label='Total (end of bar)')
     fig.legend(handles=[full_patch, partial_patch, total_patch],
                loc='upper right', fontsize=16, bbox_to_anchor=(0.99, 0.99),
@@ -398,7 +398,8 @@ if __name__ == "__main__":
         print("--- Plot 5: Joint Stacked Yield ---")
         create_joint_stacked_plot(
             df,
-            'Joint Yield: Full vs Partial (Stacked)',
+            'Successful Field Generation: Full & Partial',
+
             'Number of Papers',
             'graph_joint_stacked_yield.png'
         )
