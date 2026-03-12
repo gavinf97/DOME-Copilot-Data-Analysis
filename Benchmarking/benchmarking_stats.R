@@ -2,6 +2,13 @@ library(data.table)
 library(stringr)
 
 data = fread("results/copilot_vs_registry_text_metrics2_new.csv")
+
+# load V2 registry index list wihtout validation
+v2_idx <- fread("v2_registry_index_list.csv")
+
+# filter validation dataset 
+data <- data[registry_index %in% v2_idx$registry_index]
+
 data$pmcid=NULL 
 data$registry_index=NULL 
 data$publication_pmid=NULL 
@@ -9,7 +16,7 @@ data$publication_pmid=NULL
 
 mean_cal = function(file, metric){
   #function to calculate mean from all common metrics (in a row)
-
+  
   #keep only specified metric 
   metric_values <- file[, .SD, .SDcols = patterns(metric)]
   metric_means <- rowMeans(metric_values, na.rm = TRUE)
@@ -30,24 +37,24 @@ sd_cal = function(file, metric){
 
 
 # alphafold paper---------------------------------------------------------------
-af = data[which(data$publication_title=="Highly accurate protein structure prediction with AlphaFold",)]
-
-
-alphafold_stats <- data.frame(
-  blue_mean = mean_cal(af, "bleu"),
-  rougeL_mean = mean_cal(af, "rougeL"),
-  meteor_mean = mean_cal(af, "meteor"),
-  bertscore_mean = mean_cal(af, "bertscore"),
-  blue_sd = sd_cal(af, "bleu"),
-  rougeL_sd = sd_cal(af, "rougeL"),
-  meteor_sd = sd_cal(af, "meteor"),
-  bertscore_sd = sd_cal(af, "bertscore")
-
-)
-
-
+# af = data[which(data$publication_title=="Highly accurate protein structure prediction with AlphaFold",)]
+# 
+# 
+# alphafold_stats <- data.frame(
+#   blue_mean = mean_cal(af, "bleu"),
+#   rougeL_mean = mean_cal(af, "rougeL"),
+#   meteor_mean = mean_cal(af, "meteor"),
+#   bertscore_mean = mean_cal(af, "bertscore"),
+#   blue_sd = sd_cal(af, "bleu"),
+#   rougeL_sd = sd_cal(af, "rougeL"),
+#   meteor_sd = sd_cal(af, "meteor"),
+#   bertscore_sd = sd_cal(af, "bertscore")
+# 
+# )
+# 
+# 
 # write.table(alphafold_stats,
-#             file = "alphafold_stats.txt",
+#             file = "alphafold_stats_old.txt",
 #             sep = "\t",
 #             row.names = FALSE,
 #             quote     = FALSE)
@@ -70,39 +77,26 @@ all_stats <- data.frame(
 
 
 
-# write.table(all_stats,
-#             file = "all_stats.txt",
-#             sep = "\t",
-#             row.names = FALSE,
-#             quote     = FALSE)
+write.table(all_stats,
+            file = "all_stats_new_191.txt",
+            sep = "\t",
+            row.names = FALSE,
+            quote     = FALSE)
 
 # mean, min, max per column ----------------------------------------------------
 
-stats_long <- rbindlist(
-  lapply(names(data)[5:ncol(data)], function(col) {
-    x <- data[[col]]
-    data.table(
-      variable = col,
-      mean = mean(x, na.rm = TRUE),
-      min  = min(x, na.rm = TRUE),
-      min_row = which.min(x),
-      max  = max(x, na.rm = TRUE),
-      max_row = which.max(x)
-    )
-  })
-)
-
-
-
-
-
-
-
-
-
-
-
-
-
+# stats_long <- rbindlist(
+#   lapply(names(data)[5:ncol(data)], function(col) {
+#     x <- data[[col]]
+#     data.table(
+#       variable = col,
+#       mean = mean(x, na.rm = TRUE),
+#       min  = min(x, na.rm = TRUE),
+#       min_row = which.min(x),
+#       max  = max(x, na.rm = TRUE),
+#       max_row = which.max(x)
+#     )
+#   })
+# )
 
 
