@@ -27,3 +27,10 @@ python Download_1012_Negative_PMC_Full_Text_and_Supplementary.py --automated
 ## Data Hosting
 
 The resulting large binary datasets (PDFs and Supplementary files) are not tracked in this repository. They will be archived and hosted on **Zenodo** upon publication.
+
+## Docker Setup
+
+A Dockerfile is included in this directory to run the scripts in a containerized environment. Build the image with:
+`docker build -t image-name .`
+Run it with:
+`docker run -it image-name`

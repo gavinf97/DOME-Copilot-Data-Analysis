@@ -26,3 +26,10 @@ python generate_graph_panel_3.py
 
 This script reads from the `Copilot_Processed_Datasets_JSON/Copilot_1012_v0_Processed_2026-01-15_Updated_Metadata` directory.
 
+
+## Docker Setup
+
+A Dockerfile is included in this directory to run the scripts in a containerized environment. Build the image with:
+`docker build -t image-name .`
+Run it with:
+`docker run -it image-name`

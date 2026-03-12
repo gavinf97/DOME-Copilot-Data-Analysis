@@ -59,3 +59,10 @@ The tool prints the metadata to the console and saves a JSON file in the same di
     "publication/doi": "10.1000/xyz"
 }
 ```
+
+## Docker Setup
+
+A Dockerfile is included in this directory to run the scripts in a containerized environment. Build the image with:
+`docker build -t image-name .`
+Run it with:
+`docker run -it image-name`

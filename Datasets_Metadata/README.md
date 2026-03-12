@@ -28,3 +28,9 @@ To fetch or update metadata:
 cd Metadata
 python3 fetch_dataset_metadata.py
 ```
+## Docker Setup
+
+A Dockerfile is included in this directory to run the scripts in a containerized environment. Build the image with:
+`docker build -t image-name .`
+Run it with:
+`docker run -it image-name`

@@ -81,3 +81,18 @@ See [LICENSE.md](LICENSE.md) for full legal details.
 
 ## 📧 Contact
 contact@dome-ml.org
+
+
+## Recent Workspace Updates
+- **Download_Negative_1012_PDFs_PMCID_Full_Text_and_Supplementary**: Added Dockerfile.
+- **Negative_1012_PDFs_PMCID_Full_Text_and_Supplementary**: ] Added README. 
+- **Positive_1012_PDFs_PMCID_Full_Text_and_Supplementary**: ] Added README. 
+- **Human_30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs**: ] Added README. 
+- **Publication_Figures**: Added Dockerfile.
+- **DOME_Registry_222_PMCID_PDFs_PMC_Full_Text_and_Supplementary**: ] Added README. 
+- **DOI_to_Metadata_Tool**: Added Dockerfile.
+- **Copilot_Processed_Datasets_JSON**: ] Added README. 
+- **Download_Positive_1012_PDFs_PMCID_Full_Text_and_Supplementary**: Added Dockerfile.
+- **Download_DOME_Registry_222_PDFs_PMCID_Full_Text_and_Supplementary**: Added Dockerfile.
+- **DOME_TSV_JSON_Converter_Tool**: Added Dockerfile.
+- **Datasets_Metadata**: Added Dockerfile.

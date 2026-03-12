@@ -44,3 +44,10 @@ python Convert_Registry_TSV_to_JSON.py your_data_file.json
 - **`DOME_Registry_Schema_Reference.tsv`**: A header-only TSV file that defines the correct column order for flattened data.
 
 > **Note**: These reference files must be present in the same directory as the script.
+
+## Docker Setup
+
+A Dockerfile is included in this directory to run the scripts in a containerized environment. Build the image with:
+`docker build -t image-name .`
+Run it with:
+`docker run -it image-name`

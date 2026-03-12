@@ -34,3 +34,10 @@ python3 Download_1012_Positive_PMC_Full_Text_and_Supplementary.py
     *   Removes exact duplicates.
     *   Cleans files based on negative keywords (e.g., "review", "revision").
 5.  **Report**: Generates metrics and a chart (`Positive_Entries_Analysis_YYYY-MM-DD.png`) in the TSV folder.
+
+## Docker Setup
+
+A Dockerfile is included in this directory to run the scripts in a containerized environment. Build the image with:
+`docker build -t image-name .`
+Run it with:
+`docker run -it image-name`

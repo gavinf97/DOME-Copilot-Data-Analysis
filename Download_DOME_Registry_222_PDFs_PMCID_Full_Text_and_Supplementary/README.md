@@ -25,3 +25,10 @@ The script will generate the following folders in your working directory:
 - `DOME_Registry_PMC_PDFs/`
 - `DOME_Registry_PMC_Supplementary/`
 - `DOME_Registry_Remediation/`
+
+## Docker Setup
+
+A Dockerfile is included in this directory to run the scripts in a containerized environment. Build the image with:
+`docker build -t image-name .`
+Run it with:
+`docker run -it image-name`
