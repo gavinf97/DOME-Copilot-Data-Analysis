@@ -19,6 +19,9 @@ This folder contains scripts and output files related to collecting and managing
   - These TSV files contain the final consolidated metadata pulled for each respective dataset.
 - **`coverage_report.txt`**: A dynamically generated text report showing the percentage of missing values across the datasets, along with the precise PMCIDs that failed to return certain fields (even after falling back to the NCBI API).
 
+### Zenodo Dataset Information
+- **`DOME_Copilot_Zenodo_Dataset_Package_Metadata.csv`**: This file acts as a data dictionary and manifest for the zipped dataset hosted on Zenodo. It provides qualitative descriptions for all the files and directories included in the Zenodo deposit, detailing what they are, where they belong within this repository's structure, and how users downloading the dataset can utilize them for reproduction or external analysis.
+
 ## Usage
 To fetch or update metadata:
 ```bash
