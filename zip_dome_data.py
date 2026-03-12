@@ -21,10 +21,10 @@ SOURCES = {
     "Copilot_Processed_Datasets_JSON/Copilot_222_v0_Processed_2025-12-04_Updated_Metadata": "Copilot_Processed_Datasets_JSON/Copilot_222_v0_Processed_2025-12-04_Updated_Metadata",
     "Copilot_Processed_Datasets_JSON/Copilot_222_v2_Processed_2026-03-02": "Copilot_Processed_Datasets_JSON/Copilot_222_v2_Processed_2026-03-02",
     "Copilot_Processed_Datasets_JSON/Copilot_222_v2_Processed_2026-03-02_Updated_Metadata": "Copilot_Processed_Datasets_JSON/Copilot_222_v2_Processed_2026-03-02_Updated_Metadata",
-    "Download_222_DOME_Registry_PMC_Full_Text_and_Supplementary/DOME_Registry_PMC_Supplementary": "DOME_Registry_PMC_Supplementary",
-    "Download_1012_Negative_PMC_Full_Text_and_Supplementary/Negative_PMC_Supplementary": "Negative_PMC_Supplementary",
-    "Download_1012_Positive_PMC_Full_Text_and_Supplementary/Positive_PMC_Supplementary": "Positive_PMC_Supplementary",
-    "Human_30_Copilot_vs_Human_Evaluations_Interface/30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs": "30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs",
+    "DOME_Registry_222_PMCID_PDFs_PMC_Full_Text_and_Supplementary": "DOME_Registry_222_PMCID_PDFs_PMC_Full_Text_and_Supplementary",
+    "Negative_1012_PDFs_PMCID_Full_Text_and_Supplementary": "Negative_1012_PDFs_PMCID_Full_Text_and_Supplementary",
+    "Positive_1012_PDFs_PMCID_Full_Text_and_Supplementary": "Positive_1012_PDFs_PMCID_Full_Text_and_Supplementary",
+    "Human_30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs": "Human_30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs",
     "DOME_Registry_Human_Reviews_258_20260205.json": "DOME_Registry_Human_Reviews_258_20260205.json"
 }
 
