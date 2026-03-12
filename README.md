@@ -11,7 +11,7 @@ The project is structured around validating an AI-assisted curation workflow ("C
 1.  **DOME Registry Analysis**: Processing a subset of 222 articles from the DOME Registry.
 2.  **Large Scale Evaluation**: Analysis of a broader "Positive" dataset (1012 articles) and a corresponding "Negative" control set.
 3.  **Human vs. AI Comparison**: A dedicated interface and analysis suite for comparing human and Copilot evaluations on a 30-paper subset.
-4.  **Panel Generation**: Automated generation of publication figures (e.g., Panel 3).
+4.  **Panel Generation**: Automated generation of publication figures.
 
 ## 📁 Project Structure
 
@@ -86,7 +86,7 @@ This code supports ongoing doctoral research into the reproducibility of machine
 
 ## 📜 License
 
-**DOME Copilot Data Analysis** © 2026 by **Gavin Farrell** is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+**DOME Copilot Data Analysis** © 2026 is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 See [LICENSE.md](LICENSE.md) for full legal details.
 
