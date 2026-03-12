@@ -1,0 +1,18 @@
+Metadata Coverage Report
+========================
+
+--- Dataset: DOME_Registry_222 ---
+Total entries: 222
+  No missing output values for any column!
+
+--- Dataset: Positive_1012 ---
+Total entries: 1012
+  No missing output values for any column!
+
+--- Dataset: Negative_1012 ---
+Total entries: 1012
+  Missing 'authors': 4 (0.40%)
+    Affected PMCIDs: PMC6957889, PMC10946187, PMC10693265, PMC7169840
+  Missing 'pmid': 2 (0.20%)
+    Affected PMCIDs: PMC3262289, PMC11215837
+
