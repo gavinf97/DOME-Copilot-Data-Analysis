@@ -6,12 +6,7 @@ This repository contains the code, data pipelines, and analytical tools for the 
 
 ## 🎯 Project Overview
 
-The project is structured around validating an AI-assisted curation workflow ("Copilot") against human expert annotation. Key components include:
-
-1.  **DOME Registry Analysis**: Processing a subset of 222 articles from the DOME Registry.
-2.  **Large Scale Evaluation**: Analysis of a broader "Positive" dataset (1012 articles) and a corresponding "Negative" control set.
-3.  **Human vs. AI Comparison**: A dedicated interface and analysis suite for comparing human and Copilot evaluations on a 30-paper subset.
-4.  **Panel Generation**: Automated generation of publication figures.
+The project is structured around validating an AI-assisted curation workflow ("Copilot") against human expert annotation.
 
 ## 📁 Project Structure
 
