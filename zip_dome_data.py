@@ -11,7 +11,16 @@ ROOT_DIR = "DOME_Copilot_Data_Package"
 
 # Map source file system path -> Destination folder name in zip
 SOURCES = {
-    "Copilot_Processed_Datasets_JSON": "Copilot_Processed_Datasets_JSON",
+    "Copilot_Processed_Datasets_JSON/Copilot_1012_v0_Processed_2026-01-15": "Copilot_Processed_Datasets_JSON/Copilot_1012_v0_Processed_2026-01-15",
+    "Copilot_Processed_Datasets_JSON/Copilot_1012_v0_Processed_2026-01-15_Updated_Metadata": "Copilot_Processed_Datasets_JSON/Copilot_1012_v0_Processed_2026-01-15_Updated_Metadata",
+    "Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Neg_Processed_2026-03-02": "Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Neg_Processed_2026-03-02",
+    "Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Neg_Processed_2026-03-02_Updated_Metadata": "Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Neg_Processed_2026-03-02_Updated_Metadata",
+    "Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Pos_Processed_2026-03-02": "Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Pos_Processed_2026-03-02",
+    "Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Pos_Processed_2026-03-02_Updated_Metadata": "Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Pos_Processed_2026-03-02_Updated_Metadata",
+    "Copilot_Processed_Datasets_JSON/Copilot_222_v0_Processed_2025-12-04": "Copilot_Processed_Datasets_JSON/Copilot_222_v0_Processed_2025-12-04",
+    "Copilot_Processed_Datasets_JSON/Copilot_222_v0_Processed_2025-12-04_Updated_Metadata": "Copilot_Processed_Datasets_JSON/Copilot_222_v0_Processed_2025-12-04_Updated_Metadata",
+    "Copilot_Processed_Datasets_JSON/Copilot_222_v2_Processed_2026-03-02": "Copilot_Processed_Datasets_JSON/Copilot_222_v2_Processed_2026-03-02",
+    "Copilot_Processed_Datasets_JSON/Copilot_222_v2_Processed_2026-03-02_Updated_Metadata": "Copilot_Processed_Datasets_JSON/Copilot_222_v2_Processed_2026-03-02_Updated_Metadata",
     "Download_222_DOME_Registry_PMC_Full_Text_and_Supplementary/DOME_Registry_PMC_Supplementary": "DOME_Registry_PMC_Supplementary",
     "Download_1012_Negative_PMC_Full_Text_and_Supplementary/Negative_PMC_Supplementary": "Negative_PMC_Supplementary",
     "Download_1012_Positive_PMC_Full_Text_and_Supplementary/Positive_PMC_Supplementary": "Positive_PMC_Supplementary",
