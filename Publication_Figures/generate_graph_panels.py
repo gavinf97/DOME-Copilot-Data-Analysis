@@ -222,29 +222,48 @@ def create_joint_stacked_plot(data_df, title_suffix, xlabel, filename):
         # Plot Full
         bar1 = ax.barh(df_sub['Subfield'], df_sub['FullCount'], color='#4B8BBE', label='Full Yield')
         # Plot Partial on top
-        bar2 = ax.barh(df_sub['Subfield'], df_sub['PartialCount'], left=df_sub['FullCount'], color='#FFE873', label='Partial Yield')
+        bar2 = ax.barh(df_sub['Subfield'], df_sub['PartialCount'], left=df_sub['FullCount'], color='#D35400', label='Partial Yield')
         
         ax.set_title(category, fontweight='bold', fontsize=24)
         ax.set_xlabel(xlabel, fontsize=18)
         ax.tick_params(axis='both', which='major', labelsize=18)
-        ax.set_xlim(0, max(1200, total_files + 50)) 
-        
-        if i == 0:
-            ax.legend(fontsize=16)
+        ax.set_xlim(0, max(1200, total_files + 150)) 
 
         # Add text
         for idx, row in df_sub.reset_index(drop=True).iterrows():
             total = row['TotalCount']
             full = row['FullCount']
             partial = row['PartialCount']
+            
+            # 1) Total cap on end of bar in Black
             if total > 0:
-                ax.text(total + 10, idx, f'{int(total)}', ha='left', va='center', fontsize=16, fontweight='bold')
+                ax.text(total + 25, idx, f'{int(total)}', ha='left', va='center', fontsize=20, fontweight='bold', color='black')
+                
+            # 2) Full Yield subtotal completely inside or pointing inside, coloured White
             if full > 0:
-                ax.text(full / 2, idx, f'{int(full)}', ha='center', va='center', color='white', fontsize=12, fontweight='bold')
+                if full > 45 or total < 45:
+                    ax.text(full / 2, idx, f'{int(full)}', ha='center', va='center', color='white', fontsize=20, fontweight='bold')
+                else:
+                    # Move text horizontally into the partial bar's space, but keep it white
+                    ax.annotate(f'{int(full)}', xy=(full / 2, idx), xytext=(full + 15, idx),
+                                ha='left', va='center', color='white', fontsize=20, fontweight='bold',
+                                arrowprops=dict(arrowstyle="-", color='white', shrinkA=0, shrinkB=0, lw=1.5))
+                                
+            # 3) Partial Yield subtotal completely inside or pointing inside, coloured White
             if partial > 0:
-                ax.text(full + (partial / 2), idx, f'{int(partial)}', ha='center', va='center', color='black', fontsize=12, fontweight='bold')
+                if partial > 45 or total < 45:
+                    ax.text(full + (partial / 2), idx, f'{int(partial)}', ha='center', va='center', color='white', fontsize=20, fontweight='bold')
+                else:
+                    # Move text horizontally into the full bar's space, keeping it white
+                    ax.annotate(f'{int(partial)}', xy=(full + (partial / 2), idx), xytext=(full - 15, idx),
+                                ha='right', va='center', color='white', fontsize=20, fontweight='bold',
+                                arrowprops=dict(arrowstyle="-", color='white', shrinkA=0, shrinkB=0, lw=1.5))
 
-    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    # Single figure-level legend at top right
+    fig.legend(['Full Yield', 'Partial Yield'], loc='upper right', fontsize=18, bbox_to_anchor=(0.98, 0.98), ncol=2)
+    
+    # Adjusted tight_layout for more vertical space and top legend room
+    plt.tight_layout(rect=[0, 0, 1, 0.93], h_pad=4.0)
     path = os.path.join(OUTPUT_FOLDER, filename)
     plt.savefig(path, dpi=300, bbox_inches='tight')
     plt.close()
@@ -286,7 +305,7 @@ def create_joint_grouped_plot(data_df, title_suffix, xlabel, filename):
         height = 0.35
         
         bar1 = ax.barh(y - height/2, df_sub['FullCount'], height, color='#4B8BBE', label='Full Yield')
-        bar2 = ax.barh(y + height/2, df_sub['PartialCount'], height, color='#FFE873', label='Partial Yield')
+        bar2 = ax.barh(y + height/2, df_sub['PartialCount'], height, color='#D35400', label='Partial Yield')
         
         ax.set_yticks(y)
         ax.set_yticklabels(df_sub['Subfield'])
