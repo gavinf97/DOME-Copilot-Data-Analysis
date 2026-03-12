@@ -220,9 +220,9 @@ def create_joint_stacked_plot(data_df, title_suffix, xlabel, filename):
         df_sub = df_sub.sort_values('TotalCount', ascending=True)
         
         # Plot Full
-        bar1 = ax.barh(df_sub['Subfield'], df_sub['FullCount'], color='#4B8BBE', label='Full Yield')
+        bar1 = ax.barh(df_sub['Subfield'], df_sub['FullCount'], color='#27AE60', label='Full Yield')
         # Plot Partial on top
-        bar2 = ax.barh(df_sub['Subfield'], df_sub['PartialCount'], left=df_sub['FullCount'], color='#D35400', label='Partial Yield')
+        bar2 = ax.barh(df_sub['Subfield'], df_sub['PartialCount'], left=df_sub['FullCount'], color='#2980B9', label='Partial Yield')
         
         ax.set_title(category, fontweight='bold', fontsize=24)
         ax.set_xlabel(xlabel, fontsize=18)
@@ -259,8 +259,16 @@ def create_joint_stacked_plot(data_df, title_suffix, xlabel, filename):
                                 ha='right', va='center', color='white', fontsize=20, fontweight='bold',
                                 arrowprops=dict(arrowstyle="-", color='white', shrinkA=0, shrinkB=0, lw=1.5))
 
-    # Single figure-level legend at top right
-    fig.legend(['Full Yield', 'Partial Yield'], loc='upper right', fontsize=18, bbox_to_anchor=(0.98, 0.98), ncol=2)
+    # Single figure-level legend at top right, with colour patches and total-count explanation
+    import matplotlib.patches as mpatches
+    import matplotlib.lines as mlines
+    full_patch = mpatches.Patch(color='#27AE60', label='Full Yield (all sub-questions answered)')
+    partial_patch = mpatches.Patch(color='#2980B9', label='Partial Yield (mixed: some sub-questions answered)')
+    total_marker = mlines.Line2D([], [], color='none', marker='', linestyle='none',
+                                  label='  Bold black number = total valid yield per field')
+    fig.legend(handles=[full_patch, partial_patch, total_marker],
+               loc='upper right', fontsize=16, bbox_to_anchor=(0.99, 0.99),
+               framealpha=0.9, edgecolor='black')
     
     # Adjusted tight_layout for more vertical space and top legend room
     plt.tight_layout(rect=[0, 0, 1, 0.93], h_pad=4.0)
@@ -304,8 +312,8 @@ def create_joint_grouped_plot(data_df, title_suffix, xlabel, filename):
         y = np.arange(len(df_sub))
         height = 0.35
         
-        bar1 = ax.barh(y - height/2, df_sub['FullCount'], height, color='#4B8BBE', label='Full Yield')
-        bar2 = ax.barh(y + height/2, df_sub['PartialCount'], height, color='#D35400', label='Partial Yield')
+        bar1 = ax.barh(y - height/2, df_sub['FullCount'], height, color='#27AE60', label='Full Yield')
+        bar2 = ax.barh(y + height/2, df_sub['PartialCount'], height, color='#2980B9', label='Partial Yield')
         
         ax.set_yticks(y)
         ax.set_yticklabels(df_sub['Subfield'])
