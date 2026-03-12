@@ -259,14 +259,12 @@ def create_joint_stacked_plot(data_df, title_suffix, xlabel, filename):
                                 ha='right', va='center', color='white', fontsize=20, fontweight='bold',
                                 arrowprops=dict(arrowstyle="-", color='white', shrinkA=0, shrinkB=0, lw=1.5))
 
-    # Single figure-level legend at top right, with colour patches and total-count explanation
+    # Single figure-level legend at top right
     import matplotlib.patches as mpatches
-    import matplotlib.lines as mlines
-    full_patch = mpatches.Patch(color='#27AE60', label='Full Yield (all sub-questions answered)')
-    partial_patch = mpatches.Patch(color='#2980B9', label='Partial Yield (mixed: some sub-questions answered)')
-    total_marker = mlines.Line2D([], [], color='none', marker='', linestyle='none',
-                                  label='  Bold black number = total valid yield per field')
-    fig.legend(handles=[full_patch, partial_patch, total_marker],
+    full_patch = mpatches.Patch(color='#27AE60', label='Full Yield')
+    partial_patch = mpatches.Patch(color='#2980B9', label='Partial Yield')
+    total_patch = mpatches.Patch(color='black', label='Total (end of bar)')
+    fig.legend(handles=[full_patch, partial_patch, total_patch],
                loc='upper right', fontsize=16, bbox_to_anchor=(0.99, 0.99),
                framealpha=0.9, edgecolor='black')
     
