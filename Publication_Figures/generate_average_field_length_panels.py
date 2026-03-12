@@ -50,7 +50,7 @@ def response_length(value):
     return len(str(value).strip())
 
 
-def load_average_lengths(dataset_dir, version_name):
+def load_response_lengths(dataset_dir, version_name):
     if not os.path.exists(dataset_dir):
         raise FileNotFoundError(f"Data folder not found: {dataset_dir}")
 
@@ -82,21 +82,20 @@ def load_average_lengths(dataset_dir, version_name):
                 }
             )
 
-    frame = pd.DataFrame(records)
-    grouped = (
-        frame.groupby(["Version", "Category", "Subfield"], as_index=False)["Length"]
+    return pd.DataFrame(records)
+
+
+def build_comparison_frames():
+    v0_frame = load_response_lengths(DATASET_V0, "v0")
+    v2_frame = load_response_lengths(DATASET_V2, "v2")
+
+    raw_frame = pd.concat([v0_frame, v2_frame], ignore_index=True)
+    average_frame = (
+        raw_frame.groupby(["Version", "Category", "Subfield"], as_index=False)["Length"]
         .mean()
         .rename(columns={"Length": "AverageLength"})
     )
-    return grouped
-
-
-def build_comparison_frame():
-    v0_frame = load_average_lengths(DATASET_V0, "v0")
-    v2_frame = load_average_lengths(DATASET_V2, "v2")
-
-    combined = pd.concat([v0_frame, v2_frame], ignore_index=True)
-    return combined
+    return raw_frame, average_frame
 
 
 def format_subfield_label(subfield_name):
@@ -213,9 +212,99 @@ def create_comparison_plot(comparison_df):
     print(f"Saved figure to {output_png}")
 
 
+def create_boxplot(raw_df):
+    import matplotlib.patches as mpatches
+
+    os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+
+    categories = ["Data", "Optimisation", "Model", "Evaluation"]
+    fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(20, 16))
+    fig.suptitle(
+        "Response Length Distribution per Field: Copilot v0 vs v2",
+        fontsize=28,
+        fontweight="bold",
+        y=1.02,
+    )
+    axes = axes.flatten()
+
+    for index, category in enumerate(categories):
+        ax = axes[index]
+        category_df = raw_df[raw_df["Category"] == category].copy()
+
+        order = (
+            category_df.groupby("Subfield")["Length"]
+            .median()
+            .sort_values(ascending=True)
+            .index
+            .tolist()
+        )
+
+        plot_data = []
+        positions = []
+        colors = []
+        centers = []
+
+        for subfield_index, subfield in enumerate(order):
+            center = subfield_index * 1.2
+            centers.append(center)
+
+            v2_values = category_df[(category_df["Subfield"] == subfield) & (category_df["Version"] == "v2")]["Length"].tolist()
+            v0_values = category_df[(category_df["Subfield"] == subfield) & (category_df["Version"] == "v0")]["Length"].tolist()
+
+            plot_data.extend([v2_values, v0_values])
+            positions.extend([center - 0.18, center + 0.18])
+            colors.extend([VERSION_STYLES["v2"]["color"], VERSION_STYLES["v0"]["color"]])
+
+        boxplot = ax.boxplot(
+            plot_data,
+            vert=False,
+            positions=positions,
+            widths=0.28,
+            patch_artist=True,
+            showfliers=False,
+            medianprops={"color": "black", "linewidth": 1.4},
+        )
+
+        for patch, color in zip(boxplot["boxes"], colors):
+            patch.set_facecolor(color)
+            patch.set_edgecolor("black")
+            patch.set_alpha(0.95)
+
+        for whisker in boxplot["whiskers"]:
+            whisker.set_color("black")
+        for cap in boxplot["caps"]:
+            cap.set_color("black")
+
+        ax.set_yticks(centers)
+        ax.set_yticklabels([format_subfield_label(subfield) for subfield in order])
+        ax.set_title(category, fontweight="bold", fontsize=24)
+        ax.set_xlabel("Response length (characters)", fontsize=18)
+        ax.tick_params(axis="both", which="major", labelsize=16)
+
+    fig.legend(
+        handles=[
+            mpatches.Patch(color=VERSION_STYLES["v0"]["color"], label=VERSION_STYLES["v0"]["label"]),
+            mpatches.Patch(color=VERSION_STYLES["v2"]["color"], label=VERSION_STYLES["v2"]["label"]),
+        ],
+        loc="upper right",
+        fontsize=16,
+        bbox_to_anchor=(0.985, 0.985),
+        framealpha=0.95,
+        edgecolor="black",
+    )
+
+    plt.tight_layout(rect=[0, 0, 1, 0.93], h_pad=3.5)
+
+    output_png = os.path.join(OUTPUT_FOLDER, "average_field_length_v0_vs_v2_boxplot.png")
+    plt.savefig(output_png, dpi=300, bbox_inches="tight")
+    plt.close()
+    print(f"Saved figure to {output_png}")
+
+
 def main():
-    comparison_df = build_comparison_frame()
+    raw_df, comparison_df = build_comparison_frames()
     create_comparison_plot(comparison_df)
+    create_boxplot(raw_df)
 
 
 if __name__ == "__main__":

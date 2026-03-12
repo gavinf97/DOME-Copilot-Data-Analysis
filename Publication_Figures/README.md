@@ -6,6 +6,7 @@ This directory serves as the workspace for generating the final figures and anal
 
 - **`generate_graph_panel_3.py`**: The primary Python script for generating **Panel 3** of the publication figures. It analyzes the "Coverage" and "Yield" of the Copilot extraction across the full 1012 dataset.
 - **`generate_average_field_length_panels.py`**: Compares average response length per DOME field between the positive 1012 Copilot v0 and v2 processed JSON datasets, excluding `publication/*` fields, and renders a 4-panel figure.
+- **`generate_graph_panels_negative.py`**: Generates the negative-dataset panel figures for the 1012 v2 negative set, separating correct rejections and safe abstentions from failed content generation.
 - **`Graph_Panel_3_Analysis.ipynb`**: (Legacy) The original notebook used for exploratory analysis of Panel 3.
 
 ## Outputs
@@ -21,6 +22,10 @@ Contains the high-resolution (300 DPI) coverage analysis plots:
 ### **`Graph_Panel_Field_Lengths/`**
 Contains the high-resolution (300 DPI) average response length comparison plots:
 1.  **`average_field_length_v0_vs_v2.png`**: Four-panel comparison of average response length per field across Data, Optimisation, Model, and Evaluation for the positive 1012 v0 and v2 processed datasets.
+2.  **`average_field_length_v0_vs_v2_boxplot.png`**: Four-panel box-plot view of the per-paper field-length distributions for the same comparison.
+
+### **`Graph_Panel_V2_Neg/`**
+Contains the high-resolution (300 DPI) negative-dataset handling plots for the v2 negative 1012 set.
 
 ## Usage
 
@@ -28,6 +33,7 @@ To regenerate the figures:
 ```bash
 python generate_graph_panel_3.py
 python generate_average_field_length_panels.py
+python generate_graph_panels_negative.py
 ```
 
 This script reads from the `Copilot_Processed_Datasets_JSON/Copilot_1012_v0_Processed_2026-01-15_Updated_Metadata` directory.
