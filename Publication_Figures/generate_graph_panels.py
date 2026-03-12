@@ -234,29 +234,33 @@ def create_joint_stacked_plot(data_df, title_suffix, xlabel, filename):
             total = row['TotalCount']
             full = row['FullCount']
             partial = row['PartialCount']
+            subfield = row['Subfield'].lower()
+            # Reduce inner bar font size only for evaluation/availability; total cap always full size
+            fsize_inner = 15 if (category == 'Evaluation' and subfield == 'availability') else 20
+            fsize_total = 20
             
             # 1) Total cap on end of bar in Black
             if total > 0:
-                ax.text(total + 25, idx, f'{int(total)}', ha='left', va='center', fontsize=20, fontweight='bold', color='black')
+                ax.text(total + 25, idx, f'{int(total)}', ha='left', va='center', fontsize=fsize_total, fontweight='bold', color='black')
                 
             # 2) Full Yield subtotal completely inside or pointing inside, coloured White
             if full > 0:
                 if full > 45 or total < 45:
-                    ax.text(full / 2, idx, f'{int(full)}', ha='center', va='center', color='white', fontsize=20, fontweight='bold')
+                    ax.text(full / 2, idx, f'{int(full)}', ha='center', va='center', color='white', fontsize=fsize_inner, fontweight='bold')
                 else:
                     # Move text horizontally into the partial bar's space, but keep it white
                     ax.annotate(f'{int(full)}', xy=(full / 2, idx), xytext=(full + 15, idx),
-                                ha='left', va='center', color='white', fontsize=20, fontweight='bold',
+                                ha='left', va='center', color='white', fontsize=fsize_inner, fontweight='bold',
                                 arrowprops=dict(arrowstyle="-", color='white', shrinkA=0, shrinkB=0, lw=1.5))
                                 
             # 3) Partial Yield subtotal completely inside or pointing inside, coloured White
             if partial > 0:
                 if partial > 45 or total < 45:
-                    ax.text(full + (partial / 2), idx, f'{int(partial)}', ha='center', va='center', color='white', fontsize=20, fontweight='bold')
+                    ax.text(full + (partial / 2), idx, f'{int(partial)}', ha='center', va='center', color='white', fontsize=fsize_inner, fontweight='bold')
                 else:
                     # Move text horizontally into the full bar's space, keeping it white
                     ax.annotate(f'{int(partial)}', xy=(full + (partial / 2), idx), xytext=(full - 15, idx),
-                                ha='right', va='center', color='white', fontsize=20, fontweight='bold',
+                                ha='right', va='center', color='white', fontsize=fsize_inner, fontweight='bold',
                                 arrowprops=dict(arrowstyle="-", color='white', shrinkA=0, shrinkB=0, lw=1.5))
 
     # Single figure-level legend at top right
