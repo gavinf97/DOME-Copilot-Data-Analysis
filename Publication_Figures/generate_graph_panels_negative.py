@@ -38,6 +38,10 @@ CATEGORIES_MAP = {
 IRRELEVANT_PHRASE = "not a relevant ai or machine learning publication"
 MISSING_PATTERN = re.compile(r"not enough information(?: is)?(?: available)?")
 
+CORRECT_REJECTION_COLOR = "#D94B4B"
+NOT_ENOUGH_REJECTION_COLOR = "#A9CFF5"
+PARTIAL_REJECTION_COLOR = "#F39C12"
+
 
 def strip_to_alnum(text):
     return re.sub(r"[^a-z0-9]+", "", text.lower())
@@ -66,11 +70,12 @@ def normalize_response_text(value_str):
 
 def classify_negative_response(value_str):
     if not isinstance(value_str, str) or not value_str.strip():
-        return "Empty"
+        # Blank or missing response is treated as partial rejection for negatives.
+        return "PartialRejection"
 
     normalized = normalize_response_text(value_str)
     if not normalized:
-        return "Empty"
+        return "PartialRejection"
 
     irrelevant_removed = normalized.replace(IRRELEVANT_PHRASE, " ")
     if IRRELEVANT_PHRASE in normalized and not strip_to_alnum(irrelevant_removed):
@@ -82,10 +87,11 @@ def classify_negative_response(value_str):
     if not strip_to_alnum(allowed_removed):
         if MISSING_PATTERN.search(normalized):
             return "NotEnoughOnly"
-        return "Empty"
+        return "PartialRejection"
 
     if MISSING_PATTERN.search(normalized):
-        return "MixedFailure"
+        # Mix of placeholders and generated detail: partial rejection.
+        return "PartialRejection"
 
     return "Failure"
 
@@ -124,9 +130,9 @@ def load_and_process_data():
                         "Subfield": subfield,
                         "IsIrrelevantSuccess": response_class == "IrrelevantSuccess",
                         "IsNotEnoughOnly": response_class == "NotEnoughOnly",
-                        "IsMixedFailure": response_class == "MixedFailure",
-                        "IsFailure": response_class in {"MixedFailure", "Failure"},
-                        "IsAcceptable": response_class in {"IrrelevantSuccess", "NotEnoughOnly"},
+                        "IsPartialRejection": response_class == "PartialRejection",
+                        "IsFailure": response_class == "Failure",
+                        "IsAcceptable": response_class in {"IrrelevantSuccess", "NotEnoughOnly", "PartialRejection"},
                     }
                 )
 
@@ -154,7 +160,7 @@ def create_coverage_plot(data_df, condition_col, title_suffix, xlabel, filename)
     categories = ["Data", "Optimisation", "Model", "Evaluation"]
 
     fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(20, 16))
-    fig.suptitle(title_suffix, fontsize=30, fontweight="bold")
+    fig.suptitle(title_suffix, fontsize=30, fontweight="bold", y=1.05)
     axes = axes.flatten()
 
     for index, category in enumerate(categories):
@@ -219,14 +225,20 @@ def create_joint_stacked_plot(data_df, title_suffix, xlabel, filename):
         data_df[data_df["IsNotEnoughOnly"] == True]
         .groupby(["Category", "Subfield"])
         .size()
-        .reset_index(name="PartialCount")
+        .reset_index(name="NotEnoughOnlyCount")
+    )
+    partial_reject_counts = (
+        data_df[data_df["IsPartialRejection"] == True]
+        .groupby(["Category", "Subfield"])
+        .size()
+        .reset_index(name="PartialRejectCount")
     )
 
     total_files = data_df["File"].nunique()
     categories = ["Data", "Optimisation", "Model", "Evaluation"]
 
     fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(20, 16))
-    fig.suptitle(title_suffix, fontsize=30, fontweight="bold")
+    fig.suptitle(title_suffix, fontsize=30, fontweight="bold", y=1.10)
     axes = axes.flatten()
 
     for index, category in enumerate(categories):
@@ -236,20 +248,29 @@ def create_joint_stacked_plot(data_df, title_suffix, xlabel, filename):
 
         f_sub = full_counts[full_counts["Category"] == category]
         p_sub = partial_counts[partial_counts["Category"] == category]
+        pr_sub = partial_reject_counts[partial_reject_counts["Category"] == category]
 
         df_sub = df_sub.merge(f_sub[["Subfield", "FullCount"]], on="Subfield", how="left").fillna(0)
-        df_sub = df_sub.merge(p_sub[["Subfield", "PartialCount"]], on="Subfield", how="left").fillna(0)
-        df_sub["TotalCount"] = df_sub["FullCount"] + df_sub["PartialCount"]
+        df_sub = df_sub.merge(p_sub[["Subfield", "NotEnoughOnlyCount"]], on="Subfield", how="left").fillna(0)
+        df_sub = df_sub.merge(pr_sub[["Subfield", "PartialRejectCount"]], on="Subfield", how="left").fillna(0)
+        df_sub["TotalCount"] = df_sub["FullCount"] + df_sub["NotEnoughOnlyCount"] + df_sub["PartialRejectCount"]
         df_sub["Subfield"] = df_sub["Subfield"].str.capitalize()
         df_sub = df_sub.sort_values("TotalCount", ascending=True)
 
-        ax.barh(df_sub["Subfield"], df_sub["FullCount"], color="#27AE60", label="Correct rejection")
+        ax.barh(df_sub["Subfield"], df_sub["FullCount"], color=CORRECT_REJECTION_COLOR, label="Correct rejection")
         ax.barh(
             df_sub["Subfield"],
-            df_sub["PartialCount"],
+            df_sub["NotEnoughOnlyCount"],
             left=df_sub["FullCount"],
-            color="#2980B9",
-            label="Only not enough info",
+            color=NOT_ENOUGH_REJECTION_COLOR,
+            label="Not enough info rejection",
+        )
+        ax.barh(
+            df_sub["Subfield"],
+            df_sub["PartialRejectCount"],
+            left=df_sub["FullCount"] + df_sub["NotEnoughOnlyCount"],
+            color=PARTIAL_REJECTION_COLOR,
+            label="Partial rejection",
         )
 
         ax.set_title(category, fontweight="bold", fontsize=24)
@@ -260,28 +281,40 @@ def create_joint_stacked_plot(data_df, title_suffix, xlabel, filename):
         for row_index, row in df_sub.reset_index(drop=True).iterrows():
             total = row["TotalCount"]
             full = row["FullCount"]
-            partial = row["PartialCount"]
-
+            not_enough_only = row["NotEnoughOnlyCount"]
+            partial_reject = row["PartialRejectCount"]
             if total > 0:
-                ax.text(total + 25, row_index, f"{int(total)}", ha="left", va="center", fontsize=20, fontweight="bold", color="black")
+                ax.text(
+                    total + 25,
+                    row_index,
+                    f"{int(total)}",
+                    ha="left",
+                    va="center",
+                    fontsize=20,
+                    fontweight="bold",
+                    color="black",
+                )
             if full > 0:
                 ax.text(full / 2, row_index, f"{int(full)}", ha="center", va="center", color="white", fontsize=18, fontweight="bold")
-            if partial > 0:
-                ax.text(full + (partial / 2), row_index, f"{int(partial)}", ha="center", va="center", color="white", fontsize=18, fontweight="bold")
+            if not_enough_only > 0:
+                ax.text(full + (not_enough_only / 2), row_index, f"{int(not_enough_only)}", ha="center", va="center", color="black", fontsize=16, fontweight="bold")
+            if partial_reject > 0:
+                ax.text(full + not_enough_only + (partial_reject / 2), row_index, f"{int(partial_reject)}", ha="center", va="center", color="white", fontsize=16, fontweight="bold")
 
-    full_patch = mpatches.Patch(color="#27AE60", label="Correct rejection")
-    partial_patch = mpatches.Patch(color="#2980B9", label="Only not enough info")
-    total_patch = mpatches.Patch(color="black", label="Total (end of bar)")
+    full_patch = mpatches.Patch(color=CORRECT_REJECTION_COLOR, label="Correct rejection")
+    partial_patch = mpatches.Patch(color=NOT_ENOUGH_REJECTION_COLOR, label="Not enough info rejection")
+    partial_reject_patch = mpatches.Patch(color=PARTIAL_REJECTION_COLOR, label="Partial rejection")
+    total_patch = mpatches.Patch(color="black", label="Total rejections (end of bar)")
     fig.legend(
-        handles=[full_patch, partial_patch, total_patch],
+        handles=[full_patch, partial_patch, partial_reject_patch, total_patch],
         loc="upper right",
         fontsize=16,
-        bbox_to_anchor=(0.99, 0.99),
+        bbox_to_anchor=(0.99, 0.96),
         framealpha=0.9,
         edgecolor="black",
     )
 
-    plt.tight_layout(rect=[0, 0, 1, 0.93], h_pad=4.0)
+    plt.tight_layout(rect=[0, 0, 1, 0.82], h_pad=4.0)
     path = os.path.join(OUTPUT_FOLDER, filename)
     plt.savefig(path, dpi=300, bbox_inches="tight")
     plt.close()
@@ -301,7 +334,13 @@ def create_joint_grouped_plot(data_df, title_suffix, xlabel, filename):
         data_df[data_df["IsNotEnoughOnly"] == True]
         .groupby(["Category", "Subfield"])
         .size()
-        .reset_index(name="PartialCount")
+        .reset_index(name="NotEnoughOnlyCount")
+    )
+    partial_reject_counts = (
+        data_df[data_df["IsPartialRejection"] == True]
+        .groupby(["Category", "Subfield"])
+        .size()
+        .reset_index(name="PartialRejectCount")
     )
 
     total_files = data_df["File"].nunique()
@@ -318,18 +357,21 @@ def create_joint_grouped_plot(data_df, title_suffix, xlabel, filename):
 
         f_sub = full_counts[full_counts["Category"] == category]
         p_sub = partial_counts[partial_counts["Category"] == category]
+        pr_sub = partial_reject_counts[partial_reject_counts["Category"] == category]
 
         df_sub = df_sub.merge(f_sub[["Subfield", "FullCount"]], on="Subfield", how="left").fillna(0)
-        df_sub = df_sub.merge(p_sub[["Subfield", "PartialCount"]], on="Subfield", how="left").fillna(0)
-        df_sub["TotalCount"] = df_sub["FullCount"] + df_sub["PartialCount"]
+        df_sub = df_sub.merge(p_sub[["Subfield", "NotEnoughOnlyCount"]], on="Subfield", how="left").fillna(0)
+        df_sub = df_sub.merge(pr_sub[["Subfield", "PartialRejectCount"]], on="Subfield", how="left").fillna(0)
+        df_sub["TotalCount"] = df_sub["FullCount"] + df_sub["NotEnoughOnlyCount"] + df_sub["PartialRejectCount"]
         df_sub["Subfield"] = df_sub["Subfield"].str.capitalize()
         df_sub = df_sub.sort_values("TotalCount", ascending=True)
 
         y_positions = np.arange(len(df_sub))
-        height = 0.35
+        height = 0.22
 
-        bars1 = ax.barh(y_positions - height / 2, df_sub["FullCount"], height, color="#27AE60", label="Correct rejection")
-        bars2 = ax.barh(y_positions + height / 2, df_sub["PartialCount"], height, color="#2980B9", label="Only not enough info")
+        bars1 = ax.barh(y_positions - height, df_sub["FullCount"], height, color=CORRECT_REJECTION_COLOR, label="Correct rejection")
+        bars2 = ax.barh(y_positions, df_sub["NotEnoughOnlyCount"], height, color=NOT_ENOUGH_REJECTION_COLOR, label="Not enough info rejection")
+        bars3 = ax.barh(y_positions + height, df_sub["PartialRejectCount"], height, color=PARTIAL_REJECTION_COLOR, label="Partial rejection")
 
         ax.set_yticks(y_positions)
         ax.set_yticklabels(df_sub["Subfield"])
@@ -341,7 +383,7 @@ def create_joint_grouped_plot(data_df, title_suffix, xlabel, filename):
         if index == 0:
             ax.legend(fontsize=16)
 
-        for bar in list(bars1) + list(bars2):
+        for bar in list(bars1) + list(bars2) + list(bars3):
             width = bar.get_width()
             if width > 0:
                 ax.text(width + 10, bar.get_y() + bar.get_height() / 2, f"{int(width)}", ha="left", va="center", fontsize=12, fontweight="bold")
@@ -376,10 +418,10 @@ def main():
     )
     create_coverage_plot(
         data_df,
-        "IsMixedFailure",
-        "Mixed Failure: Placeholder Plus Extra Generated Content",
+        "IsPartialRejection",
+        "Partial Rejection: Mixed Placeholder/Blank/Partial Responses",
         "Number of Papers",
-        "graph_mixed_failure.png",
+        "graph_partial_rejection.png",
     )
     create_coverage_plot(
         data_df,
@@ -390,13 +432,13 @@ def main():
     )
     create_joint_stacked_plot(
         data_df,
-        "Acceptable Negative Handling: Correct Rejection & Placeholder-Only",
+        "Acceptable Negative Handling: Correct, Placeholder-Only, and Partial Rejection",
         "Number of Papers",
         "graph_joint_stacked_success.png",
     )
     create_joint_grouped_plot(
         data_df,
-        "Acceptable Negative Handling: Correct Rejection vs Placeholder-Only",
+        "Acceptable Negative Handling: Correct vs Placeholder-Only vs Partial",
         "Number of Papers",
         "graph_joint_grouped_success.png",
     )
