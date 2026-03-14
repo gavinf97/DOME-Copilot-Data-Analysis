@@ -1,0 +1,17 @@
+{
+  "copilot_json_files_total": 222,
+  "doi_matched_documents": 222,
+  "doi_unmatched_documents": 0,
+  "field_comparisons_total": 4662,
+  "analysis_1_numeric_percent_relevant_rows": 2585,
+  "analysis_1_numeric_percent_comparable_rows": 970,
+  "analysis_1_overall_success_percent": 64.02061855670102,
+  "analysis_2_nei_relevant_rows": 2199,
+  "analysis_2_overall_success_percent": 24.5793542519327,
+  "analysis_3_yesno_relevant_rows": 2128,
+  "analysis_3_yesno_comparable_rows": 441,
+  "analysis_3_overall_success_percent": 63.718820861678005,
+  "analysis_4_url_relevant_rows": 508,
+  "analysis_4_url_comparable_rows": 180,
+  "analysis_4_overall_success_percent": 41.94444444444444
+}
