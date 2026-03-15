@@ -25,7 +25,7 @@ import pandas as pd
 
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-WORKSPACE_ROOT = os.path.dirname(SCRIPT_DIR)
+WORKSPACE_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 
 COPILOT_DIR = os.path.join(
     WORKSPACE_ROOT,
@@ -38,7 +38,18 @@ HUMAN_FILE = os.path.join(
     "DOME_Registry_Human_Reviews_258_20260205.json",
 )
 
-OUTPUT_DIR = os.path.join(SCRIPT_DIR, "Numeric_and_null_similarity")
+OUTPUT_DIR = SCRIPT_DIR
+
+GRAPH_FILENAMES = [
+    "graph_1_numeric_percent_direct_match_by_field.png",
+    "graph_1b_numeric_percent_breakdown_by_field.png",
+    "graph_2_not_enough_info_alignment_by_field.png",
+    "graph_3_yesno_alignment_by_field.png",
+    "graph_3b_yesno_breakdown_by_field.png",
+    "graph_4_url_alignment_by_field.png",
+    "graph_4b_url_breakdown_by_field.png",
+]
+GRAPH_DATA_FILENAME = "numeric_null_similarity_graph_data.csv"
 
 MISSING_REGEX = re.compile(r"not enough information(?: is)?(?: available)?", re.IGNORECASE)
 URL_REGEX = re.compile(r"https?://[^\s\]\[\)\(\"'<>]+", re.IGNORECASE)
@@ -429,6 +440,61 @@ def finalize_stacked_breakdown_plot(plot_df, title, out_path, components):
     plt.close()
 
 
+def remove_previous_outputs():
+    """
+    Keep this folder tidy by removing prior generated CSV/JSON files and PNGs
+    that are not part of the current graph output set.
+    """
+    keep_png = set(GRAPH_FILENAMES)
+    keep_data = {GRAPH_DATA_FILENAME}
+
+    for name in os.listdir(OUTPUT_DIR):
+        path = os.path.join(OUTPUT_DIR, name)
+        if not os.path.isfile(path):
+            continue
+
+        lower = name.lower()
+        if lower.endswith(".csv") and name not in keep_data:
+            os.remove(path)
+        elif lower.endswith(".json"):
+            os.remove(path)
+        elif lower.endswith(".png") and name not in keep_png:
+            os.remove(path)
+
+
+def build_consolidated_graph_data(
+    numeric_field_summary,
+    nei_field_summary,
+    yesno_field_summary,
+    url_field_summary,
+    numeric_breakdown_df,
+    yesno_breakdown_df,
+    url_breakdown_df,
+):
+    tables = [
+        ("graph_1_numeric_percent_direct_match", numeric_field_summary),
+        ("graph_2_not_enough_info_alignment", nei_field_summary),
+        ("graph_3_yesno_alignment", yesno_field_summary),
+        ("graph_4_url_alignment", url_field_summary),
+        ("graph_1b_numeric_percent_breakdown", numeric_breakdown_df),
+        ("graph_3b_yesno_breakdown", yesno_breakdown_df),
+        ("graph_4b_url_breakdown", url_breakdown_df),
+    ]
+
+    merged = []
+    for table_name, df in tables:
+        if df is None or df.empty:
+            continue
+        out = df.copy()
+        out.insert(0, "GraphTable", table_name)
+        merged.append(out)
+
+    if not merged:
+        return pd.DataFrame(columns=["GraphTable"])
+
+    return pd.concat(merged, ignore_index=True, sort=False)
+
+
 def run_analysis():
     if not os.path.exists(COPILOT_DIR):
         raise FileNotFoundError(f"Copilot directory not found: {COPILOT_DIR}")
@@ -436,6 +502,7 @@ def run_analysis():
         raise FileNotFoundError(f"Human registry file not found: {HUMAN_FILE}")
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+    remove_previous_outputs()
 
     human_by_doi = load_human_registry()
     copilot_files = sorted(glob.glob(os.path.join(COPILOT_DIR, "*.json")))
@@ -688,41 +755,16 @@ def run_analysis():
     yesno_breakdown_df = pd.DataFrame(yesno_breakdown_rows)
     url_breakdown_df = pd.DataFrame(url_breakdown_rows)
 
-    # Save tables
-    frame.to_csv(os.path.join(OUTPUT_DIR, "numeric_null_similarity_raw_rows.csv"), index=False)
-    numeric_relevant.to_csv(os.path.join(OUTPUT_DIR, "numeric_percent_relevant_rows.csv"), index=False)
-    nei_relevant.to_csv(os.path.join(OUTPUT_DIR, "nei_relevant_rows.csv"), index=False)
-    yesno_relevant.to_csv(os.path.join(OUTPUT_DIR, "yesno_relevant_rows.csv"), index=False)
-    url_relevant.to_csv(os.path.join(OUTPUT_DIR, "url_relevant_rows.csv"), index=False)
-
-    numeric_field_summary.to_csv(
-        os.path.join(OUTPUT_DIR, "numeric_percent_direct_match_by_field.csv"),
-        index=False,
+    graph_data = build_consolidated_graph_data(
+        numeric_field_summary,
+        nei_field_summary,
+        yesno_field_summary,
+        url_field_summary,
+        numeric_breakdown_df,
+        yesno_breakdown_df,
+        url_breakdown_df,
     )
-    nei_field_summary.to_csv(
-        os.path.join(OUTPUT_DIR, "not_enough_info_alignment_by_field.csv"),
-        index=False,
-    )
-    yesno_field_summary.to_csv(
-        os.path.join(OUTPUT_DIR, "yesno_alignment_by_field.csv"),
-        index=False,
-    )
-    url_field_summary.to_csv(
-        os.path.join(OUTPUT_DIR, "url_alignment_by_field.csv"),
-        index=False,
-    )
-    numeric_breakdown_df.to_csv(
-        os.path.join(OUTPUT_DIR, "numeric_percent_breakdown_by_field.csv"),
-        index=False,
-    )
-    yesno_breakdown_df.to_csv(
-        os.path.join(OUTPUT_DIR, "yesno_breakdown_by_field.csv"),
-        index=False,
-    )
-    url_breakdown_df.to_csv(
-        os.path.join(OUTPUT_DIR, "url_breakdown_by_field.csv"),
-        index=False,
-    )
+    graph_data.to_csv(os.path.join(OUTPUT_DIR, GRAPH_DATA_FILENAME), index=False)
 
     # Create three deconflated field-level graphs with n labels at each bar end.
     finalize_summary_plot(
@@ -809,11 +851,9 @@ def run_analysis():
         ) if not url_relevant.empty else 0.0,
     }
 
-    with open(os.path.join(OUTPUT_DIR, "run_summary.json"), "w", encoding="utf-8") as handle:
-        json.dump(summary, handle, indent=2)
-
     print("Done.")
     print(f"Output folder: {OUTPUT_DIR}")
+    print(f"Graph data file: {os.path.join(OUTPUT_DIR, GRAPH_DATA_FILENAME)}")
     print(json.dumps(summary, indent=2))
 
 

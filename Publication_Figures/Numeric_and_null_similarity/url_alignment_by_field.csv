@@ -1,5 +1,0 @@
-Category,Field,ComparedCount,MeanScore,FullMatches,HalfMatches,SuccessPercent
-dataset,dataset/availability,66,0.4015151515151515,17,19,40.15151515151515
-dataset,dataset/provenance,3,0.3333333333333333,1,0,33.33333333333333
-model,model/availability,90,0.4388888888888889,33,13,43.888888888888886
-optimization,optimization/config,21,0.40476190476190477,7,3,40.476190476190474
