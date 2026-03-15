@@ -1,0 +1,80 @@
+PMCID	Field	Value_A_Human	Value_B_Copilot	Rank	Comment	Timestamp
+PMC8371605	publication/title	Highly accurate protein structure prediction with AlphaFold.	Highly accurate protein structure prediction with AlphaFold.	Tie_High		2026-03-15T16:07:49.213365
+PMC8371605	publication/authors	Jumper J, Evans R, Pritzel A, Green T, Figurnov M, Ronneberger O, Tunyasuvunakool K, Bates R, Žídek A, Potapenko A, Bridgland A, Meyer C, Kohl SAA, Ballard AJ, Cowie A, Romera-Paredes B, Nikolov S, Jain R, Adler J, Back T, Petersen S, Reiman D, Clancy E, Zielinski M, Steinegger M, Pacholska M, Berghammer T, Bodenstein S, Silver D, Vinyals O, Senior AW, Kavukcuoglu K, Kohli P, Hassabis D.	Jumper J, Evans R, Pritzel A, Green T, Figurnov M, Ronneberger O, Tunyasuvunakool K, Bates R, Žídek A, Potapenko A, Bridgland A, Meyer C, Kohl SAA, Ballard AJ, Cowie A, Romera-Paredes B, Nikolov S, Jain R, Adler J, Back T, Petersen S, Reiman D, Clancy E, Zielinski M, Steinegger M, Pacholska M, Berghammer T, Bodenstein S, Silver D, Vinyals O, Senior AW, Kavukcuoglu K, Kohli P, Hassabis D.	Tie_High		2026-03-15T16:07:52.610264
+PMC8371605	publication/journal	Nature	Nature	Tie_High		2026-03-15T16:07:54.793077
+PMC8371605	publication/year	2021	2021	Tie_High		2026-03-15T16:07:56.975208
+PMC8371605	publication/doi	10.1038/s41586-021-03819-2	10.1038/s41586-021-03819-2	Tie_High		2026-03-15T16:08:00.858221
+PMC8371605	publication/tags	Protein, Structural biology, AlphaFold	"* Protein structure prediction
+* AlphaFold
+* Deep learning
+* Evolutionary history
+* Multi-sequence alignments
+* Neural networks
+* Bioinformatics"	Tie_High		2026-03-15T16:08:06.572406
+PMC8371605	dataset/provenance	"Data source: Several databases
+
+Databases:
+-Worldwide Protein Databank (PDB) for protein structures. Downloaded  28 August 2019.  
+-UniProt data: used to construct BFD (below)
+-Big Fantastic Database (BFD): 65,983,866 families represented as multiple sequence alignments (MSA) and hidden Markov models (HMMs) covering 2,204,359,010 protein
+-Uniref9067 v.2020_01, BFD, Uniclust3036 v.2018_08 and MGnify6 v.2018_12 - for MSA lookup at both training and prediction time.
+-Uniclust3036 v.2018_08 to construct a distillation structure dataset - for sequence distillation.
+-CASP14 template search used the PDB70 database. Downloaded 13 May 2020. 
+
+Total data points: variable across input data type and not clearly disclosed in paper - could be inferred from supplementary data files linked on paper or the GitHub linked data files. 
+Pos v Neg data classes: not applicable.
+
+Dataset use by community: databases used are well recognised and the gold standard for the data types used. The evaluation data for CASP is also a standardised set of data for comparative benchmarking of protein structure prediction ML models."	"* **Data Source Name**:
+  * **PDB**: Protein Data Bank (https://www.wwpdb.org/ftp/pdb-ftp-sites)
+    * **PDB70**: (https://wwwuser.gwdg.de/~compbiol/data/hhsuite/databases/hhsuite_dbs/)
+  * **UniRef90**: (https://ftp.ebi.ac.uk/pub/databases/uniprot/previous_releases/release-2020_01/uniref/)
+  * **BFD**: (https://bfd.mmseqs.com)
+  * **Uniclust30**: (https://wwwuser.gwdg.de/~compbiol/uniclust/2018_08/)
+  * **MGnify**: (https://ftp.ebi.ac.uk/pub/databases/metagenomics/peptide_database/2018_12/)
+  * **Metaclust NR**: (2017-05)
+
+* **Total Data Points**:
+  * **PDB**: Not enough information is available
+  * **UniRef90**: Not enough information is available
+  * **BFD**: Not enough information is available
+  * **Uniclust30**: Not enough information is available
+  * **MGnify**: Not enough information is available
+  * **Metaclust NR**: 166,510,624 representative protein sequences
+
+* **Previous Use**:
+  * **PDB**: Yes, used in CASP14 benchmark set.
+  * **UniRef90**: Yes, used in CASP14 benchmark set.
+  * **BFD**: Yes, used in CASP14 benchmark set.
+  * **Uniclust30**: Yes, used in CASP14 benchmark set.
+  * **MGnify**: Yes, used in CASP14 benchmark set.
+  * **Metaclust NR**: Not enough information is available"	Tie_High	For a complex ML paper both the DOME COpilot and human do a good job to provide clear and strutcure dinformation on the datasources, the complexities in identifying the exacvt datapoints volumne are rleflected in both annotations and the previous use in CASP14 also noted. Both of high quality for a complex paper using many data sourecs. Human does marginally better with certain data point extraction.	2026-03-15T16:11:22.234400
+PMC8371605	dataset/splits	"Data splits:
+-Training: figures not explicitly stated in paper - can be inferred from various input file availability. Exact figures unclear also in supplementary material.
+
+-Test: figures not explicitly stated paper - can be inferred from file availability and CAPS14 competition details. 
+
+-Validation: yes, validation set used - to select the best model during training they monitor lDDT-Cα performance on a validation set of targets collected from CAMEO over 3 months period (2018-12-14 to 2019-03-09).  Exact validation figure of CAMEO targets not stated in text and unclear from supplementary data file. 
+
+Distributions: yes - the distributions are different. Much wider range of proteins used in the training phase vs smaller test set from CASP14 containing previously unseen proteins. However, CASP14 test set purposely designed to provide diverse range of structure to predict for its competition. 
+
+Distribution plotting available: not available in paper or supplementary file."	"* **Number of Splits**: 3 (Training, Validation, Testing).
+  * The method was evaluated on the full CASP14 benchmark set, and all PDB chains not in the training set.
+  * The training set was filtered and redundancy reduced.
+  * The training procedure involved multiple stages with different parameters and sample sizes.
+
+* **Split Counts**:
+  * **Training**: Not enough information is available.
+  * **Validation**: Not enough information is available.
+  * **Testing**: Not enough information is available.
+  * **CASP14 Models**:
+    * **Model 1.1.1**: Training samples = 1.7 million.
+    * **Model 1.1.2**: Training samples = 0.3 million.
+    * **Model 1.2.1**: Training samples = 0.6 million.
+    * **Model 1.2.2**: Training samples = 1.4 million.
+    * **Model 1.2.3**: Training samples = 2.4 million.
+
+* **Class Distribution**:
+  * **Training**: Not enough information is available.
+  * **Validation**: Not enough information is available.
+  * **Testing**: Not enough information is available.
+  * **Data Exclusions**: The recent PDB set was filtered to exclude chains with too few resolved residues, longer than 1400 residues, solved by NMR, or with unknown/ambiguous residues. This set was also redundancy reduced by taking representatives from a sequence clustering."	Tie_High	Human is slightly better - neither get clear informaiton on dtaa poionts as a complex naunce to check actual datasets; both correctly ascertain the test/training/validation splits and CASP14 dataset involbement. COpilot worse due to model 1.1.1 to 1.2.3 information on million figures which is not clear enough to be contextually useful. Class distirbution and redindancy reduction is ntoed correctly byu both.	2026-03-15T16:20:11.741693
