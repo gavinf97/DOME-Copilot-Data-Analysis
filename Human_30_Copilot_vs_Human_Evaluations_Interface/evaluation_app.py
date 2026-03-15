@@ -10,7 +10,15 @@ from datetime import datetime
 
 # Configuration
 script_dir = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(script_dir, "30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs")
+workspace_root = os.path.dirname(script_dir)
+
+# Prefer current workspace-level source folder name, then fallback to legacy locations.
+DATA_DIR_CANDIDATES = [
+    os.path.join(workspace_root, "Human_30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs"),
+    os.path.join(script_dir, "30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs"),
+    os.path.join(workspace_root, "30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs"),
+]
+DATA_DIR = next((p for p in DATA_DIR_CANDIDATES if os.path.isdir(p)), DATA_DIR_CANDIDATES[0])
 OUTPUT_FILE = os.path.join(script_dir, "evaluation_results.tsv")
 BACKUP_FILE = os.path.join(script_dir, "evaluation_results_backup.tsv")
 
@@ -209,8 +217,6 @@ class EvaluationApp:
         self.user_details = {}
         
         # Paths relative to script location (already defined in global conf)
-        workspace_root = os.path.dirname(script_dir) # Go up one level from script_dir defined above
-        
         # New Registry Files
         raw_reviews_path = os.path.join(workspace_root, "DOME_Registry_Human_Reviews_258_20260205.json")
         users_path = os.path.join(workspace_root, "DOME_Registry_Users_20260202.json")
