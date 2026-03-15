@@ -57,3 +57,23 @@ python AlphaFold2_Copilot_v2_vs_Human_Evaluation/evaluation_app.py
 ```
 
 The app will discover only one PMCID folder (`PMC8371605`) in this package.
+
+## Generate Comparison Graphs
+
+To generate comparison plots across DOME fields using your AlphaFold evaluation results:
+
+```bash
+python AlphaFold2_Copilot_v2_vs_Human_Evaluation/generate_alphafold_evaluation_plots.py
+```
+
+This writes plots to:
+
+- `AlphaFold2_Copilot_v2_vs_Human_Evaluation/Evaluation_Plots/01_Field_Outcome_Stacked.png`
+- `AlphaFold2_Copilot_v2_vs_Human_Evaluation/Evaluation_Plots/02_Signed_Field_Comparison.png`
+- `AlphaFold2_Copilot_v2_vs_Human_Evaluation/Evaluation_Plots/03_Overall_Rank_Distribution.png`
+
+Notes:
+
+- The script uses `evaluation_results.tsv` from this AlphaFold folder.
+- It aligns fields to the canonical field set seen in `Human_30_Copilot_vs_Human_Evaluations_Interface/evaluation_results.tsv`.
+- Publication metadata fields are excluded from these plots, matching the DOME-focused field comparison style.

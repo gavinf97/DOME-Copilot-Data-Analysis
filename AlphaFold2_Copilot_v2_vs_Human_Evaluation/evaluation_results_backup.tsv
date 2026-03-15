@@ -78,3 +78,223 @@ Distribution plotting available: not available in paper or supplementary file."	
   * **Validation**: Not enough information is available.
   * **Testing**: Not enough information is available.
   * **Data Exclusions**: The recent PDB set was filtered to exclude chains with too few resolved residues, longer than 1400 residues, solved by NMR, or with unknown/ambiguous residues. This set was also redundancy reduced by taking representatives from a sequence clustering."	Tie_High	Human is slightly better - neither get clear informaiton on dtaa poionts as a complex naunce to check actual datasets; both correctly ascertain the test/training/validation splits and CASP14 dataset involbement. COpilot worse due to model 1.1.1 to 1.2.3 information on million figures which is not clear enough to be contextually useful. Class distirbution and redindancy reduction is ntoed correctly byu both.	2026-03-15T16:20:11.741693
+PMC8371605	dataset/redundancy	"How were the sets split?: testing data from CASP14 is a completely unseen and diverse test data set used for benchmarking protein structure prediction.  This data is not allowed to be used for training.
+
+Are the training and test sets independent?: yes 
+
+How was this enforced:  pairwise sequence identity was taken into consideration.  Clustering sequences to avoid similar sequence identities in test considered. Authors address issue of sequence identity in biological data sets and sequence similarity is carefully controlled.
+
+How does the distribution compare to previously published ML datasets?: using standard CASP14 rules this aligns to all other models participating in the competition. CASP has long history of addressing distribution of proteins in test.  "	"* **Redundancy Methodology**: The authors used a 40% sequence identity clustering of the Protein Data Bank (PDB) to reduce redundancy. This clustering was performed using MMSeqs2. Additionally, the recent PDB set was filtered to exclude chains with too few resolved residues, longer than 1,400 residues, solved by NMR, or with unknown/ambiguous residues. The dataset was further redundancy-reduced by taking representatives from the sequence clustering. For some figures, a sequence similarity-based filter was applied to remove entries too similar to the training set.
+
+* **Independent Sets**: Yes. The authors explicitly state that the method was evaluated on all PDB chains not in the training set, subject to the exclusions noted. The recent PDB set was filtered to include only structures released after 30 April 2018, ensuring no overlap with the training set. Additionally, the authors removed sequences with high template identity to the training set, further ensuring independence.
+
+* **Independence Enforcement**: The independence was enforced by filtering the recent PDB set to include only structures released after 30 April 2018. Chains were further filtered to remove sequences that consisted of a single amino acid, sequences with an ambiguous chemical component, exact duplicates, sequences with less than 16 resolved residues, sequences with unknown residues, or sequences solved by NMR methods. The dataset was also redundancy-reduced by taking representatives from a 40% sequence clustering. Additionally, sequences with high template identity to the training set were removed."	B_Better	Both high quality and clear repsonses grounded in figures. Copilot does slightly better job of figures, dates and mehtodology expansion.	2026-03-15T16:23:01.394464
+PMC8371605	dataset/availability	"Data availability section of paper includes the data sources.
+
+GitHub links the exact data used: 
+For genetics:
+UniRef90: v2020_01 - https://ftp.uniprot.org/pub/databases/uniprot/previous_releases/release-2020_01/uniref/
+MGnify: v2018_12 - http://ftp.ebi.ac.uk/pub/databases/metagenomics/peptide_database/2018_12/
+Uniclust30: v2018_08 - http://wwwuser.gwdg.de/~compbiol/uniclust/2018_08/
+BFD: only version available - https://bfd.mmseqs.com/
+
+For structural templates:
+PDB: (downloaded 2020-05-14) - no link in GitHub
+PDB70: 2020-05-13 - http://wwwuser.gwdg.de/~compbiol/data/hhsuite/databases/hhsuite_dbs/old-releases/pdb70_from_mmcif_200513.tar.gz
+
+Mirrored Databases
+The following databases have been mirrored by DeepMind, and are available with reference to the following:
+BFD (unmodified), by Steinegger M. and Söding J., available under a Creative Commons Attribution-ShareAlike 4.0 International License.
+BFD (modified), by Steinegger M. and Söding J., modified by DeepMind, available under a Creative Commons Attribution-ShareAlike 4.0 International License. See the Methods section of the AlphaFold proteome paper for details.
+Uniref30: v2021_03 (unmodified), by Mirdita M. et al., available under a Creative Commons Attribution-ShareAlike 4.0 International License.
+MGnify: v2022_05 (unmodified), by Mitchell AL et al., available free of all copyright restrictions and made fully and freely available for both non-commercial and commercial use under CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.
+
+All input data are freely available from public sources - summary listing:
+Structures from the PDB were used for training and as templates (https://www.wwpdb.org/ftp/pdb-ftp-sites; for the associated sequence data and 40% sequence
+clustering see also https://ftp.wwpdb.org/pub/pdb/derived_data/ and https://cdn.rcsb.org/resources/sequence/clusters/bc-40.out). 
+Training used a version of the PDB downloaded 28/08/2019, while CASP14 template search used a version downloaded 14/05/2020. Template search also used the PDB70 database, downloaded 13/05/2020 (https://wwwuser.gwdg.de/~compbiol/data/hhsuite/databases/hhsuite_dbs/).
+For MSA lookup at both training and prediction time, they used UniRef90 v2020_01 (https://ftp.ebi.ac.uk/pub/databases/uniprot/previous_releases/
+release-2020_01/uniref/), BFD (https://bfd.mmseqs.com), Uniclust30 v2018_08 (https://wwwuser.gwdg.de/~compbiol/uniclust/2018_08/), and MGnify clusters
+v2018_12 (https://ftp.ebi.ac.uk/pub/databases/metagenomics/peptide_database/2018_12/).
+Uniclust30 v2018_08 was further used as input for constructing a distillation structure dataset.
+"	"* **Dataset Publicly Available**: Yes.
+
+* **Dataset URL/License**:
+  * **PDB Structures**: https://www.wwpdb.org/ftp/pdb-ftp-sites | Not enough information is available.
+  * **PDB Sequence Data and 40% Clustering**: https://ftp.wwpdb.org/pub/pdb/derived_data/ and https://cdn.rcsb.org/resources/sequence/clusters/bc-40.out | Not enough information is available.
+  * **PDB70 Database**: https://wwwuser.gwdg.de/~compbiol/data/hhsuite/databases/hhsuite_dbs/ | Not enough information is available.
+  * **UniRef90 v2020_01**: https://ftp.ebi.ac.uk/pub/databases/uniprot/previous_releases/release-2020_01/uniref/ | Not enough information is available.
+  * **BFD**: https://bfd.mmseqs.com | Not enough information is available.
+  * **Uniclust30 v2018_08**: https://wwwuser.gwdg.de/~compbiol/uniclust/2018_08/ | Not enough information is available.
+  * **MGnify Clusters v2018_12**: https://ftp.ebi.ac.uk/pub/databases/metagenomics/peptide_database/2018_12/ | Not enough information is available."	Tie_High	Both do an exclelent job at summating the various datsets ina  structured manner. Copilot does not make ufrther sub differentiations by datat type as done by human but both do expert job of extracting the many URLs. Licensing is not clearly stated by either - not in text directly and would require checking the holding sources. Both therefore have done a high quality job. Copilot better answers dircetly with clear yes on the availabulity vs human response noting it is in the data avaialbiltiy section.	2026-03-15T16:25:45.960156
+PMC8371605	optimization/algorithm	"Mix of classical and novel ML algorithms applied for AlphaFold 2 model:
+Deep Neural Network (DNN) approaches:
+-Transformer-based model: Evoformer (novel). Chosen for ability to consider both simultaneously multiple sequence alignments (MSAs) and pairwise amino acid residue representations to support the structure prediction.
+-Graph Neural Network (GNN) - used in structure module of the model"	"* **ML Algorithm Class**:
+  * Transformer
+  * Linear Regression
+  * Layer Normalization
+  * Dropout
+
+* **Algorithm Novelty**: Application of existing method."	B_Better	Human does slightly better job due to ascertaining the GNN nuances and the dual module strutcure of the alphafold model that Copilot missed but gets other information.	2026-03-15T16:28:09.242089
+PMC8371605	optimization/meta	No	"* Meta-predictor: Yes.
+
+* Constituent Algorithms:
+  * AlphaFold Model Inference
+  * InputEmbedder
+  * RecyclingEmbedder
+  * TemplatePairStack
+  * ExtraMsaStack
+  * EvoformerStack
+  * StructureModule"	A_Better	HUman better ascertains it is not a traditional meta-predictor; the complexity of the dual module and inputs from various sources make this difficult to address but in this case Copilot was incorrect vs the human response.	2026-03-15T16:31:15.567458
+PMC8371605	optimization/encoding	From supplementary files most info present on encoding methods. Protein sequences: One-hot encoding & Learned embeddings (captures biochemical properties). Multiple Sequence Alignment (MSA): Integer encoding. Residue-Residue Interactions: pair representation encoding information about the relation between the residues. 	"* **Data Encoding Method: One-Hot Encoding**
+  - The input amino acid sequence is represented using one-hot encoding with a dimension of [Nres, 21], where Nres is the number of residues. This encoding includes 20 amino acids plus an unknown category.
+  - The MSA cluster centre sequences are also one-hot encoded with a dimension of [Nclust, Nres, 23], where Nclust is the number of MSA clusters. This encoding includes 20 amino acids plus unknown, gap, and masked MSA token categories.
+  - The extra MSA sequences are concatenated to form a feature with a dimension of [Nextra_seq, Nres, 25], where Nextra_seq is the number of additional unclustered MSA sequences. This feature includes extra MSA, extra MSA has deletion, and extra MSA deletion value.
+  - The template pair features are constructed by concatenating pair residue features and transformed residue features, resulting in a dimension of [Ntempl, Nres, Nres, 88], where Ntempl is the number of templates.
+  - The template angle features are constructed by concatenating template aatype, template torsion angles, template alt torsion angles, and template torsion angles mask, resulting in a dimension of [Ntempl, Nres, 51].
+
+* **Data Encoding Method: Deletion Encoding**
+  - Deletion features are transformed into the range [0, 1] using the formula 2π arctan(d/3), where d are the raw deletion counts. This transformation is applied to both cluster deletion value and cluster deletion mean features.
+
+* **Data Encoding Method: Relative Position Encoding**
+  - Relative positional features are encoded using a clipped relative distance within a chain, which is then encoded as a one-hot vector. This vector is linearly projected and added to the initial pair representations. The maximum clipped value is 32, meaning any larger distances within the residue chain are not distinguished by this feature.
+
+* **Data Encoding Method: Clustering**
+  - The MSA is clustered by selecting Nclust sequences randomly as MSA cluster centres. The remaining sequences are assigned to their closest cluster by Hamming distance, ignoring masked out residues and gaps. Several statistics, such as the per-residue amino acid distribution, are computed for each sequence cluster.
+
+* **Data Encoding Method: Masking**
+  - A mask is generated such that each position in an MSA cluster centre has a 15% probability of being included in the mask. Masked positions are replaced with a special token (masked_msa_token) or other amino acids based on specific probabilities. This masking is used both at training time and at inference time.
+
+* **Data Encoding Method: Cropping**
+  - During training, the residue dimension in all data is cropped to a single contiguous region. The crop start position is sampled from a uniform distribution, and the final crop size is denoted by Nres. This cropping is done in two modes: unclamped loss mode and clamped loss mode."	B_Better	Both answer the encoding information but clearer and more detailed infromation from Copilot	2026-03-15T16:33:29.048386
+PMC8371605	optimization/parameters	"Unclear from the paper an exact figure for the parameters used in the model. Information also unclear from supplementary information.
+Supplementary materials note: concrete values for these parameters are given in the training details (subsection 1.11). However, no figures noted explicitly stating parameters used for the model.
+GitHub linked file contains various AlphaFold model parameters: https://storage.googleapis.com/alphafold/alphafold_params_2022-12-06.tar . After examining the file it would appear there are approx 90 million parameters. This would need to be further verified and confirmed with the authors. "	"* **Parameter Count (p)**:
+  * Not enough information is available.
+
+* **Architecture Selection**:
+  * The architecture selection process is not explicitly detailed in the provided context. The authors mention training 48 additional sets of weights for specific modules, but the method used to select the final architecture is not described."	Tie_High	Both identify that the parameter count is not easily available, human checked tar compressed files to try and ifner information.	2026-03-15T16:34:53.402268
+PMC8371605	optimization/features	"Exact feature number not explicitly written in text.
+
+Supplementary files contain feature information: Table 1 Input features to the model. Difficult to infer exact feature number from this due to complexity of the model. "	"* Number of Features (f): Not enough information is available.
+* Training-Restricted Selection: Unclear."	Tie_High	Both correctly identify that the clea rnumber of features is not available in the text. Human attempts to identify the infromation possible source in table about features but does not adress the question for number.	2026-03-15T16:36:36.499198
+PMC8371605	optimization/fitting	Fitting not mentioned in main text but info related to how it is addressed in supplementary materials file. Exact number of parameters and training points not disclosed makes it difficult to comment on fitting. However, available files in GitHub could support determining the fit.	"* **p > N: No**
+
+  The training samples are approximately 11 million (11 x 10^6) for the initial training stage, and the model parameters are not explicitly stated but are likely to be significantly less than 11 million given typical deep learning models used for protein structure prediction.
+
+* **Over-fitting Evidence**: Dropout
+
+  The supplementary material mentions the use of dropout, which is a technique used to prevent overfitting by randomly setting a fraction of input units to 0 at each update during training time, which helps prevent overfitting."	B_Better	Copilot provides better infromation based response and info on over fitting avodiance vs human.	2026-03-15T16:37:51.165135
+PMC8371605	optimization/regularization	For evaluation they employed use of an exponential moving average of the trained parameters with the decay 0.999. To select the best model during training they monitored lDDT-Cα performance on a validation set of targets collected from CAMEO over 3 months period (2018-12-14 to 2019-03-09).  Drop out and loss functions  also used. Most information in supplementary materials.	"**Regularization Techniques:**
+
+* **Dropout**: The authors applied Dropout with various configurations. They used standard Dropout, row-wise Dropout, and column-wise Dropout. The row-wise and column-wise Dropout were applied in specific residual updates within the self-attention operations and the main Evoformer stack. The rates and exact locations of these Dropout operations are detailed in specific algorithms referenced in the text (Source: Supplementary, page_label: 45).
+* **Gradient Clipping**: Gradient clipping by the global norm was applied to stabilize training. The clipping value was set to 0.1, and it was applied independently to every training example in a mini-batch (Source: Supplementary, page_label: 44).
+* **Weight Initialization**: Specific weight initialization strategies were used to improve training stability. For example, the weights of the final weight layers in every residual layer were zero-initialized to ensure that each residual layer acts as an identity operation at initialization. Additionally, the biases of the Linear layers immediately followed by a ReLU activation were initialized using the He initializer (Source: Supplementary, page_label: 44)."	B_Better	Copilot providers more targetted response to the question being asked for overfitting prevention. Both identify dropout but more nuances identified by Copilot.	2026-03-15T16:46:41.056278
+PMC8371605	optimization/config	Most configuration information available on GitHub: https://github.com/google-deepmind/alphafold. Some config info also reported in the supplementary materials file. However, not all specifics are fully available for the configurations - this has led to initiatives such as OpenFold to provide an AlphaFold re-implementation with all relevant details made available for users - https://github.com/aqlaboratory/openfold/tree/main. AlphaFold Model files: Available for download on the AlphaFold GitHub repository. License: Open-source under the Apache 2.0 License with specific restrictions for commercial use.	"* Configuration Source: The source code for the AlphaFold model, trained weights, and inference script will be made available under an open-source license at https://github.com/deepmind/ | Not enough information is available.
+* Configuration Source: The training protocol for CASP14 models is detailed in Table 5 (page_label: 47, file_path: /tmp/gradio/8c7a6f85bc51783d509056065eee87c9ce98ca3efce2e5ed741cdd48bbaf15aa/41586_2021_3819_MOESM1_ESM.pdf)."	Tie_High	Human better ascertains the exact sub GitHub location - COpilot gets right github but not the sub repo. Licensing noted from both. Odd failure by copilot who refers to the uplaoded PDF location  for the supplemnetary materials witha dditoonal info and locaiton but good as similar to human noting this also.	2026-03-15T16:49:43.171115
+PMC8371605	model/interpretability	Moderately interpretable in spite of deep learning approach. Great efforts have been made to make the model interpretable despite it being a deep neural network method. The paper contains a dedicated section 'Interpreting the neural network'. This section has related Fig 4a. where the different contributing components are assessed to understand their contribution to the model's protein prediction accuracy.  All code and data as well are available and well documented to further support interpretability of the model. Some limitations surrounding lack of exact parameters/features numbers information summarised and info hidden deep in supplementary files/GitHub.  	"* **Model Interpretability**: Black-box.
+  * The AlphaFold model is a deep learning-based architecture, which typically operates as a black-box due to its complex, multi-layered structure and the non-linear transformations applied to input data.
+
+* **XAI Methods**: None.
+  * The paper does not explicitly mention the use of specific explainable AI (XAI) methods to interpret the model's predictions. However, it does discuss the visualization of attention mechanisms, which can be considered a form of interpretability analysis. The attention maps are used to understand which parts of the input sequence are important for the model's predictions."	A_Better	HUman better addresses the nuance that efforts were made to explain the deep neural network depsite this egenrally being a black box otherwise. HUman slightly better as a reuslt despite Copilot not being totally icorrect - it loses out due to missing a clear statement on the interpreatbility approahces such as ablation and other techniques used to undersatdn the contributing components but it does somewhat begin to touch on this.	2026-03-15T16:52:07.825078
+PMC8371605	model/output	Mixed model output leveraging both regression and classification at different stages for final protein structure prediction.	"* Prediction Task: Generative.
+* Target Variable:
+  * Protein structure coordinates.
+  * Model confidence prediction (pLDDT).
+  * TM-score prediction.
+  * Distogram prediction.
+  * Masked MSA prediction.
+  * ""Experimentally resolved"" prediction.
+  * Structural violations."	Tie_High	Both a re sufficient repsonses - human addresses the direct question in the original DOME templayte of is it classification or rgerssion while COpilot leevrages new answer for generative otuouts of models - protein structure in this case. Both correct but different nuances addressed. COpilot provides expanded information on the target avriable generated contributing to the sturtcural prediction - while useful more high level would also be useufl to address in future versions.	2026-03-15T16:54:15.221145
+PMC8371605	model/duration	"Training execution time:
+Takes approximately 1 week, and the fine-tuning stage takes approximately 4 additional days when training the model on Tensor Processing Unit (TPU) v3 with a batch size of 1 per TPU core, hence the model uses 128 TPU v3 cores. 
+HPC & GPU/TPUs necessary.
+
+Prediction inference time: 
+The full time to make a structure prediction varies  depending on the length of the protein. Representative timings for the neural network using a single model on V100 GPU are 4.8 min with 256 residues, 9.2 min with 384 residues and 18 h at 2,500 residues. 
+GPU/TPUs necessary for good speeds.
+
+More information on inference prediction times from GitHub: https://github.com/google-deepmind/alphafold?tab=readme-ov-file#note-on-casp14-reproducibility
+The table reports prediction runtimes for proteins of various lengths. All runtimes are from a single A100 NVIDIA GPU. 
+Table data example: 100 AA residues = 4.9 seconds to predict etc. (up to 5,000 residues)
+"	"* **Execution Time**:
+  * Training: 1 week + 4 days
+  * Inference: 0.6 min/256 residues, 1.1 min/384 residues, 2.1 h/2,500 residues (without ensembling)
+  * Inference: 4.8 min/256 residues, 9.2 min/384 residues, 18 h/2,500 residues (with ensembling)
+
+* **Hardware Used**:
+  * TPU v3
+  * V100 GPU"	Tie_High	Both do an excellent job to ascertain very simialar information. Copilot highly strutcured and clear - arguably more succint vs human and better in this regard.	2026-03-15T16:55:15.791118
+PMC8371605	model/availability	Yes: paper has a clear 'Code availability section'. GitHub software availability: https://github.com/google-deepmind/alphafold . Apache 2.0 License. Docker image w/ instructions provided in GitHub & Google Deepmind provided server also to use it: https://alphafoldserver.com/welcome (requires login).	"* Source Code Released: Yes.
+* Code URL/License:
+  * Source: https://github.com/deepmind/ | License: Not enough information is available
+  * Source: https://github.com/tensorflow/tensorflow | License: Not enough information is available
+  * Source: https://github.com/deepmind/sonnet | License: Not enough information is available
+  * Source: https://github.com/google/jax/ | License: Not enough information is available
+  * Source: https://github.com/deepmind/dm-haiku | License: Not enough information is available
+  * Source: https://github.com/soedinglab/hh-suite | License: Not enough information is available
+  * Source: http://eddylab.org/software/hmmer/ | License: Not enough information is available
+  * Source: https://github.com/openmm/openmm | License: Not enough information is available
+  * Source: https://github.com/soedinglab/MMseqs2 | License: Not enough information is available
+  * Source: https://github.com/refresh-bio/FAMSA | License: Not enough information is available
+  * Source: https://www.python.org/ | License: Not enough information is available
+  * Source: https://github.com/numpy/numpy | License: Not enough information is available
+  * Source: https://www.scipy.org/ | License: Not enough information is available
+  * Source: https://github.com/mwaskom/seaborn | License: Not enough information is available
+  * Source: https://github.com/matplotlib/matplotlib | License: Not enough information is available
+  * Source: https://github.com/bokeh/bokeh | License: Not enough information is available
+  * Source: https://github.com/pandas-dev/pandas | License: Not enough information is available
+  * Source: https://github.com/has2k1/plotnine | License: Not enough information is available
+  * Source: https://github.com/statsmodels/statsmodels | License: Not enough information is available
+  * Source: https://research.google.com/colaboratory | License: Not enough information is available
+  * Source: https://zhanglab.dcmb.med.umich.edu/TM-align/ | License: Not enough information is available
+  * Source: https://github.com/schrodinger/pymol-open-source | License: Not enough information is available
+* Simplified Run Method: Not enough information is available."	A_Better	While copilot extracts lots of URLs on software of rlevance it misses the clear nuance to retrieve the main github and URL. It does get the deepmind github but not the licensing. Misses information on the webserver.	2026-03-15T16:57:08.572716
+PMC8371605	evaluation/method	"Independent dataset from CASP14.
+-
+Independent datasets: AlphaFold 2 was evaluated using CASP14 and further validated with CAMEO, ensuring that the evaluation was on data not seen during training.
+Cross-validation: The model used an exponential moving average (EMA) to select the best performing model during training.
+Novel experiments and metrics: AlphaFold 2's predictions were evaluated using metrics like lDDT-Cα, RMSD, and pLDDT to assess the accuracy and confidence of structure predictions.
+Ablation studies: Performed to understand the impact of various components of the model.
+Real-world application testing: AlphaFold 2 was tested on proteins with no known homologs to evaluate its ability to predict structures de novo.
+"	"* **Evaluation Strategy**:
+  * Independent hold-out set: The method was evaluated on the full CASP14 benchmark set and all PDB chains not in the training set, subject to specific exclusions (e.g., chains with too few resolved residues, longer than 1400 residues, solved by NMR, or with unknown/ambiguous residues). The set was also redundancy reduced by taking representatives from a sequence clustering, and a sequence similarity-based filter was applied to remove entries too similar to the training set."	Tie_High	Both note the keuy evaluation use of CASP14 cometition evaluation. Humam adds slightly more information on EMA.	2026-03-15T16:59:25.340851
+PMC8371605	evaluation/measure	"In the main paper primarily accuracy is reported as the main performance measure. Figure 2 for example contains accuracy graphs.
+
+In CASP14 assessment the performance measures can be found detailed here: https://predictioncenter.org/casp12/doc/help.html
+
+Details on some of the main protein structure prediction performance measures:
+Accuracy
+Global Distance Test - Total Score
+Root Mean Square Deviation 
+TM-score 
+Global Local Distance Difference Test 
+Contact Score
+
+Machine learning specific model performance measures:
+AUC-ROC (Area Under the Receiver Operating Characteristic Curve): Used for assessing contact and distance predictions (evaluating classification of residue-residue contacts).
+AUC-PR (Area Under the Precision-Recall Curve): Used alongside AUC-ROC for imbalanced data in contact prediction.
+Pearson Correlation Coefficient: Measures correlation between predicted and actual residue-residue distances.
+Spearman Rank Correlation: Evaluates ranking consistency between predicted and actual distances.
+PPV (Positive Predictive Value): Measures precision in predicting contacts.
+Precision & Recall: Assesses accuracy of long-range contact predictions.
+
+Alphafold 2 measure results in CASP14: https://predictioncenter.org/casp14/results.cgi?groups_id=205&submit=Submit"	"Performance Metrics:
+* FAPE
+* pLDDT
+* TM-score
+* Distogram prediction
+* Masked MSA prediction
+* ""Experimentally resolved"" prediction
+* Structural violations"	A_Better	Human extracted many more evaluation measures vs base level of these from Copilot which are lacking.	2026-03-15T17:00:49.661499
+PMC8371605	evaluation/comparison	Yes - comparison was made against other methods in CASP14 competition, all publicly available. 	"* **Comparison Performed**: Yes
+  * **List of tools/baselines**:
+    * **CASP14 benchmark set**: The method was evaluated on the full CASP14 benchmark set, which is a standard in protein structure prediction.
+    * **PDB chains**: The method was evaluated on all PDB chains not in the training set, subject to specific exclusions (e.g., chains with too few resolved residues, longer than 1400 residues, solved by NMR, or with unknown/ambiguous residues).
+    * **Sequence similarity-based filter**: For some figures, a sequence similarity-based filter was applied to remove entries too similar to the training set."	Tie_High	Both high qualirty and infromation provided.	2026-03-15T17:01:10.023020
+PMC8371605	evaluation/confidence	Yes - confidence intervals used in main text reporting of accuracy performance metrics. Statistical significance exists backing the method is superior to others across many performance measures and details provided by evaluation in the CASP14 competition.  	"* **Statistical Confidence**:
+  * **CIs**: Yes - 95% confidence intervals (CIs) are reported for the mean accuracy on a per-residue basis. Additionally, the shaded region of the linear fit represents a 95% CI estimated from 10,000 bootstrap samples.
+  * **p-values**: Not enough information is available."	Tie_High	Both idneitfy use of confidence intervals correctly for the perfomrance metrics.	2026-03-15T17:02:20.810184
+PMC8371605	evaluation/availability	Not explicitly provided - but enough content in GitHub contains data to reproduce the evaluation using CASP14 methods. Some CASP14 assessment files: https://predictioncenter.org/download_area/CASP14/.  	"* **Are the raw evaluation logs available?**
+  * Not enough information is available."	Tie_High	Both identify correctly that there are no clear evaluation raw files - human slightly better to note the CASP14 availability that they pulled from the website.	2026-03-15T17:03:23.517158
