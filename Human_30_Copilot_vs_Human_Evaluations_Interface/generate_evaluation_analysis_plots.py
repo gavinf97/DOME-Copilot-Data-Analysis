@@ -142,8 +142,8 @@ def plot_performance_by_field(df):
     
     # Increase spacing between titles and the plot with labelpad
     plt.title('Evaluation Results by Field (Excluding Publication Info)', fontsize=18, fontweight='bold', y=1.18)
-    plt.xlabel('Count', fontsize=16, fontweight='bold', labelpad=20)
-    plt.ylabel('Field', fontsize=16, fontweight='bold', labelpad=20)
+    plt.xlabel('Publication Count', fontsize=16, fontweight='bold', labelpad=20)
+    plt.ylabel('DOME Field', fontsize=16, fontweight='bold', labelpad=20)
     
     # Cap x-axis at 30 as requested
     plt.xlim(0, 30)
