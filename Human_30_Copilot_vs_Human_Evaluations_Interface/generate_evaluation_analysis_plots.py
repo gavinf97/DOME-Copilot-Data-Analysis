@@ -112,14 +112,34 @@ def plot_win_rate_analysis(df):
 
 def plot_performance_by_field(df):
     # Filter out publication fields
-    df_filtered = df[~df['Field'].str.startswith('publication/')]
+    df_filtered = df[~df['Field'].str.startswith('publication/')].copy()
+    
+    # Map the labels as requested
+    rank_mapping = {
+        'A_Better': 'Copilot v0 Better',
+        'B_Better': 'Human better',
+        'Tie_High': 'Tie high quality',
+        'Tie_Low': 'Tie low quality'
+    }
+    df_filtered['Rank'] = df_filtered['Rank'].map(lambda x: rank_mapping.get(x, x))
     
     plt.figure(figsize=(12, 10))
-    sns.histplot(data=df_filtered, y='Field', hue='Rank', multiple='stack', hue_order=['Tie_High', 'Tie_Low', 'A_Better', 'B_Better'], palette='viridis')
-    plt.title('Evaluation Results by Field (Excluding Publication Info)')
-    plt.xlabel('Count')
+    ax = sns.histplot(data=df_filtered, y='Field', hue='Rank', multiple='stack', 
+                      hue_order=['Tie high quality', 'Tie low quality', 'Copilot v0 Better', 'Human better'], 
+                      palette='viridis')
     
-    plt.tight_layout()
+    plt.title('Evaluation Results by Field (Excluding Publication Info)', fontsize=18, fontweight='bold', y=1.05)
+    plt.xlabel('Count', fontsize=16, fontweight='bold')
+    plt.ylabel('Field', fontsize=16, fontweight='bold')
+    
+    # Cap x-axis at 30 as requested
+    plt.xlim(0, 30)
+    
+    # Move key to the right completely off the bars
+    sns.move_legend(ax, "center left", bbox_to_anchor=(1.02, 0.5), title=None, frameon=False)
+    
+    # Use tightly to ensure the moved legend fits without getting cut off
+    plt.tight_layout(rect=[0, 0, 0.85, 1])
     filepath = os.path.join(PLOTS_DIR, '03_Performance_By_Field_Stacked.png')
     plt.savefig(filepath)
     plt.close()
@@ -141,8 +161,9 @@ def plot_copilot_win_rate_per_field(df):
 
     plt.figure(figsize=(12, 8))
     sns.barplot(x=field_stats['Copilot_Win_Rate'], y=field_stats.index, palette='Blues_r')
-    plt.title('Copilot Win Rate by Field (%) (Excluding Publication Info)')
-    plt.xlabel('Win Rate (%)')
+    plt.title('Copilot Win Rate by Field (%) (Excluding Publication Info)', fontsize=18, fontweight='bold', y=1.05)
+    plt.xlabel('Win Rate (%)', fontsize=16, fontweight='bold')
+    plt.ylabel('Field', fontsize=16, fontweight='bold')
     
     plt.tight_layout()
     filepath = os.path.join(PLOTS_DIR, '04_Copilot_Win_Rate_By_Field.png')
