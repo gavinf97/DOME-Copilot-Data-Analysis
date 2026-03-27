@@ -260,8 +260,8 @@ def run_diversity_analysis(doi_to_oid, oid_to_user):
     sns.set_style("whitegrid")
 
         # --- Plot 05: Diversity (Journal + Curator) ---
-    fig5 = plt.figure(figsize=(16, 12)) 
-    gs5 = fig5.add_gridspec(2, 1, height_ratios=[1, 1], hspace=0.3)
+    fig5 = plt.figure(figsize=(16, 13)) 
+    gs5 = fig5.add_gridspec(2, 1, height_ratios=[1, 1], hspace=0.45)
 
     # Determine unified color palette for counts
     # Get all unique counts across both to establish a consistent palette
@@ -342,7 +342,7 @@ def run_diversity_analysis(doi_to_oid, oid_to_user):
         ax2.bar_label(container, padding=5, fontsize=12)
 
     # Increase margins so everything fits perfectly
-    plt.subplots_adjust(left=0.25, right=0.95, top=0.92, bottom=0.08)
+    plt.subplots_adjust(left=0.25, right=0.95, top=0.92, bottom=0.08, hspace=0.45)
 
     filepath_05 = os.path.join(PLOTS_DIR, '05_Diversity_Journal_Curator.png')
     plt.savefig(filepath_05)
