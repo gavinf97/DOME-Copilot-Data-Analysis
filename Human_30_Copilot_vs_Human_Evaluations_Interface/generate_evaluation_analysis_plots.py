@@ -38,6 +38,7 @@ USERS_FILE = "DOME_Registry_Users_20260202.json"
 POSSIBLE_DATA_DIRS = [
     os.path.join(SCRIPT_DIR, "../30_human_evaluation"),
     os.path.join(SCRIPT_DIR, "30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs"),
+    os.path.join(SCRIPT_DIR, "../Human_30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs"),
     os.path.join(SCRIPT_DIR, "30_human_evaluation"),
 ]
 DATA_DIR = None
@@ -216,12 +217,51 @@ def run_diversity_analysis(doi_to_oid, oid_to_user):
 
     df_stats = pd.DataFrame(stats_list)
 
+    # Dictionary for standard journal abbreviations to reduce dead space
+    journal_abbr = {
+        "BioMed research international": "BioMed Res. Int.",
+        "Multiple sclerosis and related disorders": "Mult. Scler. Relat. Disord.",
+        "Drug discovery today": "Drug Discov. Today",
+        "Human brain mapping": "Hum. Brain Mapp.",
+        "PloS one": "PLoS One",
+        "GigaByte (Hong Kong, China)": "GigaByte",
+        "Current biology : CB": "Curr. Biol.",
+        "Bioinformatics (Oxford, England)": "Bioinformatics",
+        "PLoS computational biology": "PLoS Comput. Biol.",
+        "Scientific reports": "Sci. Rep.",
+        "Nature communications": "Nat. Commun.",
+        "BMC medical genomics": "BMC Med. Genomics",
+        "Frontiers in genetics": "Front. Genet.",
+        "Genomics, proteomics & bioinformatics": "Genomics Proteomics Bioinformatics",
+        "The Journal of pharmacology and experimental therapeutics": "J. Pharmacol. Exp. Ther.",
+        "Computational and mathematical methods in medicine": "Comput. Math. Methods Med.",
+        "Biophysics and physicobiology": "Biophys. Physicobiol.",
+        "Journal of computer-aided molecular design": "J. Comput. Aided Mol. Des.",
+        "Journal of cheminformatics": "J. Cheminform.",
+        "International journal of molecular sciences": "Int. J. Mol. Sci.",
+        "BMC genomics": "BMC Genomics",
+        "BMC bioinformatics": "BMC Bioinformatics",
+        "eLife": "eLife",
+        "GigaScience": "GigaScience",
+        "Proteins": "Proteins",
+        "Metabolites": "Metabolites"
+    }
+
+    print("\n--- Journal Abbreviation Changes ---")
+    def abbreviate_journal(j):
+        abbr = journal_abbr.get(j.strip(), j.strip())
+        if abbr != j.strip():
+            print(f"'{j}' -> '{abbr}'")
+        return abbr
+
+    df_stats['Journal'] = df_stats['Journal'].apply(abbreviate_journal)
+
     # Visualization
     sns.set_style("whitegrid")
 
     # --- Plot 05: Diversity (Journal + Curator) ---
     fig5 = plt.figure(figsize=(16, 12)) 
-    gs5 = fig5.add_gridspec(2, 1, height_ratios=[1, 1])
+    gs5 = fig5.add_gridspec(2, 1, height_ratios=[1, 1], hspace=0.3)
 
     # Plot 1: Journal Distribution (ALL)
     ax1 = fig5.add_subplot(gs5[0])
@@ -231,6 +271,10 @@ def run_diversity_analysis(doi_to_oid, oid_to_user):
     ax1.set_title(f'Distribution by Journal (Total Unique: {unique_journals} | Sample: {len(df_stats)} Papers)', fontsize=14, fontweight='bold')
     ax1.set_xlabel('Count')
     ax1.set_ylabel('')
+    
+    # Add Panel Label 'A'
+    ax1.text(-0.15, 1.05, 'A', transform=ax1.transAxes, fontsize=20, fontweight='bold', va='top', ha='right')
+
     # Add count labels
     for container in ax1.containers:
         ax1.bar_label(container, padding=3)
@@ -244,11 +288,17 @@ def run_diversity_analysis(doi_to_oid, oid_to_user):
     ax2.set_title(f'Distribution by Human Curator (Total Unique: {unique_curators} | Sample: {len(df_stats)} Papers)', fontsize=14, fontweight='bold')
     ax2.set_xlabel('Number of Papers Annotated in this Set')
     ax2.set_ylabel('')
+    
+    # Add Panel Label 'B'
+    ax2.text(-0.15, 1.05, 'B', transform=ax2.transAxes, fontsize=20, fontweight='bold', va='top', ha='right')
+
     # Add count labels
     for container in ax2.containers:
         ax2.bar_label(container, padding=3)
 
-    plt.tight_layout()
+    # Increase left margin to accommodate abbreviated names without excess dead space
+    plt.subplots_adjust(left=0.25, right=0.95, top=0.95, bottom=0.08)
+
     filepath_05 = os.path.join(PLOTS_DIR, '05_Diversity_Journal_Curator.png')
     plt.savefig(filepath_05)
     plt.close()
