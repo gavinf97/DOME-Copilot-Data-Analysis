@@ -124,22 +124,47 @@ def plot_performance_by_field(df):
     df_filtered['Rank'] = df_filtered['Rank'].map(lambda x: rank_mapping.get(x, x))
     
     plt.figure(figsize=(12, 10))
+    
+    # Distinct qualitative colors suitable for publication
+    custom_palette = {
+        'Tie high quality': '#2ca02c',   # Green
+        'Tie low quality': '#d62728',    # Red
+        'Copilot v0 Better': '#ff7f0e',  # Orange 
+        'Human better': '#1f77b4'        # Blue
+    }
+    
     ax = sns.histplot(data=df_filtered, y='Field', hue='Rank', multiple='stack', 
                       hue_order=['Tie high quality', 'Tie low quality', 'Copilot v0 Better', 'Human better'], 
-                      palette='viridis')
+                      palette=custom_palette)
     
-    plt.title('Evaluation Results by Field (Excluding Publication Info)', fontsize=18, fontweight='bold', y=1.05)
-    plt.xlabel('Count', fontsize=16, fontweight='bold')
-    plt.ylabel('Field', fontsize=16, fontweight='bold')
+    # Remove dead space on Y-axis (bars touch top and bottom axes)
+    ax.margins(y=0)
+    
+    # Increase spacing between titles and the plot with labelpad
+    plt.title('Evaluation Results by Field (Excluding Publication Info)', fontsize=18, fontweight='bold', y=1.18)
+    plt.xlabel('Count', fontsize=16, fontweight='bold', labelpad=20)
+    plt.ylabel('Field', fontsize=16, fontweight='bold', labelpad=20)
     
     # Cap x-axis at 30 as requested
     plt.xlim(0, 30)
     
-    # Move key to the right completely off the bars
-    sns.move_legend(ax, "center left", bbox_to_anchor=(1.02, 0.5), title=None, frameon=False)
+    # Build legend in specific order, spread over 2 lines (ncol=2) above graph
+    legend = ax.get_legend()
+    if legend:
+        handles = legend.legend_handles
+        labels = [t.get_text() for t in legend.texts]
+        # Handle dict (skip empty strings or seaborn title artifacts if present)
+        handle_dict = {l: h for h, l in zip(handles, labels) if l}
+        
+        legend_order = ['Human better', 'Copilot v0 Better', 'Tie low quality', 'Tie high quality']
+        ordered_handles = [handle_dict[lbl] for lbl in legend_order if lbl in handle_dict]
+        ordered_labels = [lbl for lbl in legend_order if lbl in handle_dict]
+        
+        legend.remove()
+            
+        ax.legend(ordered_handles, ordered_labels, loc='lower center', bbox_to_anchor=(0.5, 1.02), ncol=2, frameon=False, fontsize=12)
     
-    # Use tightly to ensure the moved legend fits without getting cut off
-    plt.tight_layout(rect=[0, 0, 0.85, 1])
+    plt.tight_layout()
     filepath = os.path.join(PLOTS_DIR, '03_Performance_By_Field_Stacked.png')
     plt.savefig(filepath)
     plt.close()
