@@ -80,6 +80,9 @@ def load_evaluation_results():
 def plot_overall_rank_distribution(df):
     plt.figure(figsize=(10, 6))
     
+    # Exclude publication/ metadata fields
+    df_filtered = df[~df['Field'].str.startswith('publication/')].copy()
+    
     # Map labels (matching graph 03 key labels)
     rank_mapping = {
         'A_Better': 'Human better',
@@ -87,8 +90,7 @@ def plot_overall_rank_distribution(df):
         'Tie_High': 'Tie high quality',
         'Tie_Low': 'Tie low quality'
     }
-    df_mapped = df.copy()
-    df_mapped['Rank'] = df_mapped['Rank'].map(lambda x: rank_mapping.get(x, x))
+    df_filtered['Rank'] = df_filtered['Rank'].map(lambda x: rank_mapping.get(x, x))
     
     # Same colour scheme as graph 03
     custom_palette = {
@@ -101,14 +103,14 @@ def plot_overall_rank_distribution(df):
     bar_order = ['Copilot v0 Better', 'Human better', 'Tie high quality', 'Tie low quality']
     
     ax = sns.countplot(
-        data=df_mapped, 
+        data=df_filtered, 
         x='Rank', 
         order=bar_order, 
         palette=custom_palette
     )
     
-    plt.xlabel('Evaluation Result', fontsize=16, fontweight='bold', labelpad=20)
-    plt.ylabel('Count', fontsize=16, fontweight='bold', labelpad=20)
+    plt.xlabel('Manual Review Result', fontsize=16, fontweight='bold', labelpad=20)
+    plt.ylabel('DOME Field Count', fontsize=16, fontweight='bold', labelpad=20)
     
     # Add bar labels
     for container in ax.containers:
@@ -192,6 +194,28 @@ def plot_performance_by_field(df):
             
         ax.legend(ordered_handles, ordered_labels, loc='lower center', bbox_to_anchor=(0.5, 1.02), ncol=2, frameon=False, fontsize=12)
     
+    # Add centred count labels inside each bar chunk
+    hue_order_labels = ['Tie high quality', 'Tie low quality', 'Copilot v0 Better', 'Human better']
+    rank_mapping_inv = {
+        'Human better': 'A_Better',
+        'Copilot v0 Better': 'B_Better',
+        'Tie high quality': 'Tie_High',
+        'Tie low quality': 'Tie_Low',
+    }
+    # Get sorted field order (y-axis order from the plot)
+    ytick_labels = [t.get_text() for t in ax.get_yticklabels()]
+    field_rank_counts = df_filtered.groupby(['Field', 'Rank']).size().unstack(fill_value=0)
+    for patch_collection in ax.collections:
+        pass  # iterate collections to get bar patches
+    # Use bar containers from histplot via patches directly
+    for patch in ax.patches:
+        w = patch.get_width()
+        if w <= 0:
+            continue
+        x = patch.get_x() + w / 2
+        y = patch.get_y() + patch.get_height() / 2
+        ax.text(x, y, str(int(round(w))), ha='center', va='center', fontsize=9, color='white', fontweight='bold')
+
     plt.tight_layout()
     filepath = os.path.join(PLOTS_DIR, '03_Performance_By_Field_Stacked.png')
     plt.savefig(filepath)
