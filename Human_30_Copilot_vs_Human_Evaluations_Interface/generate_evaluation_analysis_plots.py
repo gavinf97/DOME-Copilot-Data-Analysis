@@ -79,14 +79,42 @@ def load_evaluation_results():
 
 def plot_overall_rank_distribution(df):
     plt.figure(figsize=(10, 6))
-    ax = sns.countplot(data=df, x='Rank', order=['A_Better', 'B_Better', 'Tie_High', 'Tie_Low'], palette='viridis')
-    plt.title('Overall Evaluation Results: Human (A) vs Copilot (B)')
-    plt.ylabel('Count')
-
-    # Add labels
+    
+    # Map labels (matching graph 03 key labels)
+    rank_mapping = {
+        'A_Better': 'Human better',
+        'B_Better': 'Copilot v0 Better',
+        'Tie_High': 'Tie high quality',
+        'Tie_Low': 'Tie low quality'
+    }
+    df_mapped = df.copy()
+    df_mapped['Rank'] = df_mapped['Rank'].map(lambda x: rank_mapping.get(x, x))
+    
+    # Same colour scheme as graph 03
+    custom_palette = {
+        'Tie high quality': '#2ca02c',
+        'Tie low quality': '#d62728',
+        'Copilot v0 Better': '#ff7f0e',
+        'Human better': '#1f77b4'
+    }
+    
+    bar_order = ['Copilot v0 Better', 'Human better', 'Tie high quality', 'Tie low quality']
+    
+    ax = sns.countplot(
+        data=df_mapped, 
+        x='Rank', 
+        order=bar_order, 
+        palette=custom_palette
+    )
+    
+    plt.xlabel('Evaluation Result', fontsize=16, fontweight='bold', labelpad=20)
+    plt.ylabel('Count', fontsize=16, fontweight='bold', labelpad=20)
+    
+    # Add bar labels
     for container in ax.containers:
-        ax.bar_label(container)
+        ax.bar_label(container, fontsize=12)
 
+    plt.tight_layout()
     filepath = os.path.join(PLOTS_DIR, '01_Overall_Rank_Distribution.png')
     plt.savefig(filepath)
     plt.close()
@@ -116,8 +144,8 @@ def plot_performance_by_field(df):
     
     # Map the labels as requested
     rank_mapping = {
-        'A_Better': 'Copilot v0 Better',
-        'B_Better': 'Human better',
+        'A_Better': 'Human better',
+        'B_Better': 'Copilot v0 Better',
         'Tie_High': 'Tie high quality',
         'Tie_Low': 'Tie low quality'
     }
