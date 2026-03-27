@@ -259,45 +259,90 @@ def run_diversity_analysis(doi_to_oid, oid_to_user):
     # Visualization
     sns.set_style("whitegrid")
 
-    # --- Plot 05: Diversity (Journal + Curator) ---
+        # --- Plot 05: Diversity (Journal + Curator) ---
     fig5 = plt.figure(figsize=(16, 12)) 
     gs5 = fig5.add_gridspec(2, 1, height_ratios=[1, 1], hspace=0.3)
 
+    # Determine unified color palette for counts
+    # Get all unique counts across both to establish a consistent palette
+    all_counts = df_stats['Journal'].value_counts().tolist() + df_stats['Curator'].value_counts().tolist()
+    max_count = max(all_counts) if all_counts else 1
+    # Create a distinct color for each count from 1 to max_count
+    # A palette that is semantically clear: higher counts = darker or distinct
+    cmap = sns.color_palette("Blues", n_colors=max_count + 2)
+    # Mapping count -> color. Offset by 1 to avoid too light colors
+    color_map = {cnt: cmap[cnt + 1] for cnt in range(1, max_count + 1)}
+
     # Plot 1: Journal Distribution (ALL)
     ax1 = fig5.add_subplot(gs5[0])
-    journal_counts = df_stats['Journal'].value_counts()
-    unique_journals = len(journal_counts)
-    sns.barplot(x=journal_counts.values, y=journal_counts.index, ax=ax1, palette="viridis", hue=journal_counts.index, legend=False)
-    ax1.set_title(f'Distribution by Journal (Total Unique: {unique_journals} | Sample: {len(df_stats)} Papers)', fontsize=14, fontweight='bold')
-    ax1.set_xlabel('Count')
-    ax1.set_ylabel('')
+    
+    # Sort descending by count, then alphabetically
+    j_counts_df = df_stats['Journal'].value_counts().reset_index()
+    j_counts_df.columns = ['Journal', 'Count']
+    j_counts_df = j_counts_df.sort_values(by=['Count', 'Journal'], ascending=[False, True])
+    
+    unique_journals = len(j_counts_df)
+    
+    # Assign colors based on count
+    j_colors = [color_map[cnt] for cnt in j_counts_df['Count']]
+    
+    sns.barplot(x='Count', y='Journal', data=j_counts_df, ax=ax1, palette=j_colors, hue='Journal', legend=False)
+    
+    max_j_count = int(j_counts_df['Count'].max())
+    ax1.set_xlim(0, max_j_count * 1.05)
+    ax1.set_xticks(range(0, max_j_count + 1))
+    
+    ax1.set_title(f'Distribution by Journal (Total Unique: {unique_journals} | Sample: {len(df_stats)} Publications)', fontsize=18, fontweight='bold', y=1.05)
+    ax1.set_xlabel('Count', fontsize=16, fontweight='bold')
+    ax1.set_ylabel('Journal', fontsize=16, fontweight='bold')
     
     # Add Panel Label 'A'
-    ax1.text(-0.15, 1.05, 'A', transform=ax1.transAxes, fontsize=20, fontweight='bold', va='top', ha='right')
+    ax1.text(-0.15, 1.05, 'A', transform=ax1.transAxes, fontsize=20, fontweight='bold', va='center', ha='right')
 
     # Add count labels
     for container in ax1.containers:
-        ax1.bar_label(container, padding=3)
+        ax1.bar_label(container, padding=5, fontsize=12)
 
     # Plot 2: Curator Distribution 
     ax2 = fig5.add_subplot(gs5[1])
-    curator_counts = df_stats['Curator'].value_counts()
-    unique_curators = len(curator_counts)
-    # Using a simple bar plot to show the count of papers per curator in this sample
-    sns.barplot(x=curator_counts.values, y=curator_counts.index, ax=ax2, palette="magma", hue=curator_counts.index, legend=False)
-    ax2.set_title(f'Distribution by Human Curator (Total Unique: {unique_curators} | Sample: {len(df_stats)} Papers)', fontsize=14, fontweight='bold')
-    ax2.set_xlabel('Number of Papers Annotated in this Set')
-    ax2.set_ylabel('')
+    
+    # Sort descending by count, then ascending by Curator number
+    c_counts_df = df_stats['Curator'].value_counts().reset_index()
+    c_counts_df.columns = ['Curator', 'Count']
+    
+    # Extract integer from 'Curator X' to sort properly
+    def extract_curator_num(name):
+        import re
+        match = re.search(r'\d+', name)
+        return int(match.group()) if match else 999999
+        
+    c_counts_df['Curator_Num'] = c_counts_df['Curator'].apply(extract_curator_num)
+    c_counts_df = c_counts_df.sort_values(by=['Count', 'Curator_Num'], ascending=[False, True])
+    
+    unique_curators = len(c_counts_df)
+    
+    # Assign colors based on count
+    c_colors = [color_map[cnt] for cnt in c_counts_df['Count']]
+    
+    sns.barplot(x='Count', y='Curator', data=c_counts_df, ax=ax2, palette=c_colors, hue='Curator', legend=False)
+    
+    max_c_count = int(c_counts_df['Count'].max())
+    ax2.set_xlim(0, max_c_count * 1.05)
+    ax2.set_xticks(range(0, max_c_count + 1))
+    
+    ax2.set_title(f'Distribution by Human Curator (Total Unique: {unique_curators} | Sample: {len(df_stats)} Publications)', fontsize=18, fontweight='bold', y=1.05)
+    ax2.set_xlabel('Number of Publications Annotated', fontsize=16, fontweight='bold')
+    ax2.set_ylabel('Curator', fontsize=16, fontweight='bold')
     
     # Add Panel Label 'B'
-    ax2.text(-0.15, 1.05, 'B', transform=ax2.transAxes, fontsize=20, fontweight='bold', va='top', ha='right')
+    ax2.text(-0.15, 1.05, 'B', transform=ax2.transAxes, fontsize=20, fontweight='bold', va='center', ha='right')
 
     # Add count labels
     for container in ax2.containers:
-        ax2.bar_label(container, padding=3)
+        ax2.bar_label(container, padding=5, fontsize=12)
 
-    # Increase left margin to accommodate abbreviated names without excess dead space
-    plt.subplots_adjust(left=0.25, right=0.95, top=0.95, bottom=0.08)
+    # Increase margins so everything fits perfectly
+    plt.subplots_adjust(left=0.25, right=0.95, top=0.92, bottom=0.08)
 
     filepath_05 = os.path.join(PLOTS_DIR, '05_Diversity_Journal_Curator.png')
     plt.savefig(filepath_05)
