@@ -1,0 +1,4059 @@
+====================================================================================================
+CATEGORISATION REPORT — POSITIVE DATASET — graph_joint_stacked_yield.png
+Generated: 2026-03-28 07:09
+====================================================================================================
+
+SECTION 1 — METHODOLOGY
+--------------------------------------------------------------------------------
+GRAPH: Graph_Panel_V2/graph_joint_stacked_yield.png SOURCE DATA:
+Copilot_1012_v2_Pos_Processed_2026-03-02  (positive dataset — papers that ARE relevant ML
+publications; Copilot should produce real DOME field content).  CLASSIFICATION LOGIC (from
+generate_graph_panels.py  ->  determine_yield_category):  Each field value is processed as follows:
+Step 1: Lowercase the value.   Step 2: Strip markdown bold/italic headers using regex (lines
+starting with **/- followed by           a label and colon).   Step 3: Remove standard placeholder
+strings:             "not enough information is available."             "not enough information."
+"not enough information"             "not applicable."             "not applicable"   Step 4: Strip
+all punctuation and whitespace from what remains.   Step 5: Check whether any alphanumeric
+characters are left (has_valid_text).  Decision tree:    has_valid_text = False     → has "not
+enough information" in original? → Missing     → has "not applicable" in original?         → NA
+→ otherwise                                  → Empty    has_valid_text = True     → original also
+contains "not enough information" OR "not applicable"? → Partial     → otherwise
+→ Full  For the stacked yield graph:   Full    (green)   — complete, valid DOME field extraction
+with no missing indicators   Partial (blue)    — some valid content but at least one sub-question
+answered as                       "not enough information" or "not applicable"   Missing / NA /
+Empty are NOT shown in the stacked yield graph (they appear in separate panels).
+
+SECTION 2 — EXAMPLES BY FIELD AND CATEGORY
+--------------------------------------------------------------------------------
+For each DOME field × category combination, up to 10 examples are shown. Each entry includes: PMCID | Category | Source text snippet (first 400 chars).
+
+====================================================================================================
+FIELD: Data/availability
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC11845296
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 2
+      PMCID   : PMC10878338
+      Category: Full
+      Snippet : * **Dataset Publicly Available**: Yes.  * **Dataset URL/License**:   * URL:
+                https://doi.org/10.1080/0886022X.2024.2316267   * License: Creative Commons Attribution
+                License (CC-BY)
+
+    Example 3
+      PMCID   : PMC8617597
+      Category: Full
+      Snippet : * **Dataset Publicly Available**: Yes.  * **Dataset URL/License**:   * GitHub Repository:
+                https://github.com/ | Creative Commons CC0 license.
+
+    Example 4
+      PMCID   : PMC11278897
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 5
+      PMCID   : PMC11035075
+      Category: Full
+      Snippet : * **Dataset Publicly Available**: No.  * **Dataset URL/License**:   * The dataset is not
+                publicly available. The authors state that "Restrictions apply to the availability of
+                these data, which were used with permission for this study. Data are available from the
+                authors with the permission of the Healthcare Cost and Utilization Project."
+
+    Example 6
+      PMCID   : PMC10621606
+      Category: Full
+      Snippet : * **Dataset Publicly Available**: Yes.  * **Dataset URL/License**:   *
+                https://data.world/kudem | Creative Commons Attribution-NonCommercial 4.0 International
+                License.
+
+    Example 7
+      PMCID   : PMC6293604
+      Category: Full
+      Snippet : * **Dataset Publicly Available**: Yes.  * **Dataset URL/License**:   * URL:
+                https://doi.org/10.1186/s13148-018-0591-z   * License: Creative Commons Attribution 4.0
+                International License.
+
+    Example 8
+      PMCID   : PMC11227463
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 9
+      PMCID   : PMC9962729
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 10
+      PMCID   : PMC10785655
+      Category: Full
+      Snippet : * **Dataset Publicly Available**: No.  * **Dataset URL/License**:   * The dataset is held
+                securely in coded form at the Institute for Clinical Evaluative Sciences (ICES). Access
+                may be granted to those who meet pre-specified criteria for confidential access, available
+                at [www.ices.on.ca/DAS](http://www.ices.on.ca/DAS). The full dataset creation plan and
+                underlying analytic code are available from
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Partial
+      Snippet : * **Dataset Publicly Available**: No.  * **Dataset URL/License**: Not enough information
+                is available.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Partial
+      Snippet : * **Dataset Publicly Available**: No.  * **Dataset URL/License**: Not enough information
+                is available.
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Partial
+      Snippet : * **Dataset Publicly Available**: No.  * **Dataset URL/License**: Not enough information
+                is available.
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Partial
+      Snippet : * **Dataset Publicly Available**: Yes.  * **Dataset URL/License**:   - URL:
+                https://www.rcsb.org/ | License: Not enough information is available.
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Partial
+      Snippet : * **Dataset Publicly Available**: No.  * **Dataset URL/License**:   * Not enough
+                information is available.
+
+    Example 6
+      PMCID   : PMC8581823
+      Category: Partial
+      Snippet : * **Dataset Publicly Available**: Yes.  * **Dataset URL/License**:   *
+                https://www.ncbi.nlm.nih.gov/gap/ | Not enough information is available.
+
+    Example 7
+      PMCID   : PMC11625410
+      Category: Partial
+      Snippet : * **Dataset Publicly Available**: Yes.  * **Dataset URL/License**:   -
+                https://gitlab.com/machine-biology-group-public/pancleave | Not enough information is
+                available.
+
+    Example 8
+      PMCID   : PMC7665450
+      Category: Partial
+      Snippet : * **Dataset Publicly Available**: No.  * **Dataset URL/License**:   * Not enough
+                information is available.
+
+    Example 9
+      PMCID   : PMC11806858
+      Category: Partial
+      Snippet : * **Dataset Publicly Available**: No.  * **Dataset URL/License**: Not enough information
+                is available.
+
+    Example 10
+      PMCID   : PMC11874791
+      Category: Partial
+      Snippet : * **Dataset Publicly Available**: No.  * **Dataset URL/License**:   * Not enough
+                information is available.
+
+  [Missing]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC6484528
+      Category: Missing
+      Snippet : * **Dataset Publicly Available**: Not enough information is available.  * **Dataset
+                URL/License**: Not enough information is available.
+
+    Example 2
+      PMCID   : PMC11789348
+      Category: Missing
+      Snippet : * **Dataset Publicly Available**: Not enough information is available.  * **Dataset
+                URL/License**: Not enough information is available.
+
+    Example 3
+      PMCID   : PMC11504323
+      Category: Missing
+      Snippet : * **Dataset Publicly Available**: Not enough information is available.  * **Dataset
+                URL/License**:   * Not enough information is available.
+
+    Example 4
+      PMCID   : PMC6661861
+      Category: Missing
+      Snippet : * **Dataset Publicly Available**: Not enough information is available.  * **Dataset
+                URL/License**: Not enough information is available.
+
+    Example 5
+      PMCID   : PMC9294765
+      Category: Missing
+      Snippet : * **Dataset Publicly Available**: Not enough information is available. * **Dataset
+                URL/License**:   * Not enough information is available.
+
+    Example 6
+      PMCID   : PMC11267879
+      Category: Missing
+      Snippet : * **Dataset Publicly Available**: Not enough information is available.  * **Dataset
+                URL/License**: Not enough information is available.
+
+    Example 7
+      PMCID   : PMC11324570
+      Category: Missing
+      Snippet : * **Dataset Publicly Available**: Not enough information is available.  * **Dataset
+                URL/License**: Not enough information is available.
+
+    Example 8
+      PMCID   : PMC3259434
+      Category: Missing
+      Snippet : * Dataset Publicly Available: Not enough information is available.  * Dataset URL/License:
+                * Not enough information is available.
+
+    Example 9
+      PMCID   : PMC6510616
+      Category: Missing
+      Snippet : * **Dataset Publicly Available**: Not enough information is available.  * **Dataset
+                URL/License**:   * Not enough information is available.
+
+    Example 10
+      PMCID   : PMC11850780
+      Category: Missing
+      Snippet : * **Dataset Publicly Available**: Not enough information is available.  * **Dataset
+                URL/License**:   * Not enough information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Data/provenance
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC11865635
+      Category: Full
+      Snippet : * **Data Source Name**:   * Primary Training Source: Author-generated data from patients
+                who presented to the ER and underwent abdominal CT scans due to a diagnosis of acute
+                cholecystitis (AC), followed by laparoscopic cholecystectomy within 24 hours, with
+                pathology confirming the diagnosis.   * Secondary Validation Source: Author-generated data
+                from an additional 40 cases (20 with AC and 20 healt
+
+    Example 2
+      PMCID   : PMC8581823
+      Category: Full
+      Snippet : * **Data Source Name**:   * Philadelphia Neurodevelopmental Cohort (PNC).   * eMerge
+                project stage III.  * **Total Data Points**:   * N=524 (African American children).   *
+                N=351 (European American children).  * **Previous Use**:   * Yes. The PNC data is archived
+                in the biobank of the Center for Applied Genomics (CAG) at the Children’s Hospital of
+                Philadelphia (CHOP). The eMerge project stage III
+
+    Example 3
+      PMCID   : PMC7676934
+      Category: Full
+      Snippet : * **Data Source Name**:   * GSE97709: GEO database   * GSE37171: GEO database  * **Total
+                Data Points**:   * GSE97709: N=48   * GSE37171: N=115  * **Previous Use**:   * GSE97709:
+                Yes. Cited in the text as [6].   * GSE37171: Yes. Cited in the text as [7].
+
+    Example 4
+      PMCID   : PMC7511449
+      Category: Full
+      Snippet : * **Data Source Name**:   * IEDB: The Immune Epitope Database (IEDB) is the primary source
+                of binding affinity data for various HLA alleles.   * Bjerregaard et al. curated dataset:
+                This dataset is sourced from a publication with PMID: 29187854.   * Koşaloğlu-Yalçın et
+                al. curated dataset: This dataset is sourced from a publication with PMID: 30377561.  *
+                **Total Data Points**:   * HLA-A*24-02: N=2
+
+    Example 5
+      PMCID   : PMC5521984
+      Category: Full
+      Snippet : * **Data Source Name**:   * MEDLINE Citations: The dataset consists of MEDLINE citations
+                from November 2012 to February 2013. The dataset is publicly available at
+                http://ii.nlm.nih.gov/MTI_ML/index.shtml.  * **Total Data Points**:   * Training: N=89,942
+                * Validation: N=5,000   * Testing: N=48,911  * **Previous Use**:   * Yes. The dataset and
+                MeSH terms used in this study were also used in a prio
+
+    Example 6
+      PMCID   : PMC9980216
+      Category: Full
+      Snippet : * **Data Source Name**:   * FAMLI protocol   * Author-generated data  * **Total Data
+                Points**:   * N=8775 ultrasound studies   * N=4695 participants  * **Previous Use**:   *
+                No previous use information is available.
+
+    Example 7
+      PMCID   : PMC8586384
+      Category: Full
+      Snippet : * **Data Source Name**:   * Knee Implant Radiographs     * Army Hospital (Research and
+                Referral), New Delhi, India     * SRM Institute of Medical Sciences Hospital, Chennai,
+                India     * Sunshine Hospitals, Hyderabad     * Stanford University Medical Center, US
+                * Kasturba Medical College, Manipal  * **Total Data Points**:   * N=1078  * **Previous
+                Use**:   * No previous use is mentioned.
+
+    Example 8
+      PMCID   : PMC8298161
+      Category: Full
+      Snippet : * **Data Source Name**:   * ADNI Database: Alzheimer's Disease Neuroimaging Initiative
+                (ADNI) database (http://adni.loni.usc.edu/).  * **Total Data Points**:   * N=1,461 (622
+                AD, 473 MCI, and 366 healthy controls (HCs)).  * **Previous Use**:   * Yes. The ADNI
+                database is a well-established benchmark in the Alzheimer's disease research community. It
+                has been used in numerous previous studies and is
+
+    Example 9
+      PMCID   : PMC11377909
+      Category: Full
+      Snippet : * **Data Source Name**:   * Framingham Heart Study (FHS)  * **Total Data Points**:   *
+                N=200  * **Previous Use**:   * Yes. The FHS is a well-established, longitudinal cohort
+                study initiated in 1948. It has been used in numerous previous publications and
+                benchmarks. The study has been supported by the National Heart, Lung, and Blood Institute
+                of the National Institutes of Health and Boston Universi
+
+    Example 10
+      PMCID   : PMC6637411
+      Category: Full
+      Snippet : * **Data Source Name**:   * Vaccination and Immunity Project  * **Total Data Points**:   *
+                N=74  * **Previous Use**:   * Yes. The dataset has been used in previous publications
+                investigating the association of psychosocial, physiological, and behavioral factors with
+                antibody response to hepatitis B vaccination (Carroll et al., 2011; Prather et al., 2009)
+                and an analysis of the effects of stress re
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Partial
+      Snippet : * **Data Source Name**:   * Data Source Name: Self-reported questionnaire.   * Data Source
+                Name: Hamadan city sports clubs.  * **Total Data Points**:   * Total Data Points: N=356.
+                * **Previous Use**:   * Previous Use: No. Not enough information is available.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Partial
+      Snippet : * **Data Source Name**:   * Clinical Data Warehouse (CDW) structured using the
+                Observational Medical Outcomes Partnership (OMOP) Common Data Model (CDM).  * **Total Data
+                Points**:   * N=171,136 admissions identified initially.   * N=158,804 admissions after
+                excluding data points with missing values.  * **Previous Use**:   * Not enough information
+                is available.
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Partial
+      Snippet : * **Data Source Name**:   * BV Dataset: Not enough information is available.  * **Total
+                Data Points**:   * N=1601.  * **Previous Use**:   * Yes. The dataset was used in a
+                previous study cited as [18].
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Partial
+      Snippet : * **Data Source Name**:   * Protein Data Bank (PDB).  * **Total Data Points**:   *
+                N=125,955 protein sequences.  * **Previous Use**:   * Yes. The dataset was developed
+                following previous work from the authors' group. Not enough information is available to
+                provide a citation.
+
+    Example 5
+      PMCID   : PMC11625410
+      Category: Partial
+      Snippet : * **Data Source Name**:   * MEROPS Peptidase Database: The dataset used for training and
+                testing the panCleave model is sourced from the MEROPS Peptidase Database. The data was
+                accessed as of June 2020.   * Human Proteome: Negative observations were generated from
+                the human proteome.   * Random Protein Space: Negative observations were also generated
+                from random protein sequences.  * **Total Data
+
+    Example 6
+      PMCID   : PMC7665450
+      Category: Partial
+      Snippet : * **Data Source Name**:   * Follicular charts of patients undergoing stimulation prior to
+                oocyte retrieval for IVF, ICSI, or oocyte donation.  * **Total Data Points**:   * N=2322
+                cycles of 1875 women.   * N=9294 individual scans.   * N=2128 cycles from 1731 patients
+                were complete and suitable for analysis.  * **Previous Use**:   * Not enough information
+                is available.
+
+    Example 7
+      PMCID   : PMC11806858
+      Category: Partial
+      Snippet : * **Data Source Name**:   * Kailuan General Hospital   * Source: Main text  * **Total Data
+                Points**:   * N=16,378   * Source: Main text  * **Previous Use**:   * Not enough
+                information is available
+
+    Example 8
+      PMCID   : PMC11874791
+      Category: Partial
+      Snippet : * **Data Source Name**:   * Weiner et al. (2023) study on prognostic CSF biomarkers for
+                predicting shunt responsiveness in iNPH patients.  * **Total Data Points**:   * N=186
+                samples collected from 106 iNPH patients.     * N=85 samples from lumbar CSF fluid.     *
+                N=101 samples from ventricular CSF fluid.  * **Previous Use**:   * Not enough information
+                is available.
+
+    Example 9
+      PMCID   : PMC10948976
+      Category: Partial
+      Snippet : * **Data Source Name**:   * Primary Dataset: Author-generated data from a single
+                institution.   * Secondary Dataset: Not enough information is available.  * **Total Data
+                Points**:   * Primary Dataset: N=832.  * **Previous Use**:   * Primary Dataset: No. This
+                dataset is not referenced as having been used in previous publications or benchmarks.
+
+    Example 10
+      PMCID   : PMC10583101
+      Category: Partial
+      Snippet : * **Data Source Name**:   * India 2020: Demographic and Health Surveys (DHS)   * India
+                2015: Demographic and Health Surveys (DHS)   * India 2006: Demographic and Health Surveys
+                (DHS)   * Mali 2018: Demographic and Health Surveys (DHS)   * Mali 2006: Demographic and
+                Health Surveys (DHS)   * Nigeria 2018: Demographic and Health Surveys (DHS)   * Nigeria
+                2008: Demographic and Health Surveys (DHS)  *
+
+  [Missing]  — 3 example(s) shown below
+
+    Example 1
+      PMCID   : PMC8374469
+      Category: Missing
+      Snippet : * **Data Source Name**:   - Not enough information is available.  * **Total Data Points**:
+                - Not enough information is available.  * **Previous Use**:   - Not enough information is
+                available.
+
+    Example 2
+      PMCID   : PMC10438915
+      Category: Missing
+      Snippet : * **Data Source Name**:   * MBS Training Data: Not enough information is available.   *
+                MagnetoSuture™: Not enough information is available.  * **Total Data Points**:   * MBS
+                Training Data: Not enough information is available.   * MagnetoSuture™: Not enough
+                information is available.  * **Previous Use**:   * MBS Training Data: Not enough
+                information is available.   * MagnetoSuture™: Not enough info
+
+    Example 3
+      PMCID   : PMC11544410
+      Category: Missing
+      Snippet : * **Data Source Name**:   * Echocardiographic images: Not enough information is available.
+                * Cardiac Magnetic Resonance (CMR) data: Not enough information is available.  * **Total
+                Data Points**:   * Echocardiographic images: Not enough information is available.   *
+                Cardiac Magnetic Resonance (CMR) data: Not enough information is available.  * **Previous
+                Use**:   * Echocardiographic images: Not e
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Data/redundancy
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC11865635
+      Category: Full
+      Snippet : * **Redundancy Methodology**: The study involved patients who presented to the ER and
+                underwent abdominal CT scans due to a diagnosis of acute cholecystitis (AC), followed by
+                laparoscopic cholecystectomy within 24 hours, with pathology confirming the diagnosis.
+                From January 2015 to January 2020, a total of 250 patients were collected as the AC group.
+                Additionally, 250 patients with acute appendici
+
+    Example 2
+      PMCID   : PMC11625410
+      Category: Full
+      Snippet : * **Redundancy Methodology**: The authors ensured non-redundancy by removing sequences
+                present in both the positive and negative datasets. Additionally, redundant sequences,
+                sites containing non-canonical amino acids, and sites of length shorter than 8 residues
+                were removed from the positive dataset.  * **Independent Sets**: Yes. The authors
+                explicitly state that no sequences were present in both
+
+    Example 3
+      PMCID   : PMC7665450
+      Category: Full
+      Snippet : * **Redundancy Methodology**: The study used 5-fold cross-validation at the treatment
+                cycle level. The data were randomly portioned into five equal-size subsets, with the model
+                trained on four of the subsets and evaluated on the fifth (out-of-fold) subset. This
+                process was repeated over the five possible permutations of the subsets.  * **Independent
+                Sets**: Yes. The study mentions that the data we
+
+    Example 4
+      PMCID   : PMC11874791
+      Category: Full
+      Snippet : * **Redundancy Methodology**: The authors used k-fold cross-validation (k=5) to partition
+                the dataset into training and validation sets. This approach involves splitting the
+                dataset into k equal-sized folds, each serving as a distinct validation set while the
+                model is trained on the remaining data. This method is designed to reduce overfitting and
+                ensure that each data point is used for both train
+
+    Example 5
+      PMCID   : PMC10948976
+      Category: Full
+      Snippet : * **Redundancy Methodology**: Repeated nested cross-validation was used to improve the
+                robustness and obtain an unbiased estimate of the generalization performance of these
+                machine-learning models. This method consisted of 2 cross-validation cycles: outer loop
+                and inner loop. The outer loop stratified 10-fold cross-validation where the dataset was
+                to estimate the average performance of the machine
+
+    Example 6
+      PMCID   : PMC10583101
+      Category: Full
+      Snippet : * **Redundancy Methodology**: The authors used a stratified sampling approach to ensure
+                regional heterogeneity was accounted for. They drew a random sample of children within
+                each state or regional stratum that is proportional to the total number of children in
+                that stratum (proportional-to-size). This method helps in maintaining the distribution of
+                the data across different regions in both traini
+
+    Example 7
+      PMCID   : PMC8897225
+      Category: Full
+      Snippet : * **Redundancy Methodology**: The authors used a moving buffer with a 95% overlap to
+                extract data. This approach was chosen because extracting data with more than 95% overlap
+                created redundant data points that did not significantly improve classifier accuracies.
+                The buffer size was initially set to 2 seconds but was tested within a range of 0.5 to 3
+                seconds to find the optimal size that resulted i
+
+    Example 8
+      PMCID   : PMC8832594
+      Category: Full
+      Snippet : * **Redundancy Methodology**: The data were split into 10 unique test and train sets using
+                randomization. Each split comprised 20% test data and 80% training data, with balanced
+                events per variable. This approach ensures that each data point is used in either the
+                training or test set but not both, mitigating redundancy.  * **Independent Sets**: Yes.
+                The methodology explicitly states that data were
+
+    Example 9
+      PMCID   : PMC7511449
+      Category: Full
+      Snippet : * **Redundancy Methodology**: The authors used random selection to create balanced held-
+                out test datasets with no overlap between sequences in the training and test sets. For
+                HLA-A*24-02, 66 peptides were randomly selected from each binding class. For HLA-A*32-01,
+                100 peptides were randomly selected from each binding class except for the weak binding
+                class, where all 96 peptides were used.  * **In
+
+    Example 10
+      PMCID   : PMC10492341
+      Category: Full
+      Snippet : * **Redundancy Methodology**: Hierarchical agglomerative clustering was used to identify
+                and remove non-representative patients with a paucity of information from the training
+                set. The training cohort was restricted to patients with at least 1 year of coverage. The
+                test cohort was composed of patients independent from the training cohort, ensuring no
+                overlap.  * **Independent Sets**: Yes. The stud
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Partial
+      Snippet : * **Redundancy Methodology**: The study used a bootstrap sampling method to create
+                multiple subsets of the data. This method involves randomly selecting samples with
+                replacement from the original dataset to create each bootstrap sample. The out-of-bag
+                (OOB) error is estimated by considering all excluded samples by bootstrap samples, which
+                helps in assessing the model's performance on unseen data.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Partial
+      Snippet : * **Redundancy Methodology**: The dataset was split into training and test sets using a
+                70-30% ratio. This is a common practice in machine learning to ensure that the model is
+                trained on one subset of the data and tested on a separate, unseen subset. However, the
+                specific methodology used to ensure non-redundancy between splits is not explicitly
+                detailed.  * **Independent Sets**: Yes. The study me
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Partial
+      Snippet : * **Redundancy Methodology**: Not enough information is available.   * The paper does not
+                specify any methodology used to ensure non-redundancy between splits. There is no mention
+                of identity thresholds, group-level partitioning, or time-series splitting.  *
+                **Independent Sets**: No + [Evidence: "There were also a few weeks that are void of any
+                data in the spreadsheet."]   * The training and test
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Partial
+      Snippet : * **Redundancy Methodology**: Not enough information is available.  * **Independent
+                Sets**: No. The authors mention that they tested the model on "several large SARS and
+                COVID-19 proteins that were recently deposited in the Protein Data Bank" (page 4). This
+                suggests that the test set may contain proteins that were not part of the training set but
+                does not guarantee strict independence, as the spec
+
+    Example 5
+      PMCID   : PMC8581823
+      Category: Partial
+      Snippet : * **Redundancy Methodology**: The study used a two-fold random shuffle test to split the
+                dataset into training and testing sets. The dataset consisted of 524 African American (AA)
+                individuals, including 116 ADHD patients and 408 controls, which were split into equal
+                ratios randomly. This process was repeated 50 times independently.  * **Independent
+                Sets**: Yes. The study mentions that the procedur
+
+    Example 6
+      PMCID   : PMC11806858
+      Category: Partial
+      Snippet : * **Redundancy Methodology**: The dataset was randomly divided into derivation and testing
+                cohorts in an 8:2 ratio, stratified by the occurrence of MACE events. This approach
+                ensures that the distribution of the primary outcome is balanced across both splits,
+                reducing the risk of data leakage.  * **Independent Sets**: Yes. The authors explicitly
+                mention that the dataset was randomly divided into d
+
+    Example 7
+      PMCID   : PMC9413214
+      Category: Partial
+      Snippet : * **Redundancy Methodology**: The authors used a fourfold cross-validation (CV) approach.
+                For each CV instance, 75 samples were used to build the classification model, and 25
+                samples were used to evaluate the model's accuracy. This process was replicated 1000 times
+                to ensure robustness.  * **Independent Sets**: Yes. The authors explicitly stated that the
+                samples were divided into high- and low-fat
+
+    Example 8
+      PMCID   : PMC7941561
+      Category: Partial
+      Snippet : * **Redundancy Methodology**: The paper does not explicitly describe a methodology used to
+                ensure non-redundancy between splits. The text mentions that the dataset was divided into
+                five parts for five-fold cross-validation, but it does not specify how these parts were
+                selected to avoid redundancy.  * **Independent Sets**: No + The paper does not provide
+                evidence that the training and test sets are
+
+    Example 9
+      PMCID   : PMC7676934
+      Category: Partial
+      Snippet : * **Redundancy Methodology**: The authors did not explicitly describe a methodology to
+                ensure non-redundancy between splits. The text mentions that the samples were randomly
+                divided into training and testing sets at a ratio of 6:4 with a fixed random state
+                (random_state = 123). However, there is no indication of any specific method to prevent
+                redundancy or overlap between the splits.  * **Independ
+
+    Example 10
+      PMCID   : PMC5521984
+      Category: Partial
+      Snippet : * **Redundancy Methodology**: The dataset used in the study is a publicly available
+                dataset consisting of MEDLINE citations from November 2012 to February 2013. The dataset
+                is split into three parts: 89,942 citations for training, 5,000 for validation, and 48,911
+                for testing. The study does not explicitly mention a specific methodology to ensure non-
+                redundancy between splits, such as identity thre
+
+  [Missing]  — 7 example(s) shown below
+
+    Example 1
+      PMCID   : PMC11869764
+      Category: Missing
+      Snippet : * **Redundancy Methodology**: Not enough information is available.  * **Independent
+                Sets**: Not enough information is available.  * **Independence Enforcement**: Not enough
+                information is available.
+
+    Example 2
+      PMCID   : PMC6224513
+      Category: Missing
+      Snippet : * **Redundancy Methodology**: Not enough information is available.  * **Independent
+                Sets**: Not enough information is available.  * **Independence Enforcement**: Not enough
+                information is available.
+
+    Example 3
+      PMCID   : PMC10140058
+      Category: Missing
+      Snippet : * **Redundancy Methodology**: Not enough information is available.  * **Independent
+                Sets**: Not enough information is available.  * **Independence Enforcement**: Not enough
+                information is available.
+
+    Example 4
+      PMCID   : PMC11430310
+      Category: Missing
+      Snippet : * **Redundancy Methodology**: Not enough information is available.  * **Independent
+                Sets**: Not enough information is available.  * **Independence Enforcement**: Not enough
+                information is available.
+
+    Example 5
+      PMCID   : PMC5486409
+      Category: Missing
+      Snippet : * **Redundancy Methodology**: Not enough information is available.  * **Independent
+                Sets**: Not enough information is available.  * **Independence Enforcement**: Not enough
+                information is available.
+
+    Example 6
+      PMCID   : PMC9233873
+      Category: Missing
+      Snippet : * **Redundancy Methodology**: Not enough information is available.  * **Independent
+                Sets**: Not enough information is available.  * **Independence Enforcement**: Not enough
+                information is available.
+
+    Example 7
+      PMCID   : PMC10657493
+      Category: Missing
+      Snippet : * **Redundancy Methodology**: Not enough information is available.  * **Independent
+                Sets**: Not enough information is available.  * **Independence Enforcement**: Not enough
+                information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Data/splits
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC8581823
+      Category: Full
+      Snippet : * **Number of Splits**: 2 (Training, Testing)   * The study employed a two-fold random
+                shuffle test, which means the data was split into training and testing sets.  * **Split
+                Counts**:   * Train: 262   * Test: 262   * The dataset of 524 AA patients (116 ADHD
+                patients and 408 controls) was split into two equal parts, each containing 262 samples.  *
+                **Class Distribution**:   * Train: ADHD: 58, Contr
+
+    Example 2
+      PMCID   : PMC11625410
+      Category: Full
+      Snippet : * **Number of Splits**: 2 (Training, Testing) * **Split Counts**:   * Train: 39,707   *
+                Test: 9,927 * **Class Distribution**:   * Train: Positive: 19,853, Negative: 19,854   *
+                Test: Positive: 4,963, Negative: 4,964   * The train-test split was stratified by label to
+                ensure that each split maintained a label distribution representative of the entire
+                dataset (50% positive observations and 50% negati
+
+    Example 3
+      PMCID   : PMC10948976
+      Category: Full
+      Snippet : * **Number of Splits**: 2 (Training, Testing).   * The authors used repeated nested cross-
+                validation, which involves an outer loop for training and testing, and an inner loop for
+                hyperparameter tuning. This method does not explicitly create a separate validation set.
+                * **Split Counts**:   * The exact numerical counts for each split are not explicitly
+                provided in the text. However, the outer loop
+
+    Example 4
+      PMCID   : PMC8897225
+      Category: Full
+      Snippet : * **Number of Splits**: 2 (Training, Testing).   * The data was partitioned into a
+                training set and an independent test set.  * **Split Counts**:   * Train: 90% of the total
+                data.   * Test: 10% of the total data.  * **Class Distribution**:   * The training set
+                underwent under-sampling to balance the class distribution. The "Stand" class, which made
+                up approximately 50% of all data, was under-sampl
+
+    Example 5
+      PMCID   : PMC7941561
+      Category: Full
+      Snippet : * **Number of Splits**: 5 (Training, Test).   * The dataset was divided into five parts
+                using a five-fold cross-validation technique. Four parts were used for training (training
+                set) and the remaining part was used as a test set. This process was repeated five times
+                (folds), each time using a different part as the test set and the remaining four parts as
+                the training set.  * **Split Counts**:   *
+
+    Example 6
+      PMCID   : PMC10492341
+      Category: Full
+      Snippet : * **Number of Splits**: 2 (Training, Testing). * **Split Counts**:   * Train: 328,656 (656
+                GD patients + 328,000 controls).   * Test: 1,000,100 (100 GD patients + 1,000,000
+                controls). * **Class Distribution**:   * Training: 1 GD patient to 500 controls.   *
+                Testing: 1 GD patient to 10,000 controls.
+
+    Example 7
+      PMCID   : PMC5521984
+      Category: Full
+      Snippet : * Number of Splits: Train, Test, Validation * Split Counts:   * Train: 89,942   * Test:
+                48,911   * Validation: 5,000 * Class Distribution:   * The class distribution is not
+                explicitly provided for each split. However, the text mentions that the low precision
+                group has an average of 1,214 examples per term, the low recall group has an average of
+                2,002 examples per label, and the check-tags group ha
+
+    Example 8
+      PMCID   : PMC10579490
+      Category: Full
+      Snippet : * **Number of Splits**: 1   * Final assessment  * **Split Counts**:   * Final assessment:
+                83  * **Class Distribution**:   * Final assessment: VIA negative: 48, VIA positive: 35
+
+    Example 9
+      PMCID   : PMC10651383
+      Category: Full
+      Snippet : * **Number of Splits**: 3 (Training, Test, External Validation)  * **Split Counts**:   *
+                Train: 1851   * Test: 206   * External Validation: 873  * **Class Distribution**:   *
+                **Training Set**:     * GISTs: 1188     * Non-GISTs: 663   * **Test Set**:     * GISTs:
+                132     * Non-GISTs: 74   * **External Validation Set**:     * GISTs: 598     * Non-GISTs:
+                275
+
+    Example 10
+      PMCID   : PMC6062245
+      Category: Full
+      Snippet : * **Number of Splits**: 2 (Training, External Validation). * **Split Counts**:   * Train:
+                577   * Validation: 64 * **Class Distribution**:   * Training: Positive: 237, Negative:
+                340   * Validation: Positive: 27, Negative: 37
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Partial
+      Snippet : * **Number of Splits**: 2 (Training, Testing). * **Split Counts**:   * Not enough
+                information is available. * **Class Distribution**:   * Not enough information is
+                available.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Partial
+      Snippet : * **Number of Splits**: 2 (Train, Test). * **Split Counts**:   * Train: 111,162   * Test:
+                47,642 * **Class Distribution**:   * Train: Not enough information is available.   * Test:
+                Not enough information is available.
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Partial
+      Snippet : * **Number of Splits**: 2 (Training, Testing).   * The study used 10-fold cross-
+                validation, which means the data was split into 10 parts, with 9 parts used for training
+                and 1 part used for testing in each fold. However, the overall process can be simplified
+                to two main splits: training and testing.  * **Split Counts**:   * The exact numerical
+                counts for each split are not explicitly provided. Howe
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Partial
+      Snippet : * **Number of Splits**: 2 (Training, Testing)   * The paper does not explicitly mention a
+                validation set.  * **Split Counts**:   * Not enough information is available  * **Class
+                Distribution**:   * Not enough information is available
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Partial
+      Snippet : * **Number of Splits**: 3 (Training, Validation, Testing). * **Split Counts**:   *
+                **Training**: 80 (40 AC, 40 Control).   * **Validation**: 440 (210 AC, 230 Control).   *
+                **Testing**: Not enough information is available. * **Class Distribution**:   *
+                **Training**: 40 AC, 40 Control.   * **Validation**: 210 AC, 230 Control.   * **Testing**:
+                Not enough information is available.
+
+    Example 6
+      PMCID   : PMC7665450
+      Category: Partial
+      Snippet : * **Number of Splits**: 1 (Training, Validation).   * The study used 5-fold cross-
+                validation, which means the data was split into 5 subsets, with 4 used for training and 1
+                for validation in each fold. However, the overall structure involves a single training-
+                validation split strategy.  * **Split Counts**:   * The study does not provide explicit
+                counts for each fold, but the validation process invo
+
+    Example 7
+      PMCID   : PMC11806858
+      Category: Partial
+      Snippet : * Number of Splits: Derivation, Testing * Split Counts:   * Train: 13,102   * Test: 3,276
+                * Class Distribution:   * Derivation: Not enough information is available   * Testing: Not
+                enough information is available
+
+    Example 8
+      PMCID   : PMC11874791
+      Category: Partial
+      Snippet : * **Number of Splits**: 5   * Train   * Test  * **Split Counts**:   * Train: Not enough
+                information is available   * Test: Not enough information is available  * **Class
+                Distribution**:   * The Synthetic Minority Over-sampling Technique (SMOTE) was used to
+                balance the class distribution. This means that both classes had an equal amount of
+                samples after data augmentation.
+
+    Example 9
+      PMCID   : PMC10583101
+      Category: Partial
+      Snippet : * Number of Splits: Training, Testing * Split Counts:   * Not enough information is
+                available * Class Distribution:   * Not enough information is available
+
+    Example 10
+      PMCID   : PMC9413214
+      Category: Partial
+      Snippet : * **Number of Splits**: 1 split.   * Train   * Test  * **Split Counts**:   * Train: 75   *
+                Test: 25  * **Class Distribution**:   * Not enough information is available.
+
+  [Missing]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC11206671
+      Category: Missing
+      Snippet : * **Number of Splits**: Not enough information is available. * **Split Counts**: Not
+                enough information is available. * **Class Distribution**: Not enough information is
+                available.
+
+    Example 2
+      PMCID   : PMC6398873
+      Category: Missing
+      Snippet : * **Number of Splits**: Not enough information is available. * **Split Counts**: Not
+                enough information is available. * **Class Distribution**: Not enough information is
+                available.
+
+    Example 3
+      PMCID   : PMC7285934
+      Category: Missing
+      Snippet : * Number of Splits: Not enough information is available. * Split Counts: Not enough
+                information is available. * Class Distribution: Not enough information is available.
+
+    Example 4
+      PMCID   : PMC11134423
+      Category: Missing
+      Snippet : * **Number of Splits**: Not enough information is available. * **Split Counts**: Not
+                enough information is available. * **Class Distribution**: Not enough information is
+                available.
+
+    Example 5
+      PMCID   : PMC8461876
+      Category: Missing
+      Snippet : * Number of Splits: Not enough information is available. * Split Counts: Not enough
+                information is available. * Class Distribution: Not enough information is available.
+
+    Example 6
+      PMCID   : PMC8363490
+      Category: Missing
+      Snippet : * **Number of Splits**: Not enough information is available.  * **Split Counts**: Not
+                enough information is available.  * **Class Distribution**: Not enough information is
+                available.
+
+    Example 7
+      PMCID   : PMC11858721
+      Category: Missing
+      Snippet : * Number of Splits: Not enough information is available.  * Split Counts: Not enough
+                information is available.  * Class Distribution: Not enough information is available.
+
+    Example 8
+      PMCID   : PMC7668301
+      Category: Missing
+      Snippet : * Number of Splits: Not enough information is available. * Split Counts: Not enough
+                information is available. * Class Distribution: Not enough information is available.
+
+    Example 9
+      PMCID   : PMC11679129
+      Category: Missing
+      Snippet : * Number of Splits: Not enough information is available. * Split Counts: Not enough
+                information is available. * Class Distribution: Not enough information is available.
+
+    Example 10
+      PMCID   : PMC7431866
+      Category: Missing
+      Snippet : * Number of Splits: Not enough information is available. * Split Counts: Not enough
+                information is available. * Class Distribution: Not enough information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Evaluation/availability
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC10948976
+      Category: Full
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are available in
+                the publication. The confusion matrices for the test set are provided in Table 2.
+
+    Example 2
+      PMCID   : PMC11845296
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 3
+      PMCID   : PMC8374469
+      Category: Full
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are available in
+                the publication. The confusion matrix is provided in Table 2 on page 16. The precision,
+                recall, and ROC area under the curve are provided in Table 3 on page 17.
+
+    Example 4
+      PMCID   : PMC8423361
+      Category: Full
+      Snippet : * **Are the raw evaluation logs available?**   * **Evaluation Logs source**: The raw
+                evaluation logs are available in the supplementary materials. The confusion matrices for
+                classifying between progressor and controller mice in the independent cohort are provided
+                in S1 Fig. Additionally, the confusion matrices for the biomarkers in human sera are
+                available in S2 Fig.
+
+    Example 5
+      PMCID   : PMC11278897
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 6
+      PMCID   : PMC9924077
+      Category: Full
+      Snippet : * **Are the raw evaluation logs available?**   - The raw evaluation logs are available in
+                the supplementary information of the publication. The confusion matrices for the training
+                and test datasets are shown in Figure 2E.
+
+    Example 7
+      PMCID   : PMC2857471
+      Category: Full
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are available in
+                the publication. The confusion matrices are presented in Tables 4, 5, and 6. Additionally,
+                precision/recall plots are shown in Figures 3 and 4. Randomly selected true-positives,
+                false-positives, and false-negatives for each category are presented in Figures 5 and 6.
+
+    Example 8
+      PMCID   : PMC8113686
+      Category: Full
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are available in
+                the publication. The confusion matrix is presented in Table 2.
+
+    Example 9
+      PMCID   : PMC11451058
+      Category: Full
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are available as
+                supplementary materials. The experiment outputs are reported in Supplement 2 and
+                Supplement 3.
+
+    Example 10
+      PMCID   : PMC9894083
+      Category: Full
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are available in
+                the supplementary material of the publication. The confusion matrices for each of the four
+                tested model architectures are provided for both UWFA and OCT data, with and without data
+                augmentations. Specifically, the confusion matrices are shown in Figures S1, S2, S3, and
+                S4 of the supplementary material.
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC8897225
+      Category: Partial
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are not
+                available. The publication provides a confusion matrix for the SVM classifier on an
+                independent test set (Page 22), but it does not provide access to the raw prediction
+                outputs or the full confusion matrix data. Not enough information is available to
+                determine if the raw evaluation logs are accessible online or under
+
+    Example 2
+      PMCID   : PMC7941561
+      Category: Partial
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are not
+                explicitly mentioned as available. The confusion matrix for the decision tree classifier
+                is shown in Table 3, but the raw logs or detailed prediction outputs are not provided in
+                the main text or supplementary material. Not enough information is available to determine
+                if the raw evaluation logs are accessible online.
+
+    Example 3
+      PMCID   : PMC8586384
+      Category: Partial
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are not
+                available. The publication does not provide access to prediction outputs or confusion
+                matrices. The confusion matrices for MobileNetV2 and DenseNet201 are shown in figures 8
+                and 9, but the raw data is not provided. Not enough information is available to determine
+                if the raw evaluation logs are available online or unde
+
+    Example 4
+      PMCID   : PMC9338198
+      Category: Partial
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are not
+                available. The confusion matrices are presented in the publication (Figure 7), but the raw
+                data used to generate these matrices is not provided. Not enough information is available
+                to determine if the raw evaluation logs are accessible online or under what license.
+
+    Example 5
+      PMCID   : PMC11148103
+      Category: Partial
+      Snippet : * **Are the raw evaluation logs available?**   * The numerical source data for the graphs
+                in the main figures is available in the Supplementary Data file. Source: Supplementary.
+                * Not enough information is available on the availability of prediction outputs or
+                confusion matrices.
+
+    Example 6
+      PMCID   : PMC9731601
+      Category: Partial
+      Snippet : * **Are the raw evaluation logs available?**   * The confusion matrices for the training
+                set and the test set are available in the supplementary material (Source: Supplementary).
+                Not enough information is available to determine if the raw evaluation logs are available
+                online.
+
+    Example 7
+      PMCID   : PMC9860560
+      Category: Partial
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are not
+                available. The confusion matrices are presented in Figure 3, but the raw data used to
+                generate these matrices is not provided in the publication or supplementary material. Not
+                enough information is available to determine if the raw evaluation logs are accessible
+                online.
+
+    Example 8
+      PMCID   : PMC6476414
+      Category: Partial
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are not
+                available. The publication provides confusion matrices in Figure 4, but the raw prediction
+                outputs are not disclosed. Not enough information is available to determine if the raw
+                evaluation logs are accessible online.
+
+    Example 9
+      PMCID   : PMC6484528
+      Category: Partial
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are available in
+                the supplementary material of the publication. The confusion matrices for mechanism-of-
+                action prediction using different models and training/testing splits are provided in the
+                supplementary material.     * Gradient boosting tree classifier: Figure S3 (page 4)     *
+                ResNet18 CNN: Figure S2 (page 3)     * Leave
+
+    Example 10
+      PMCID   : PMC7540586
+      Category: Partial
+      Snippet : * **Are the raw evaluation logs available?**   * The raw evaluation logs are not available
+                online. The confusion matrix is provided in the publication (Table IV, page 1701). Not
+                enough information is available to determine if the logs are available in the
+                supplementary material.
+
+  [Missing]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Missing
+      Snippet : * **Are the raw evaluation logs available?**   * Not enough information is available.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Missing
+      Snippet : * **Are the raw evaluation logs available?**   * Not enough information is available.
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Missing
+      Snippet : * **Are the raw evaluation logs available?**   * Not enough information is available.
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Missing
+      Snippet : * **Evaluation Logs**: Not enough information is available.
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Missing
+      Snippet : * **Are the raw evaluation logs available?**   * Not enough information is available.
+
+    Example 6
+      PMCID   : PMC8581823
+      Category: Missing
+      Snippet : * **Are the raw evaluation logs available?**   Not enough information is available.
+
+    Example 7
+      PMCID   : PMC11625410
+      Category: Missing
+      Snippet : * **Are the raw evaluation logs available?**   * Not enough information is available.
+
+    Example 8
+      PMCID   : PMC7665450
+      Category: Missing
+      Snippet : * **Are the raw evaluation logs available?**   Not enough information is available.
+
+    Example 9
+      PMCID   : PMC11806858
+      Category: Missing
+      Snippet : * **Are the raw evaluation logs available?**   Not enough information is available.
+
+    Example 10
+      PMCID   : PMC11874791
+      Category: Missing
+      Snippet : * **Are the raw evaluation logs available?**   * Not enough information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Evaluation/comparison
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Full
+      Snippet : * **Comparison Performed**: Yes   * Logistic Regression     * Description: The study
+                compared the Random Forest (RF) model against a logistic regression model, which is a
+                traditional statistical method for binary classification.     * Performance: The RF model
+                achieved a higher prediction accuracy (89.3%) compared to the logistic regression model
+                (84.2%).
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Full
+      Snippet : * **Comparison Performed**: Yes   * Logistic Regression   * Multilayer Perceptron   *
+                Balanced Random Forest
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Full
+      Snippet : **Comparison Performed**: Yes  * **Tools/Baselines Compared**:   * **Bagging
+                Classification**: Compared against Random Forest and Naïve Bayes classifiers.   * **Random
+                Forest Classification**: Compared against Bagging and Naïve Bayes classifiers.   * **Naïve
+                Bayes Classification**: Compared against Bagging and Random Forest classifiers.   * **RBF
+                Network Classification**: Compared against Naïve Ba
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Full
+      Snippet : * **Comparison Performed**: Yes   * **List of tools/baselines**:     * **PredictProtein**:
+                A prediction tool that incorporates over 30 tools to predict protein structures and derive
+                information such as secondary structure content. It uses homologous sequences searched in
+                the sequence library Swiss-Prot and TrEMBL, followed by multiple sequence pairings and
+                deep learning for structure prediction.
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Full
+      Snippet : * **Comparison Performed**: Yes   * **List of tools/baselines**:     * **U-Net**: The
+                authors compared their method against a standalone U-Net model. The U-Net model achieved
+                an Intersection over Union (IoU) of 66.95%, while the U-Net with preprocessing filter
+                improved to 72.71%.     * **State-of-the-art methods**: The authors mention that their
+                training method demonstrated substantial improvement
+
+    Example 6
+      PMCID   : PMC8581823
+      Category: Full
+      Snippet : * **Comparison Performed**: Yes   * **List of tools/baselines**:     * **K-means
+                clustering**: The study compared the deep learning model's accuracy to the traditional
+                k-means clustering method. The k-means algorithm was used as a baseline to evaluate the
+                performance of the deep learning model. The k-means clustering method performed at random
+                (50% accuracy) on the same dataset, whereas the deep l
+
+    Example 7
+      PMCID   : PMC11625410
+      Category: Full
+      Snippet : **Comparison Performed: Yes**  * **DeepDigest**: A suite of eight protease-specific neural
+                networks provided by DeepDigest was used for comparison. This tool was selected due to its
+                recent publication and accessibility as an open-source command line tool. * **Random
+                Selection**: A simpler baseline model where fragments were selected without any biasing
+                criteria. * **Human Expert Curation**: A manu
+
+    Example 8
+      PMCID   : PMC7665450
+      Category: Full
+      Snippet : * **Comparison Performed**: Yes   * **Baseline Model**: A baseline trigger administration
+                day predictor, which predicts, for a given cycle day, the mean trigger day for all cycles
+                in the training set which had a scan on the given cycle day.
+
+    Example 9
+      PMCID   : PMC11806858
+      Category: Full
+      Snippet : * **Comparison Performed**: Yes   * **List of tools/baselines**:     * **China-PAR**: A
+                cardiovascular risk score used for benchmarking.     * **PREVENT**: Another cardiovascular
+                risk score used for benchmarking.     * **ML-CVD-C (baseline)**: A baseline version of the
+                ML-CVD-C model using only baseline values.     * **Traditional Cox Regression Model**: A
+                traditional statistical approach using th
+
+    Example 10
+      PMCID   : PMC10948976
+      Category: Full
+      Snippet : * **Comparison Performed**: Yes   * **List of tools/baselines**:     * Logistic Regression
+                (LR)     * Random Forest (RF)     * Support Vector Machine (SVM)     * Adaptive Boosting
+                (AdaBoost, ADA)     * Gradient Boosting (GB)     * Extreme Gradient Boosting (XGB)     *
+                Category Boosting (CB)
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC11874791
+      Category: Partial
+      Snippet : * **Comparison Performed**: No   * **List of tools/baselines**: Not enough information is
+                available.
+
+    Example 2
+      PMCID   : PMC8586384
+      Category: Partial
+      Snippet : **Comparison Performed: Yes**  * **State-of-the-Art Tools**:   * ResNet50V2   * VGG16   *
+                MobileNetV2   * DenseNet201  * **Baselines**: Not enough information is available.
+
+    Example 3
+      PMCID   : PMC10802079
+      Category: Partial
+      Snippet : * **Comparison Performed**: No   * **List of tools/baselines**: Not enough information is
+                available.
+
+    Example 4
+      PMCID   : PMC11206671
+      Category: Partial
+      Snippet : * **Comparison Performed**: No   * **List of tools/baselines**: Not enough information is
+                available.
+
+    Example 5
+      PMCID   : PMC11751442
+      Category: Partial
+      Snippet : **Comparison Performed**: No  Not enough information is available.
+
+    Example 6
+      PMCID   : PMC7842780
+      Category: Partial
+      Snippet : **Comparison Performed**: No  Not enough information is available to determine if the
+                method was compared to publicly available tools or simpler baselines.
+
+    Example 7
+      PMCID   : PMC9641193
+      Category: Partial
+      Snippet : * **Comparison Performed**: No   * **List of tools/baselines**: Not enough information is
+                available.
+
+    Example 8
+      PMCID   : PMC6536474
+      Category: Partial
+      Snippet : * **Comparison Performed**: Yes   * **List of tools/baselines**:     * **FAIMS**:       *
+                Sparse logistic regression       * Random Forest       * Gaussian process classifier
+                * Support vector machine       * Neural network     * **GC-IMS**:       * Not enough
+                information is available
+
+    Example 9
+      PMCID   : PMC10290467
+      Category: Partial
+      Snippet : * **Comparison Performed**: No   * **List of tools/baselines**: Not enough information is
+                available.
+
+    Example 10
+      PMCID   : PMC11215832
+      Category: Partial
+      Snippet : **Comparison Performed: Yes**  * **State-of-the-Art Tools**:   * GBLUP (Genomic Best
+                Linear Unbiased Prediction)   * Random Forest (RF)   * Bayesian Methods:     * BayesB
+                * BayesCπ  * **Simpler Baselines**:   * Not enough information is available
+
+  [Missing]  — No examples found
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Evaluation/confidence
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Full
+      Snippet : * **Statistical Confidence**:   * **CIs**: Yes - 95% Confidence Intervals are reported for
+                the odds ratio in the logistic regression model.     * Example: 95%CI: 1.04 –1.55   *
+                **p-values**: Yes - p-values are reported for various statistical tests.     * Example: p
+                = 0.006, p = 0.008, p = 0.045, p = 0.021, p = 0.037, p < 0.001.
+
+    Example 2
+      PMCID   : PMC11806858
+      Category: Full
+      Snippet : * **Statistical Confidence**:   * **CIs**: Yes - 95% Confidence Intervals (CI) for AUROC
+                are reported.   * **p-values**: Yes - P-values are reported (e.g. P < 0.001, P < 0.05).
+
+    Example 3
+      PMCID   : PMC11874791
+      Category: Full
+      Snippet : * **Statistical Confidence**: [CIs: Yes | p-values: Yes - p < 0.05, 95% CIs for metrics
+                are reported (e.g. AUC of 0.84 (± 0.03))].
+
+    Example 4
+      PMCID   : PMC10948976
+      Category: Full
+      Snippet : * **Statistical Confidence**:   * **CIs**: Yes - The study reports mean ± standard
+                deviation for various metrics across multiple models. For example, in Table 3, the
+                sensitivity for the ADA model is reported as 0.950±0.047.   * **p-values**: Yes - The
+                study reports p-values for hypothesis testing of the association between PLNM and
+                predictive variables. For example, the p-value for age is 0.041.
+
+    Example 5
+      PMCID   : PMC7941561
+      Category: Full
+      Snippet : * **Statistical Confidence**: [CIs: No | p-values: Yes - P < .05]
+
+    Example 6
+      PMCID   : PMC7676934
+      Category: Full
+      Snippet : * **Statistical Confidence**:   * **CIs**: No   * **p-values**: Yes - Adjusted p-value ≤
+                0.05 for DEGs screening and functional enrichment analysis. Adjusted p-value ≤ 0.05 for GO
+                enrichment analysis. Adjusted p-value ≤ 0.05 for WGCNA module-trait relationships.
+
+    Example 7
+      PMCID   : PMC8832594
+      Category: Full
+      Snippet : * **Statistical Confidence**:   * **CIs**: Yes - 95% CI for AUC ROC of the GBM model:
+                57%-68%, 95% CI for Brier score of the GBM model: 0.12–0.16, 95% CI for AUC ROC of the BBN
+                model: 62%-73%, 95% CI for Brier score of the BBN model: 0.102–0.141   * **p-values**: Yes
+                - p = 0.63 for sex, p = 0.22 for metastasis at diagnosis
+
+    Example 8
+      PMCID   : PMC7511449
+      Category: Full
+      Snippet : * **Statistical Confidence**:   * **CIs**: Yes - 95% confidence interval.   *
+                **p-values**: Yes - p = 0.027.
+
+    Example 9
+      PMCID   : PMC10492341
+      Category: Full
+      Snippet : * **Statistical Confidence**:   * **CIs**: No   * **p-values**: Yes - p < 0.001, p < 0.01
+                (Chi-square and T test)
+
+    Example 10
+      PMCID   : PMC9980216
+      Category: Full
+      Snippet : * **Statistical Confidence**:   * **CIs**: Yes - 95% Confidence Intervals are reported for
+                the difference in mean absolute error (MAE) between the model and biometry (e.g., −0.8
+                days; 95% CI, −1.1 to −0.5).   * **p-values**: Yes - p-values are reported for the
+                statistical tests (e.g., P<0.001 for the difference in MAE between the model and biometry
+                in the main test set).
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC8568050
+      Category: Partial
+      Snippet : * **Statistical Confidence**:   * **CIs**: No   * **p-values**: No - Not enough
+                information is available.
+
+    Example 2
+      PMCID   : PMC4407517
+      Category: Partial
+      Snippet : * Statistical Confidence: [CIs: No | p-values: No - Not enough information is available].
+
+    Example 3
+      PMCID   : PMC9347213
+      Category: Partial
+      Snippet : * **Statistical Confidence**:   * **CIs**: No   * **p-values**: No - Not enough
+                information is available
+
+    Example 4
+      PMCID   : PMC11865635
+      Category: Partial
+      Snippet : * Statistical Confidence:   * CIs: No   * p-values: No - Not enough information is
+                available.
+
+    Example 5
+      PMCID   : PMC8581823
+      Category: Partial
+      Snippet : * **Statistical Confidence**:   * **CIs**: Yes - 78% ± 43% (AA random shuffle tests)   *
+                **p-values**: No - Not enough information is available.
+
+    Example 6
+      PMCID   : PMC11625410
+      Category: Partial
+      Snippet : * **Statistical Confidence**:   * **CIs**: Not enough information is available   *
+                **p-values**: Yes - p values are shown for each of the groups, all groups were compared to
+                the untreated control group.
+
+    Example 7
+      PMCID   : PMC7665450
+      Category: Partial
+      Snippet : * **Statistical Confidence**:   * **CIs**: Yes - Error bars are the standard deviation
+                (SD) of the model’s performance across validation folds, which give an indication of the
+                confidence intervals (CIs) of the model’s performance.   * **p-values**: No - Not enough
+                information is available.
+
+    Example 8
+      PMCID   : PMC10583101
+      Category: Partial
+      Snippet : * Statistical Confidence:   * CIs: No   * p-values: No - Not enough information is
+                available.
+
+    Example 9
+      PMCID   : PMC8897225
+      Category: Partial
+      Snippet : * **Statistical Confidence**:   * **CIs**: No   * **p-values**: No - Not enough
+                information is available.
+
+    Example 10
+      PMCID   : PMC9413214
+      Category: Partial
+      Snippet : * **Statistical Confidence**:   * **CIs**: Yes - 95% Confidence Intervals are reported for
+                all models and feature sets.     * Example: "AdaBoost H: 92.9 (80.0−100.0)"   *
+                **p-values**: No - Not enough information is available.
+
+  [Missing]  — No examples found
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Evaluation/measure
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Full
+      Snippet : Performance Metrics: * Random Forest:   * Accuracy: 89.3%   * Confusion Matrix * Logistic
+                Regression:   * Accuracy: 84.2%   * Confusion Matrix   * Odds Ratio   * 95% Confidence
+                Interval for the Odds Ratio
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Full
+      Snippet : **Performance Metrics**: * **AUROC**: Area Under the Receiver Operating Characteristic
+                Curve. * **Sensitivity**: Also known as recall or true positive rate. * **Specificity**:
+                The proportion of true negatives correctly identified.
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Full
+      Snippet : Performance Metrics:  * Accuracy (AC) * Precision (PR) * Recall (RC) * F-measure (FM)
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Full
+      Snippet : Performance Metrics: * Mean Square Error (MSE) * Coefficient of Determination (R2 score)
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Full
+      Snippet : Performance Metrics: * **Gallbladder Segmentation**:   * Intersection over Union (IoU)   *
+                Dice coefficient   * Precision * **Acute Cholecystitis (AC) Recognition**:   * Accuracy
+                * Recall   * Sensitivity   * Specificity   * Area Under the Curve (AUC)   * True Positive
+                Rate (TPR)   * False Positive Rate (FPR) * **Automated System for AC Recognition**:   *
+                Accuracy   * Sensitivity   * Specificity
+
+    Example 6
+      PMCID   : PMC8581823
+      Category: Full
+      Snippet : Performance Metrics: * Accuracy: The paper reports accuracy as the primary performance
+                metric. For the two-fold random shuffle test on 524 African American (AA) subjects, the
+                average accuracy is 78% with a standard deviation of 2.43%. For the independent dataset of
+                351 European American (EA) children, the accuracy ranges from 70% to 75.4% depending on
+                the type of copy number variation (CNV). The k
+
+    Example 7
+      PMCID   : PMC11625410
+      Category: Full
+      Snippet : Performance Metrics: * Accuracy * Area Under the Receiver Operating Characteristic Curve
+                (AUC-ROC) * Average Precision * Negative Predictive Value * Positive Predictive Value *
+                Sensitivity * Specificity * Accuracy-Probability Threshold Tradeoff * Precision-Recall
+                Curve
+
+    Example 8
+      PMCID   : PMC7665450
+      Category: Full
+      Snippet : **Performance Metrics:**  * **Random Forest Regressor (Trigger Day Prediction):**   * Mean
+                Squared Error (MSE)   * Standard Error of the MSE  * **Random Forest Classifier (OHSS Risk
+                Prediction):**   * Area Under the Receiver Operating Characteristic Curve (AUROC)   *
+                Standard Deviation (SD) of the AUROC across validation folds
+
+    Example 9
+      PMCID   : PMC11806858
+      Category: Full
+      Snippet : Performance Metrics:  * **ML-CVD-C Model**:   * C-index: 0.86 (0.85, 0.87) in the training
+                set and 0.80 (0.78, 0.82) in the testing set.   * Time-dependent Area Under the Receiver
+                Operating Characteristic Curve (AUROC).   * Expected–observed ratio.   * Hosmer–Lemeshow
+                χ2 (HL-χ2) tests.   * Net Reclassification Improvement (NRI).   * Integrated
+                Discrimination Improvement (IDI).  * **China-PAR Model
+
+    Example 10
+      PMCID   : PMC11874791
+      Category: Full
+      Snippet : **Performance Metrics:** * Accuracy * Weighted F1 score * Area Under the Curve (AUC) *
+                Matthews Correlation Coefficient (MCC) * Balanced Accuracy (Source: Supplementary) *
+                Sensitivity (Source: Supplementary) * Specificity (Source: Supplementary)
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC11607304
+      Category: Partial
+      Snippet : Performance Metrics: * Not enough information is available.
+
+    Example 2
+      PMCID   : PMC7842780
+      Category: Partial
+      Snippet : Performance Metrics: Not enough information is available.
+
+    Example 3
+      PMCID   : PMC7285934
+      Category: Partial
+      Snippet : Performance Metrics: Not enough information is available.
+
+    Example 4
+      PMCID   : PMC6484528
+      Category: Partial
+      Snippet : Performance Metrics:  * Accuracy: The text mentions "reported accuracies" in the context
+                of evaluating the classifiers. * Confusion Matrices: The text and figures (S2, S4, S5, S6)
+                refer to confusion matrices for mechanism-of-action prediction, which are used to evaluate
+                the performance of classification models. * Not enough information is available: No other
+                specific metrics (e.g., AUC, F1, RMSE)
+
+    Example 5
+      PMCID   : PMC7406302
+      Category: Partial
+      Snippet : **Performance Metrics:**  * **Area Under the Curve (AUC)**:   * Reported for Neural
+                Network, Random Forest, FEV1/FVC, FEV1% predicted.   * Confidence Intervals (95%CI)
+                provided for each metric. * **Sensitivity**:   * Reported for Neural Network, Random
+                Forest, FEV1/FVC, FEV1% predicted.   * Confidence Intervals (95%CI) provided for each
+                metric. * **Specificity**:   * Reported for Neural Network, R
+
+    Example 6
+      PMCID   : PMC11134423
+      Category: Partial
+      Snippet : Performance Metrics:  * Random Forest:   * RMSE   * R2   * MAE  * Logistic Regression:   *
+                Not enough information is available  * XGBoost:   * Not enough information is available  *
+                Support Vector Machine:   * Not enough information is available
+
+    Example 7
+      PMCID   : PMC11218872
+      Category: Partial
+      Snippet : **Performance Metrics**: * **NLP Algorithm**:   * Precision: >0.90   * Recall: >0.90   *
+                F1 Score: >0.90 * **Cluster Analysis**:   * Not enough information is available *
+                **Decision Tree**:   * Not enough information is available
+
+    Example 8
+      PMCID   : PMC11509873
+      Category: Partial
+      Snippet : **Performance Metrics:**  * **XGBoost Model (DR Prediction):**   * Accuracy: 64.3% ± 2.7%
+                * Precision: 63.5% ± 3.1%   * Recall: 61.9% ± 2.9%   * ROC-AUC: 0.68 ± 0.04   * Post-
+                tuning ROC-AUC: 0.72 ± 0.03  * **Random Forest Model (DR Prediction):**   * ROC-AUC: 0.62
+                * Post-tuning ROC-AUC: 0.65 ± 0.04  * **SVM Model (DR Prediction):**   * Accuracy: 61.8% ±
+                3.0%   * Precision: 60.7% ± 3.2%   * Rec
+
+    Example 9
+      PMCID   : PMC8461876
+      Category: Partial
+      Snippet : Performance Metrics: Not enough information is available.
+
+    Example 10
+      PMCID   : PMC10742204
+      Category: Partial
+      Snippet : Performance Metrics: Not enough information is available.
+
+  [Missing]  — No examples found
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Evaluation/method
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Full
+      Snippet : * **Evaluation Strategy**:   * Out-of-Bag (OOB) Error Estimation: The classification error
+                rate of the Random Forest (RF) model was estimated using the OOB error, which considers
+                all excluded samples by bootstrap samples. The final classification consists of the
+                outputs of all trees.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Full
+      Snippet : * **Evaluation Strategy**:   * 10-Fold Cross-Validation   * Train-Test Split (70% Train,
+                30% Test)
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Full
+      Snippet : * **Evaluation Strategy**: 10-fold Cross-Validation.
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Full
+      Snippet : * **Evaluation Strategy**:   * Independent hold-out sets: The dataset was split into 80%
+                training and 20% testing sets. The model was trained on the training set and evaluated on
+                the testing set.
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Full
+      Snippet : **Evaluation Strategy:**  * Internal Validation: The method was evaluated using a hold-out
+                set of 120 cases. * External Validation: The method was further validated using an
+                additional 40 cases from another institution.
+
+    Example 6
+      PMCID   : PMC8581823
+      Category: Full
+      Snippet : * **Evaluation Strategy**:   * Two-Fold Random Shuffle Test   * Independent Test Set     *
+                Dataset: European American (EA) children     * N=351     * ADHD Cases: 89     * Controls:
+                262     * Training Data: African American (AA) children (N=524)     * Testing Data:
+                European American (EA) children (N=351)
+
+    Example 7
+      PMCID   : PMC11625410
+      Category: Full
+      Snippet : * **Evaluation Strategy**:   * 10-Fold Cross-Validation: The method was evaluated using
+                10-fold cross-validation on the training set. This involved splitting the data into 10
+                subsets, training the model on 9 subsets, and validating it on the remaining subset. This
+                process was repeated 10 times, with each subset used once as the validation set.   *
+                Independent Test Set: An independent test set was
+
+    Example 8
+      PMCID   : PMC7665450
+      Category: Full
+      Snippet : * **Evaluation Strategy**: 5-Fold Cross-Validation.   * The data were randomly portioned
+                into five equal-size subsets.   * The model was trained on four of the subsets and
+                evaluated on the fifth (out-of-fold) subset.   * This process was performed over the five
+                possible permutations of the subsets, yielding five estimates of the models’
+                generalisation performance.
+
+    Example 9
+      PMCID   : PMC11806858
+      Category: Full
+      Snippet : * **Evaluation Strategy**:   * 5-fold Cross-Validation: The model was evaluated using
+                5-fold cross-validation within the derivation cohort to optimize the hyperparameters.   *
+                Independent Hold-out Set: The dataset was randomly divided into derivation and testing
+                cohorts in an 8:2 ratio, stratified by the occurrence of MACE events. The model was
+                evaluated on the independent testing cohort.
+
+    Example 10
+      PMCID   : PMC11874791
+      Category: Full
+      Snippet : * **Evaluation Strategy**: 5-Fold Cross-Validation.   * The method was evaluated using
+                5-fold cross-validation, where the dataset was partitioned into 5 equal-sized folds. Each
+                fold served as a distinct validation set while the remaining data was used for training.
+                This process was repeated 5 times, with each fold taking turns as the validation set. The
+                average performance was estimated by averagi
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC6637411
+      Category: Partial
+      Snippet : * **Evaluation Strategy**:   * **Bootstrapping**: The Random Forest model used
+                bootstrapping of random sampling with replacement of individuals. The training set was
+                used to build the decision trees, and the test set was used to define classification
+                accuracy based on these trees.   * **Not enough information is available**: The PLS-DA
+                model does not explicitly state the validation strategy used.
+
+    Example 2
+      PMCID   : PMC7406302
+      Category: Partial
+      Snippet : * **Evaluation Strategy**:   * **Random Forest**: 5-fold cross-validation.   * **Neural
+                Network**: Not enough information is available.
+
+    Example 3
+      PMCID   : PMC8108534
+      Category: Partial
+      Snippet : * **Evaluation Strategy**:   * Train-Validation Split: For both CARE and N2V, a 90%–10%
+                train-validation split was used.   * Not enough information is available on whether k-fold
+                cross-validation or independent hold-out sets were used.
+
+    Example 4
+      PMCID   : PMC10128621
+      Category: Partial
+      Snippet : Evaluation Strategy: Not enough information is available.
+
+    Example 5
+      PMCID   : PMC5849485
+      Category: Partial
+      Snippet : **Evaluation Strategy:**  * Not enough information is available.
+
+    Example 6
+      PMCID   : PMC9802238
+      Category: Partial
+      Snippet : * **Evaluation Strategy**:   * Independent hold-out sets: The same randomly selected group
+                of twelve training, three validation, and five testing image sets were used for all cell
+                instance segmentation and cell classification studies, except when using cross-validation.
+                * Cross-validation: Not enough information is available.
+
+    Example 7
+      PMCID   : PMC9686141
+      Category: Partial
+      Snippet : Evaluation Strategy: Not enough information is available.
+
+    Example 8
+      PMCID   : PMC10528923
+      Category: Partial
+      Snippet : Evaluation Strategy: Not enough information is available.
+
+    Example 9
+      PMCID   : PMC6135464
+      Category: Partial
+      Snippet : * **Evaluation Strategy**: Out-of-Bag (OOB) Error Rate.   * The study used the OOB error
+                rate, a permutation-based assessment of internal model validity, to evaluate the Random
+                Forest (RF) models. This method involves using the data not included in the bootstrap
+                sample (out-of-bag) to estimate the error rate.   * The best RF model was identified by
+                the lowest estimated OOB error rate of classifica
+
+    Example 10
+      PMCID   : PMC8087249
+      Category: Partial
+      Snippet : * **Evaluation Strategy**:   * **Elastic Net**: Nested cross-validation with 5 outer folds
+                and 10 inner folds.   * **Random Forest**: 5-fold cross-validation.   * **K-Nearest
+                Neighbors**: Not enough information is available.
+
+  [Missing]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC10579490
+      Category: Missing
+      Snippet : * **Evaluation Strategy**:   * Not enough information is available.
+
+    Example 2
+      PMCID   : PMC10802079
+      Category: Missing
+      Snippet : * **Evaluation Strategy**: Not enough information is available.
+
+    Example 3
+      PMCID   : PMC7842780
+      Category: Missing
+      Snippet : **Evaluation Strategy**: Not enough information is available.
+
+    Example 4
+      PMCID   : PMC11148103
+      Category: Missing
+      Snippet : * **Evaluation Strategy**:   * Not enough information is available.
+
+    Example 5
+      PMCID   : PMC7285934
+      Category: Missing
+      Snippet : * **Evaluation Strategy**: Not enough information is available.
+
+    Example 6
+      PMCID   : PMC8182259
+      Category: Missing
+      Snippet : * **Evaluation Strategy**:   * Not enough information is available.
+
+    Example 7
+      PMCID   : PMC11134423
+      Category: Missing
+      Snippet : * **Evaluation Strategy**:   * Not enough information is available.
+
+    Example 8
+      PMCID   : PMC11218872
+      Category: Missing
+      Snippet : * **Evaluation Strategy**: Not enough information is available.
+
+    Example 9
+      PMCID   : PMC8461876
+      Category: Missing
+      Snippet : * **Evaluation Strategy**: Not enough information is available.
+
+    Example 10
+      PMCID   : PMC10359547
+      Category: Missing
+      Snippet : * **Evaluation Strategy**:   * Not enough information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Model/availability
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC11845296
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 2
+      PMCID   : PMC11278897
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 3
+      PMCID   : PMC11227463
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 4
+      PMCID   : PMC8711640
+      Category: Full
+      Snippet : * **Source Code Released**: Yes.  * **Code URL/License**:   - Source:
+                https://github.com/mahmoodlab/CLAM | License: GNU GPLv3  * **Simplified Run Method**:   -
+                Tool Type: Web Server: http://clam.mahmoodlab.org
+
+    Example 5
+      PMCID   : PMC9962729
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 6
+      PMCID   : PMC11747270
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 7
+      PMCID   : PMC9789372
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 8
+      PMCID   : PMC6153696
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 9
+      PMCID   : PMC9586871
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 10
+      PMCID   : PMC10837709
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Partial
+      Snippet : * **Source Code Released**: No.  * **Code URL/License**: Not enough information is
+                available.  * **Simplified Run Method**: Not enough information is available.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Partial
+      Snippet : * **Source Code Released**: No.  * **Code URL/License**: Not enough information is
+                available.  * **Simplified Run Method**: Not enough information is available.
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Partial
+      Snippet : * Source Code Released: No.  * Code URL/License: Not enough information is available.  *
+                Simplified Run Method: Not enough information is available.
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Partial
+      Snippet : * **Source Code Released**: No.  * **Code URL/License**: Not enough information is
+                available.  * **Simplified Run Method**: Not enough information is available.
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Partial
+      Snippet : * Source Code Released: No.  * Code URL/License: Not enough information is available.  *
+                Simplified Run Method: Not enough information is available.
+
+    Example 6
+      PMCID   : PMC8581823
+      Category: Partial
+      Snippet : * Source Code Released: No * Code URL/License: Not enough information is available *
+                Simplified Run Method: Not enough information is available
+
+    Example 7
+      PMCID   : PMC11625410
+      Category: Partial
+      Snippet : * **Source Code Released**: Yes.  * **Code URL/License**:   * Source:
+                https://gitlab.com/machine-biology-group-public/pancleave | License: Not enough
+                information is available.  * **Simplified Run Method**:   * Not enough information is
+                available.
+
+    Example 8
+      PMCID   : PMC7665450
+      Category: Partial
+      Snippet : * Source Code Released: No.  * Code URL/License: Not enough information is available.  *
+                Simplified Run Method: Not enough information is available.
+
+    Example 9
+      PMCID   : PMC11806858
+      Category: Partial
+      Snippet : * Source Code Released: No * Code URL/License: Not enough information is available *
+                Simplified Run Method: Not enough information is available
+
+    Example 10
+      PMCID   : PMC11874791
+      Category: Partial
+      Snippet : * Source Code Released: Yes.  * Code URL/License:   * Source:
+                https://github.com/ToffeIO/AD-Biomarkers-Project | License: Not enough information is
+                available.  * Simplified Run Method: Not enough information is available.
+
+  [Missing]  — 3 example(s) shown below
+
+    Example 1
+      PMCID   : PMC10461941
+      Category: Missing
+      Snippet : * **Source Code Released**: Not enough information is available.  * **Code URL/License**:
+                Not enough information is available.  * **Simplified Run Method**: Not enough information
+                is available.
+
+    Example 2
+      PMCID   : PMC3259434
+      Category: Missing
+      Snippet : * Source Code Released: Not enough information is available. * Code URL/License: Not
+                enough information is available. * Simplified Run Method: Not enough information is
+                available.
+
+    Example 3
+      PMCID   : PMC10114598
+      Category: Missing
+      Snippet : * Source Code Released: Not enough information is available.  * Code URL/License: Not
+                enough information is available.  * Simplified Run Method: Not enough information is
+                available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Model/duration
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC11845296
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 2
+      PMCID   : PMC11781752
+      Category: Full
+      Snippet : * Execution Time:   * Training: 10 minutes   * Inference: <1 millisecond/input  * Hardware
+                Used:   * Intel I5–6200U CPU with 8GB RAM
+
+    Example 3
+      PMCID   : PMC11278897
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 4
+      PMCID   : PMC7778490
+      Category: Full
+      Snippet : * Execution Time:   * Training: 280.5 seconds   * Inference: 2.5 seconds/input  * Hardware
+                Used: Dell Alienware, i7 6th gen, GTX 1080 GPU, 64 GB DDR4 RAM
+
+    Example 5
+      PMCID   : PMC9847512
+      Category: Full
+      Snippet : * Execution Time:   * Training: 500,000 iterations   * Inference: ~20 seconds for 500
+                tiles on a single Tesla K20m GPU  * Hardware Used: Tesla K20m GPU
+
+    Example 6
+      PMCID   : PMC6224513
+      Category: Full
+      Snippet : * Execution Time:   * Training: 77 hours   * Inference:     * ATUM-SEM: 2,199 seconds
+                * FIB-SEM: 356 seconds  * Hardware Used: K40 GPU
+
+    Example 7
+      PMCID   : PMC8741711
+      Category: Full
+      Snippet : * Execution Time:   * System 1: Training: 19 minutes 29 seconds | Inference: 14
+                seconds/input.   * System 2: Training: 6 hours 47 minutes | Inference: 20 seconds/input.
+                * Hardware Used: NVIDIA GeForce GTX 1080Ti.
+
+    Example 8
+      PMCID   : PMC10392020
+      Category: Full
+      Snippet : * Execution Time:   * 50K Markers, 9000 Training Size: Training: 3.24s | Inference:
+                1.36s/input   * 10K Markers, 9000 Training Size: Training: 1.07s | Inference: 1.14s/input
+                * 5K Markers, 9000 Training Size: Training: 0.94s | Inference: 1.13s/input   * 1K Markers,
+                9000 Training Size: Training: 0.85s | Inference: 1.12s/input   * 50K Markers, 5000
+                Training Size: Training: 1.81s | Inference: 0.53s/
+
+    Example 9
+      PMCID   : PMC8203473
+      Category: Full
+      Snippet : * Execution Time:   * Training: 2 days   * Inference: <1 second/input  * Hardware Used:
+                * Intel Core i7-9750H 2.60 GHz CPU   * NVIDIA RTX 2060 (6 GB memory) GPU
+
+    Example 10
+      PMCID   : PMC8514185
+      Category: Full
+      Snippet : * Execution Time:   * Multilayer Perceptron: Training: 30 minutes | Inference: A couple of
+                minutes.   * Gradient Boosting: Training: 1-2 hours | Inference: A couple of minutes.   *
+                Random Forest: Training: 1-2 hours | Inference: A couple of minutes.   * Elastic Net:
+                Training: 1-2 hours | Inference: A couple of minutes.   * Bidirectional Recurrent Neural
+                Network: Training: 20-30 hours | Inference:
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Partial
+      Snippet : * Execution Time:   * Random Forest: Training: Not enough information is available |
+                Inference: Not enough information is available.   * Logistic Regression: Training: Not
+                enough information is available | Inference: Not enough information is available.  *
+                Hardware Used: Not enough information is available.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Partial
+      Snippet : * Execution Time:   * Not enough information is available.  * Hardware Used:   * Not
+                enough information is available.
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Partial
+      Snippet : * Execution Time:   * Clinical:     * WBBR: Training: 2:30 | Inference: 0:02     * WGBB:
+                Training: 7:19 | Inference: 0:01     * WSNR: Training: 1:34 | Inference: 0:02   * Medical:
+                * WBBB: Training: 1:19:37 | Inference: 0:01     * WLNR: Training: 0:01:32 | Inference:
+                0:01     * WSNN: Training: 0:01:07 | Inference: 0:00  * Hardware Used: Not enough
+                information is available.
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Partial
+      Snippet : * Execution Time: Not enough information is available | Not enough information is
+                available. * Hardware Used: GeForce RTX 2080Ti GPU.
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Partial
+      Snippet : * Execution Time:   * Training: Not enough information is available   * Inference:
+                0.029s/slice | 3.59s/patient  * Hardware Used: Not enough information is available
+
+    Example 6
+      PMCID   : PMC11625410
+      Category: Partial
+      Snippet : * Execution Time: Not enough information is available. * Hardware Used: Stampede2
+                supercomputer (Texas Advanced Computing Center, The University of Texas at Austin, TX,
+                USA).
+
+    Example 7
+      PMCID   : PMC7665450
+      Category: Partial
+      Snippet : * Execution Time: Not enough information is available | Not enough information is
+                available. * Hardware Used: Not enough information is available.
+
+    Example 8
+      PMCID   : PMC11874791
+      Category: Partial
+      Snippet : * Execution Time:   * Not enough information is available.  * Hardware Used:   * Swedish
+                National Infrastructure for Computing (SNIC) and the National Academic Infrastructure for
+                Supercomputing in Sweden (NAISS).
+
+    Example 9
+      PMCID   : PMC10948976
+      Category: Partial
+      Snippet : * Execution Time: Not enough information is available | Inference: Not enough information
+                is available/input. * Hardware Used: Mac mini with an 8-core CPU Apple M1 chip using 16 GB
+                of RAM.
+
+    Example 10
+      PMCID   : PMC10583101
+      Category: Partial
+      Snippet : * Execution Time:   * Not enough information is available.  * Hardware Used:   * Not
+                enough information is available.
+
+  [Missing]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC8581823
+      Category: Missing
+      Snippet : * Execution Time: Not enough information is available. * Hardware Used: Not enough
+                information is available.
+
+    Example 2
+      PMCID   : PMC11806858
+      Category: Missing
+      Snippet : * Execution Time: Not enough information is available. * Hardware Used: Not enough
+                information is available.
+
+    Example 3
+      PMCID   : PMC9413214
+      Category: Missing
+      Snippet : * Execution Time: Not enough information is available. * Hardware Used: Not enough
+                information is available.
+
+    Example 4
+      PMCID   : PMC8832594
+      Category: Missing
+      Snippet : * Execution Time: Not enough information is available. * Hardware Used: Not enough
+                information is available.
+
+    Example 5
+      PMCID   : PMC9980216
+      Category: Missing
+      Snippet : * Execution Time: Not enough information is available. * Hardware Used: Not enough
+                information is available.
+
+    Example 6
+      PMCID   : PMC9338423
+      Category: Missing
+      Snippet : * Execution Time: Not enough information is available. * Hardware Used: Not enough
+                information is available.
+
+    Example 7
+      PMCID   : PMC4527478
+      Category: Missing
+      Snippet : * Execution Time: Not enough information is available. * Hardware Used: Not enough
+                information is available.
+
+    Example 8
+      PMCID   : PMC11377909
+      Category: Missing
+      Snippet : * Execution Time: Not enough information is available. * Hardware Used: Not enough
+                information is available.
+
+    Example 9
+      PMCID   : PMC11607304
+      Category: Missing
+      Snippet : * Execution Time: Not enough information is available. * Hardware Used: Not enough
+                information is available.
+
+    Example 10
+      PMCID   : PMC8058982
+      Category: Missing
+      Snippet : * Execution Time: Not enough information is available. * Hardware Used: Not enough
+                information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Model/interpretability
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Full
+      Snippet : * **Model Interpretability**: Transparent   * The Random Forest (RF) model is inherently
+                interpretable. The RF method produces prediction rules that are logical statements of the
+                form "if (conditions) then (prediction)", which are easy to use in decision-making. The
+                relative importance of variables in the prediction of sports-related dental injuries is
+                also identified, enhancing interpretability.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Full
+      Snippet : * **Model Interpretability**:   * Logistic Regression: Transparent   * Balanced Random
+                Forest: Transparent   * Multilayer Perceptron: Black-box  * **XAI Methods**:   * Feature
+                Importance: The Balanced Random Forest model was used to determine feature importance. The
+                mean of the feature importance was used as the cut-off criterion for feature selection.
+                The top 10 features are presented in Figure 1
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Full
+      Snippet : * **Model Interpretability**:   * Bagging: Black-box.   * Random Forest: Black-box.   *
+                Naïve Bayes: Transparent.   * RBF Network: Black-box.  * **XAI Methods**: None.
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Full
+      Snippet : * **Model Interpretability**: Black-box.   * The model is a deep learning architecture,
+                specifically a neural network with multiple layers including convolutional and recurrent
+                layers. Such models are typically considered black-boxes due to their complexity and the
+                non-linear transformations they apply to input data.  * **XAI Methods**: None.   * The
+                provided context does not mention the use of an
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Full
+      Snippet : * **Model Interpretability**: Black-box.   * The model is based on Convolutional Neural
+                Networks (CNNs), which are inherently black-box models. The authors explicitly state that
+                the CNN decision-making process is a "black-box".   * The ensemble model integrates two
+                CNN architectures, both of which are black-box models.  * **XAI Methods**: None.   * The
+                authors do not mention the use of any specifi
+
+    Example 6
+      PMCID   : PMC8581823
+      Category: Full
+      Snippet : * **Model Interpretability**: Black-box.   * The deep learning model used is a multi-layer
+                perceptron (MLP), which is typically considered a black-box model due to its complex, non-
+                linear nature.   * The k-means clustering algorithm is inherently transparent, as it is a
+                simple, classical model.   * The random forest algorithm is also inherently transparent,
+                as it provides feature importance scores
+
+    Example 7
+      PMCID   : PMC11625410
+      Category: Full
+      Snippet : * **Model Interpretability**: Black-box.   * The model is a Random Forest, which is an
+                ensemble of decision trees. While individual decision trees are interpretable, the
+                ensemble nature of Random Forests makes them generally considered black-box models due to
+                the complexity of aggregating multiple trees.  * **XAI Methods**: Feature Importance.   *
+                The random forest algorithm provides in-built feat
+
+    Example 8
+      PMCID   : PMC7665450
+      Category: Full
+      Snippet : * Model Interpretability: Black-box.   * The models used are Random Forest Regressors and
+                Random Forest Classifiers, which are ensemble methods composed of decision trees. While
+                individual decision trees are interpretable, the ensemble nature of Random Forests makes
+                them generally considered black-box models due to the complexity introduced by aggregating
+                multiple trees.  * XAI Methods: Feature Im
+
+    Example 9
+      PMCID   : PMC11806858
+      Category: Full
+      Snippet : * **Model Interpretability**: Black-box.   * The model is based on an XGBoost algorithm,
+                which is a type of gradient boosting machine. These models are generally considered black-
+                box models due to their complexity and the way they combine multiple decision trees.  *
+                **XAI Methods**: SHapley Additive exPlanations (SHAP) values.   * SHAP values were used to
+                quantify feature importance within the mod
+
+    Example 10
+      PMCID   : PMC11874791
+      Category: Full
+      Snippet : * **Model Interpretability**:   * Logistic Regression: Transparent   * Random Forest:
+                Transparent   * XGBoost: Black-box   * Soft Ensemble: Black-box   * Hard Ensemble: Black-
+                box  * **XAI Methods**: None
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC5521984
+      Category: Partial
+      Snippet : * **Model Interpretability**:   * CNN-rand: Black-box.   * CNN-pre: Black-box.   * CNN-
+                Vote 2: Black-box.   * MTI: Not enough information is available.   * NB: Transparent.   *
+                LR: Transparent.   * SVM: Black-box.   * SVM HL: Black-box.   * Ada: Transparent.   * Ada
+                Over: Transparent.   * Vote 2: Black-box.   * Vote 3: Black-box.  * **XAI Methods**:   *
+                The study applied convolutional filters (CFs
+
+    Example 2
+      PMCID   : PMC7550141
+      Category: Partial
+      Snippet : * **Model Interpretability**: Black-box.   * The study uses neural networks and deep
+                learning techniques, which are known for their complexity and lack of inherent
+                interpretability. These models are typically considered black-boxes due to their multiple
+                layers and non-linear transformations, making it difficult to understand the decision-
+                making process.  * **XAI Methods**: None.   * The text does
+
+    Example 3
+      PMCID   : PMC11843979
+      Category: Partial
+      Snippet : * **Model Interpretability**: Black-box.   * The model is a deep learning framework that
+                leverages graph representations of protein structures and integrates them through
+                attention-based fusion and VAE-generated embeddings. This architecture is typically
+                considered a black-box due to its complexity and the lack of transparency in how
+                individual predictions are made.  * **XAI Methods**: None.   * T
+
+    Example 4
+      PMCID   : PMC8182259
+      Category: Partial
+      Snippet : * **Model Interpretability**: Black-box.   * The models used in this study are ULMFiT and
+                BERT, both of which are deep learning models. Deep learning models are typically
+                considered black-boxes due to their complex architectures and the lack of transparency in
+                how they make predictions.  * **XAI Methods**: None.   * The provided context does not
+                mention the use of any specific explainable AI (XAI)
+
+    Example 5
+      PMCID   : PMC3811072
+      Category: Partial
+      Snippet : * **Model Interpretability**: Not enough information is available.   * The text does not
+                provide sufficient detail to determine whether the ONYX system is inherently interpretable
+                or a black-box. The description focuses on the system's functionality and performance
+                rather than its internal workings or transparency.  * **XAI Methods**: None.   * The text
+                does not mention the use of any specific Exp
+
+    Example 6
+      PMCID   : PMC7778490
+      Category: Partial
+      Snippet : * **Model Interpretability**: Black-box.   * The model is based on a deep convolutional
+                neural network (CNN) combined with an Extreme Learning Machine (ELM) classifier. Both CNNs
+                and ELMs are typically considered black-box models due to their complex, multi-layered
+                architectures that do not provide straightforward interpretability.  * **XAI Methods**:
+                None.   * The provided context does not mentio
+
+    Example 7
+      PMCID   : PMC8758502
+      Category: Partial
+      Snippet : * **Model Interpretability**:   * **EN**: Transparent   * **BR**: Transparent   *
+                **LDpred2**: Not enough information is available   * **MLP**: Black-box   * **CNN**:
+                Black-box  * **XAI Methods**: None
+
+    Example 8
+      PMCID   : PMC11451058
+      Category: Partial
+      Snippet : * **Model Interpretability**: Black-box.   * The model is a modified ResNet-based neural
+                network, which is a type of deep learning model. Deep learning models are typically
+                considered black-boxes due to their complex, multi-layered architecture, which makes it
+                difficult to interpret how they arrive at specific predictions.  * **XAI Methods**: None.
+                * The provided context does not mention the use
+
+    Example 9
+      PMCID   : PMC11638597
+      Category: Partial
+      Snippet : * Model Interpretability: Black-box.   * The models used in this study are based on deep
+                learning architectures, specifically EfficientNet-B4 and DeepLab V3 with a ResNet101
+                encoder. These architectures are known for their complexity and are typically considered
+                black-box models, meaning their internal workings are not easily interpretable.  * XAI
+                Methods: None.   * The provided context does not m
+
+    Example 10
+      PMCID   : PMC9142346
+      Category: Partial
+      Snippet : * **Model Interpretability**:   * Ridge Regression (R-LR): Transparent   * Lasso
+                Regression (L-LR): Transparent   * Random Forest (RF): Transparent   * Support Vector
+                Machine (SVM): Black-box  * **XAI Methods**:   * NEPAR algorithm for feature selection   *
+                Degree centrality, closeness, and betweenness centrality measures for participant
+                similarity   * Not enough information is available on the sp
+
+  [Missing]  — No examples found
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Model/output
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Full
+      Snippet : * Prediction Task: Classification   * The model is used for classification purposes,
+                specifically to predict whether a sports-related dental injury will occur.  * Target
+                Variable:   * Sports-related dental injury occurrence     * The model predicts the
+                occurrence of sports-related dental injuries in 6 to 13-year-old athlete children.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Full
+      Snippet : * **Prediction Task**: Output Classification.   * The model is designed to classify
+                instances into dichotomous classes, specifically to predict the occurrence of an event.  *
+                **Target Variable**:   * 30-day readmission with venous thromboembolism (VTE).     * The
+                model predicts the likelihood of a patient being readmitted within 30 days with VTE.     *
+                The target variable is binary (presence or ab
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Full
+      Snippet : * Prediction Task: Classification   * The model is used to classify instances into
+                predefined categories.  * Target Variable:   * Bacterial Vaginosis (BV) diagnosis     *
+                The model predicts whether a patient has BV or not.
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Full
+      Snippet : * Prediction Task: Regression.   * The model is designed to predict continuous values for
+                protein secondary structure content.  * Target Variable:   * Alpha-helix content (unitless
+                ratio).   * Beta-sheet content (unitless ratio).
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Full
+      Snippet : * Prediction Task: Classification. * Target Variable:   * Gallbladder presence: Binary
+                classification (presence or absence).   * Acute cholecystitis (AC) diagnosis: Binary
+                classification (AC or no AC).   * Gallbladder segmentation: Pixel-wise classification
+                (gallbladder or non-gallbladder).
+
+    Example 6
+      PMCID   : PMC8581823
+      Category: Full
+      Snippet : * Prediction Task: Classification * Target Variable:   * ADHD diagnosis (binary
+                classification: ADHD or control)
+
+    Example 7
+      PMCID   : PMC11625410
+      Category: Full
+      Snippet : * Prediction Task: Classification * Target Variable: Cleavage site presence   * Units:
+                Binary (cleavage site or non-cleavage site)
+
+    Example 8
+      PMCID   : PMC7665450
+      Category: Full
+      Snippet : * Prediction Task: Regression and Classification. * Target Variable:   * Trigger Day: The
+                day of trigger administration (unitless).   * OHSS Risk: The probability of a patient
+                being at risk of ovarian hyperstimulation syndrome (unitless).
+
+    Example 9
+      PMCID   : PMC11806858
+      Category: Full
+      Snippet : * Prediction Task: Regression. * Target Variable: Probability of developing cardiovascular
+                disease within the next 10 years.
+
+    Example 10
+      PMCID   : PMC11874791
+      Category: Full
+      Snippet : * Prediction Task: Classification * Target Variable:   * Change in diagnosis from Aβ−T −
+                to Aβ+T +   * Change in diagnosis from Aβ−T − to Aβ+T + using lumbar data   * Change in
+                diagnosis from Aβ−T − to Aβ+T + using ventricular data   * TMT batch for each sample   *
+                Tissue groups
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC10069559
+      Category: Partial
+      Snippet : * **Prediction Task**: Output Classification.   * The model is designed to predict binary
+                outcomes (hospitalization vs. no hospitalization).  * **Target Variable**:   *
+                Hospitalization in August.   * Hospitalization in August or September.   * Not enough
+                information is available on the units.
+
+    Example 2
+      PMCID   : PMC11148103
+      Category: Partial
+      Snippet : * Prediction Task: Classification   * The model is used for classification tasks, as
+                indicated by the evaluation of features in partial residue prediction and the use of SHAP
+                values to determine the impact on prediction outcomes.  * Target Variable:   * Not enough
+                information is available     * The specific target variable being predicted is not
+                explicitly stated in the provided context.
+
+    Example 3
+      PMCID   : PMC7249423
+      Category: Partial
+      Snippet : * Prediction Task: Regression. * Target Variable:   - Stromal score (Not enough
+                information is available).   - Expression of PD 1 (log2(counts +1)) (Not enough
+                information is available).   - Beta value of cg17322655 (Not enough information is
+                available).   - Expression of VEGFB (log2(counts +1)) (Not enough information is
+                available).
+
+    Example 4
+      PMCID   : PMC11869764
+      Category: Partial
+      Snippet : * Prediction Task: Classification   * The models are used to predict categorical outcomes,
+                specifically treatment response and survival metrics.  * Target Variable:   * Treatment
+                response: Not enough information is available   * Overall Survival (OS): Not enough
+                information is available   * Progression-Free Survival (PFS): Not enough information is
+                available
+
+    Example 5
+      PMCID   : PMC9539078
+      Category: Partial
+      Snippet : * Prediction Task: Regression. * Target Variable:   * Daily confirmed cases of COVID-19.
+                * Not enough information is available on the units.
+
+    Example 6
+      PMCID   : PMC6371636
+      Category: Partial
+      Snippet : * Prediction Task: Regression. * Target Variable:   * Bacterial growth curve.   * Units:
+                Not enough information is available.
+
+    Example 7
+      PMCID   : PMC8758502
+      Category: Partial
+      Snippet : * Prediction Task: Regression.   * The model is used to predict continuous effect sizes of
+                genetic variants.  * Target Variable:   * Variant effect sizes.   * Not enough information
+                is available on the units.
+
+    Example 8
+      PMCID   : PMC10392020
+      Category: Partial
+      Snippet : * Prediction Task: Regression * Target Variable:   - Genomic Value (GV) for complex traits
+                in Korean native cattle     - Units: Not enough information is available
+
+    Example 9
+      PMCID   : PMC9953018
+      Category: Partial
+      Snippet : * Prediction Task: Classification * Target Variable: Binary classification outcome   * Not
+                enough information is available on the specific target variable and units.
+
+    Example 10
+      PMCID   : PMC11904180
+      Category: Partial
+      Snippet : * Prediction Task: Classification * Target Variable: Not enough information is available
+
+  [Missing]  — No examples found
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Optimisation/algorithm
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Full
+      Snippet : * **ML Algorithm Class**:   * Random Forest   * Logistic Regression  * **Algorithm
+                Novelty**: Application of existing method.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Full
+      Snippet : * **ML Algorithm Class**:   - Logistic Regression   - Balanced Random Forest   -
+                Multilayer Perceptron  * **Algorithm Novelty**: Application of existing method.
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Full
+      Snippet : * **ML Algorithm Class**:   * Genetic Search   * Linear Forward Selection   * Subset Size
+                Forward Selection   * Bagging   * Random Forest   * Naïve Bayes   * RBF Network  *
+                **Algorithm Novelty**: Application of existing method.
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Full
+      Snippet : * **ML Algorithm Class**:   - Deep Learning     - Convolutional Neural Network (CNN)     -
+                Bidirectional Long Short-Term Memory (BiLSTM)     - Fully Connected Layers  * **Algorithm
+                Novelty**: Application of existing method. The authors use an NLP-like structure to
+                construct their model, which includes embedding layers, convolutional layers, BiLSTM
+                units, and fully connected layers. This approach i
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Full
+      Snippet : * **ML Algorithm Class**:   * Convolutional Neural Network (CNN)   * VGG16   * U-Net  *
+                **Algorithm Novelty**: Application of existing method.
+
+    Example 6
+      PMCID   : PMC8581823
+      Category: Full
+      Snippet : * **ML Algorithm Class**:   * Multi-layer Perceptron (MLP)   * Random Forest   * K-means
+                * **Algorithm Novelty**: Application of existing method.
+
+    Example 7
+      PMCID   : PMC11625410
+      Category: Full
+      Snippet : * **ML Algorithm Class**:   - Random Forest   - Recurrent Neural Network (RNN)   - Support
+                Vector Machine (SVM)  * **Algorithm Novelty**: Application of existing method.
+
+    Example 8
+      PMCID   : PMC7665450
+      Category: Full
+      Snippet : * ML Algorithm Class:   * Random Forest Regressor   * Random Forest Classifier  *
+                Algorithm Novelty: Application of existing method
+
+    Example 9
+      PMCID   : PMC11806858
+      Category: Full
+      Snippet : * **ML Algorithm Class**:   * XGBoost  * **Algorithm Novelty**: Application of existing
+                method
+
+    Example 10
+      PMCID   : PMC11874791
+      Category: Full
+      Snippet : * **ML Algorithm Class**:   * Logistic Regression   * Random Forest   * XGBoost  *
+                **Algorithm Novelty**: Application of existing method.
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC10579490
+      Category: Partial
+      Snippet : * **ML Algorithm Class**:   * Not enough information is available.  * **Algorithm
+                Novelty**:   * Application of existing method.
+
+    Example 2
+      PMCID   : PMC7285934
+      Category: Partial
+      Snippet : * **ML Algorithm Class**:   * Not enough information is available.  * **Algorithm
+                Novelty**:   * Not enough information is available.
+
+    Example 3
+      PMCID   : PMC8914522
+      Category: Partial
+      Snippet : * **ML Algorithm Class**:   * Machine Learning: Not enough information is available.  *
+                **Algorithm Novelty**:   * Algorithm Novelty: Application of existing method.
+
+    Example 4
+      PMCID   : PMC11795234
+      Category: Partial
+      Snippet : * **ML Algorithm Class**:   * Leave-One-Out Cross-Validation   * Cox Proportional Hazards
+                Regression   * Not enough information is available  * **Algorithm Novelty**: Application
+                of existing method
+
+    Example 5
+      PMCID   : PMC10323699
+      Category: Partial
+      Snippet : * **ML Algorithm Class**:   * Convolutional Neural Network (CNN)   * Not enough
+                information is available  * **Algorithm Novelty**:   * Application of existing method
+
+    Example 6
+      PMCID   : PMC8331277
+      Category: Partial
+      Snippet : * ML Algorithm Class:   * Not enough information is available  * Algorithm Novelty:   *
+                Application of existing method
+
+    Example 7
+      PMCID   : PMC11584160
+      Category: Partial
+      Snippet : * **ML Algorithm Class**:   * Not enough information is available.  * **Algorithm
+                Novelty**:   * Not enough information is available.
+
+    Example 8
+      PMCID   : PMC8757162
+      Category: Partial
+      Snippet : * **ML Algorithm Class**:   * Not enough information is available.  * **Algorithm
+                Novelty**:   * Application of existing method.
+
+    Example 9
+      PMCID   : PMC10228240
+      Category: Partial
+      Snippet : * ML Algorithm Class:   * Not enough information is available.  * Algorithm Novelty:   *
+                Application of existing method.
+
+    Example 10
+      PMCID   : PMC11864393
+      Category: Partial
+      Snippet : * **ML Algorithm Class**:   * Not enough information is available.  * **Algorithm
+                Novelty**:   * Application of existing method.
+
+  [Missing]  — No examples found
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Optimisation/config
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC6062245
+      Category: Full
+      Snippet : * Configuration Source: The detailed grid parameters for different machine learning
+                methods are listed in Table SI2 †. Source: Supplementary.
+
+    Example 2
+      PMCID   : PMC11845296
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 3
+      PMCID   : PMC10423541
+      Category: Full
+      Snippet : * Configuration Source: https://github.com/TissueImageAnalytics/iguana | Copyleft license
+
+    Example 4
+      PMCID   : PMC10842950
+      Category: Full
+      Snippet : * Configuration Source: https://github.com/zvesoulis/ml_mri | GNU General Public License *
+                The model configuration is described in the text. The optimal values for the XGBoost model
+                parameters were derived by grid search. The values evaluated in model tuning are shown in
+                Supplemental Table 2.
+
+    Example 5
+      PMCID   : PMC11278897
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 6
+      PMCID   : PMC6936209
+      Category: Full
+      Snippet : * Configuration Source: The model is dockerized and publicly available at
+                https://www.synapse.org/#!Synapse:syn11459638. Both data and reproducible code are
+                included in the docker. | Creative Commons Attribution License (CC BY 4.0)
+
+    Example 7
+      PMCID   : PMC9530987
+      Category: Full
+      Snippet : * Configuration Source: The RF, DT, and AD codes, as well as instructions for installing
+                and running the codes, are available on GitHub under the Massachusetts Institute of
+                Technology Licence (https://github.com/SeanPCollins/RandomForest). | MIT License
+
+    Example 8
+      PMCID   : PMC10476493
+      Category: Full
+      Snippet : * Configuration Source: The GeNetOntology KNIME workflow is available publicly in
+                https://github.com/malikyousef/GeNetOntology.git | GNU General Public License.
+
+    Example 9
+      PMCID   : PMC11227463
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 10
+      PMCID   : PMC8711640
+      Category: Full
+      Snippet : * Configuration Source: The complete pipeline for processing whole slide images and
+                training and evaluating deep learning models is available at
+                https://github.com/mahmoodlab/CLAM | GNU GPLv3.
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Partial
+      Snippet : * Configuration Source: Not enough information is available
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Partial
+      Snippet : * Configuration Source: Not enough information is available
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Partial
+      Snippet : * Configuration Source: Not enough information is available
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Partial
+      Snippet : * Configuration Source: Not enough information is available * Hyper-parameters:   * Batch
+                size: 512   * Optimizer: Adam   * Loss function: Mean Square Error (MSE)   * Epochs: 50
+                * Training-validation split: 80% training, 20% testing   * Hardware: One GeForce RTX
+                2080Ti GPU   * Software: TensorFlow with Keras API * Model architecture:   * Embedding
+                layer: 15 dimensions   * Batch normalization lay
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Partial
+      Snippet : * Configuration Source: Details on those processing are provided in Appendix S1. | Not
+                enough information is available
+
+    Example 6
+      PMCID   : PMC8581823
+      Category: Partial
+      Snippet : * Configuration Source: Not enough information is available
+
+    Example 7
+      PMCID   : PMC11625410
+      Category: Partial
+      Snippet : * Configuration Source: The final preserved model and a Jupyter Notebook that replicates
+                training are available on GitLab (https://gitlab.com/machine-biology-group-
+                public/pancleave) | Not enough information is available.
+
+    Example 8
+      PMCID   : PMC7665450
+      Category: Partial
+      Snippet : * Configuration Source: Not enough information is available
+
+    Example 9
+      PMCID   : PMC11806858
+      Category: Partial
+      Snippet : * Configuration Source: Not enough information is available
+
+    Example 10
+      PMCID   : PMC11874791
+      Category: Partial
+      Snippet : * **Configuration Source**: Appendix Table 7 | Not enough information is available   * The
+                hyperparameter ranges for each model are shown in the Appendix Table 7. * **Configuration
+                Source**: Appendix 9 | Not enough information is available   * Additional predictive
+                performance results are shown in Appendix 9 for peptide and protein data from the lumbar
+                data. * **Configuration Source**: Not enough
+
+  [Missing]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC10583101
+      Category: Missing
+      Snippet : * Configuration Source: Not enough information is available.
+
+    Example 2
+      PMCID   : PMC9338423
+      Category: Missing
+      Snippet : * Configuration Source: Not enough information is available.
+
+    Example 3
+      PMCID   : PMC10069559
+      Category: Missing
+      Snippet : * **Configuration Source**: Not enough information is available.
+
+    Example 4
+      PMCID   : PMC6536474
+      Category: Missing
+      Snippet : * Configuration Source: Not enough information is available.
+
+    Example 5
+      PMCID   : PMC8246604
+      Category: Missing
+      Snippet : * **Configuration Source**: Not enough information is available.
+
+    Example 6
+      PMCID   : PMC11843979
+      Category: Missing
+      Snippet : * Configuration Source: Not enough information is available.
+
+    Example 7
+      PMCID   : PMC8546707
+      Category: Missing
+      Snippet : * Configuration Source: Not enough information is available.
+
+    Example 8
+      PMCID   : PMC7406302
+      Category: Missing
+      Snippet : * **Configuration Source**: Not enough information is available.
+
+    Example 9
+      PMCID   : PMC8374469
+      Category: Missing
+      Snippet : * **Configuration Source**: Not enough information is available.
+
+    Example 10
+      PMCID   : PMC2857954
+      Category: Missing
+      Snippet : * Configuration Source: Not enough information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Optimisation/encoding
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC8568050
+      Category: Full
+      Snippet : * **Data Encoding Method: Min-Max Normalization**   * Applied to numerical features to
+                scale them to a range of 0 to 1, preventing certain features from dominating the training
+                process due to their original ranges. * **Data Encoding Method: Zero-Variance Feature
+                Elimination**   * Features with zero variance (constant over every data point) were
+                removed to reduce computational cost and avoid adding
+
+    Example 2
+      PMCID   : PMC9347213
+      Category: Full
+      Snippet : * **Data Encoding Method**: Tokenization   * The raw protein sequence data was pre-
+                processed using tokenization. The Keras Tokenizer module was employed to segment each
+                amino acid in the protein sequences. This process converts the amino acids, represented by
+                20 different single-letter codes, into numeric digits. This encoding method is common in
+                natural language processing and facilitates the fee
+
+    Example 3
+      PMCID   : PMC11865635
+      Category: Full
+      Snippet : * **Data Encoding Method**: The raw data underwent several preprocessing steps to enhance
+                the model's ability to recognize features indicative of acute cholecystitis. The images
+                were first converted to grayscale. Normalization was applied to standardize the pixel
+                values. Dilation was used to expand the surrounding area of the gallbladder in the mask
+                regions. A bilateral filter was employed to redu
+
+    Example 4
+      PMCID   : PMC8581823
+      Category: Full
+      Snippet : * **Data Encoding Method**: The human genome was divided into 150 pieces (20 Mbp/piece)
+                based on genomic coordinates. The occurrence counts of nine different types of variations,
+                including deletions, duplications, and other types of variations in exonic, intronic, and
+                intergenic regions, were calculated for each piece. These counts were applied as feature
+                vectors in the deep learning model. The pr
+
+    Example 5
+      PMCID   : PMC11625410
+      Category: Full
+      Snippet : * **Data Encoding Method: ProtFP Encoding**   The raw data was pre-processed using the
+                ProtFP encoding method. This encoding converts each 8-residue contiguous subsequence of
+                the protein sequence into a numerical feature vector. This method was applied to all input
+                proteins to facilitate the prediction of cleavage sites and the computation of the
+                estimated probability of class membership.  * **Dat
+
+    Example 6
+      PMCID   : PMC7665450
+      Category: Full
+      Snippet : * Data Encoding Method: Mean imputation was used to handle missing values, specifically
+                for patient age, which was missing for less than 1% of the patients. This imputation was
+                performed within respective cross-validation folds to maintain the integrity of the
+                validation process. * Data Encoding Method: The models used patient age, Antral Follicle
+                Count (AFC), and follicle count by size for the cu
+
+    Example 7
+      PMCID   : PMC11806858
+      Category: Full
+      Snippet : * **Data Encoding Method**: The dataset underwent several preprocessing steps to handle
+                missing data, normalize variables, and encode categorical features.   * **Missing Data
+                Imputation**: Missing baseline data were imputed using a random forest-based approach,
+                which was found to outperform k-nearest neighbor and chained equations imputation methods.
+                * **Normalization**: Continuous variables wer
+
+    Example 8
+      PMCID   : PMC11874791
+      Category: Full
+      Snippet : * **Data Encoding Method**: The raw data underwent several preprocessing steps to prepare
+                it for machine learning algorithms. This included data cleaning to remove inconsistencies
+                and outliers, such as erroneous measurements equal to zero or infinity. Missing values
+                were handled using two imputation techniques: Multiple Imputation by Chained Equations
+                (MICE) and minimum imputation. For MICE, Sciki
+
+    Example 9
+      PMCID   : PMC10948976
+      Category: Full
+      Snippet : * **Data Encoding Method**: Categorical variables were encoded using one-hot encoding. *
+                **Data Encoding Method**: Numerical variables were standardized. * **Data Encoding
+                Method**: Synthetic Minority Over-sampling Technique (SMOTE) was employed to address class
+                imbalance between PLNM and non-PLNM groups.
+
+    Example 10
+      PMCID   : PMC10583101
+      Category: Full
+      Snippet : * **Data Encoding Method: One-Hot Encoding**   - All categorical features, including the
+                region identifier, were one-hot encoded. This involved creating a new binary (0/1)
+                variable for every categorical value. For example, population density was replaced by
+                three new binary variables based on the degree of urbanisation. This encoding ensures that
+                meaningful predictions are obtained from the algori
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC4407517
+      Category: Partial
+      Snippet : * **Data Encoding Method**: Not enough information is available.   * The paper does not
+                provide specific details on the data encoding methods used. It mentions that the dataset
+                consisted of clinical and medical data, but does not specify how these features were pre-
+                processed or encoded.
+
+    Example 2
+      PMCID   : PMC9980216
+      Category: Partial
+      Snippet : * **Data Encoding Method**: Not enough information is available. The text mentions that
+                details of the model architecture and preprocessing steps are provided in the
+                Supplementary Appendix Section 1 and Fig. S1. However, the main text does not specify the
+                exact preprocessing and encoding methods used.
+
+    Example 3
+      PMCID   : PMC10579490
+      Category: Partial
+      Snippet : * **Data Encoding Method**: Not enough information is available.   * The paper does not
+                provide details on the specific methods used for pre-processing or encoding the raw data.
+                The description of the data collection process mentions the use of an online tool
+                developed by the Marconi AI laboratory at Makerere University, Uganda, for uploading
+                cervical images and questionnaires. However, it does no
+
+    Example 4
+      PMCID   : PMC11206671
+      Category: Partial
+      Snippet : * **Data Encoding Method**: Not enough information is available.   * The paper does not
+                provide explicit details on the preprocessing steps applied to the raw data. It is
+                mentioned that the initial equation for the FRPS was derived from a meta-analysis and that
+                various statistical techniques were used, but specific encoding methods are not disclosed.
+
+    Example 5
+      PMCID   : PMC11080251
+      Category: Partial
+      Snippet : * **Data Encoding Method**: The Boruta algorithm was used to identify the most relevant
+                features from the training set that contribute significantly to the new OVCF prediction.
+                This process ensures that only variables with true predictive power are included in
+                subsequent modeling. Not enough information is available on the specific encoding methods
+                used for the features.
+
+    Example 6
+      PMCID   : PMC8080676
+      Category: Partial
+      Snippet : * **Data Encoding Method**: The study used the bcbio-nextgen bioinformatics framework
+                (version 1.2.4) for RNA sequencing data analysis. This involved several steps:   *
+                **Alignment**: Sequencing results were aligned using STAR.   * **Variant Calling**:
+                Genetic variant calling was performed using GATK-3.8 HaplotypeCaller followed by VEP.   *
+                **Alternative Splicing**: Analysis was conducted using rM
+
+    Example 7
+      PMCID   : PMC8250466
+      Category: Partial
+      Snippet : * **Data Encoding Method**: The paper does not provide explicit details on the data
+                encoding methods used. However, it mentions that missing values were imputed based on
+                Gibbs sampling. This suggests that some form of imputation was performed to handle missing
+                data, but specific encoding techniques such as normalization or one-hot encoding are not
+                detailed. Not enough information is available.
+
+    Example 8
+      PMCID   : PMC7249423
+      Category: Partial
+      Snippet : * Data Encoding Method: The study did not explicitly detail the raw data pre-processing
+                and encoding steps. Not enough information is available.
+
+    Example 9
+      PMCID   : PMC9353566
+      Category: Partial
+      Snippet : * Data Encoding Method: Not enough information is available.   * The paper does not
+                provide specific details on the methods used for data pre-processing and encoding.
+
+    Example 10
+      PMCID   : PMC11134423
+      Category: Partial
+      Snippet : * **Data Encoding Method**: Not enough information is available.   * The paper does not
+                provide specific details on the pre-processing and encoding methods applied to the raw
+                data.
+
+  [Missing]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Missing
+      Snippet : * **Data Encoding Method**: Not enough information is available.
+
+    Example 2
+      PMCID   : PMC7511449
+      Category: Missing
+      Snippet : * **Data Encoding Method**: Not enough information is available.
+
+    Example 3
+      PMCID   : PMC6637411
+      Category: Missing
+      Snippet : * **Data Encoding Method**: Not enough information is available.
+
+    Example 4
+      PMCID   : PMC10802079
+      Category: Missing
+      Snippet : * **Data Encoding Method**: Not enough information is available.
+
+    Example 5
+      PMCID   : PMC10069559
+      Category: Missing
+      Snippet : * Data Encoding Method: Not enough information is available.
+
+    Example 6
+      PMCID   : PMC6058191
+      Category: Missing
+      Snippet : * **Data Encoding Method**: Not enough information is available.
+
+    Example 7
+      PMCID   : PMC8301183
+      Category: Missing
+      Snippet : * **Data Encoding Method**: Not enough information is available.
+
+    Example 8
+      PMCID   : PMC8455450
+      Category: Missing
+      Snippet : * **Data Encoding Method**: Not enough information is available.
+
+    Example 9
+      PMCID   : PMC10686164
+      Category: Missing
+      Snippet : * **Data Encoding Method**: Not enough information is available. * **Data Encoding
+                Method**: Not enough information is available.
+
+    Example 10
+      PMCID   : PMC11531712
+      Category: Missing
+      Snippet : * **Data Encoding Method**: Not enough information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Optimisation/features
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Full
+      Snippet : * Number of Features (f): 9   * The input features are: age, sex, parents education,
+                child’s birth order, type of sports activity, duration of sports activity, awareness
+                regarding the mouth guard, mouth guard use.  * Training-Restricted Selection: Unclear   *
+                The text does not explicitly state whether feature selection was restricted to the
+                training set only.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Full
+      Snippet : * Number of Features (f): 641. * Training-Restricted Selection: Yes.
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Full
+      Snippet : * Number of Features (f): 418 * Training-Restricted Selection: Unclear
+
+    Example 4
+      PMCID   : PMC8581823
+      Category: Full
+      Snippet : * Number of Features (f): 1350   * The human genome was divided into 150 regions, with
+                nine different types of variations calculated for each region, resulting in 150 x 9 = 1350
+                features.  * Training-Restricted Selection: Yes   * The random forest algorithm was used
+                to reduce feature vectors by computing relative importance, and this process was applied
+                to the data from all individuals in the stud
+
+    Example 5
+      PMCID   : PMC7665450
+      Category: Full
+      Snippet : * Number of Features (f): 3   - Patient age   - Antral follicle count (AFC)   - Follicle
+                count by size for the current scan  * Training-Restricted Selection: Unclear   - The text
+                does not explicitly state whether feature selection was restricted to the training set
+                only.
+
+    Example 6
+      PMCID   : PMC11806858
+      Category: Full
+      Snippet : * Number of Features (f): 12   - The input features are: age, the third functional
+                principal component (FPC3) score of alanine transaminase (ALT), the first FPC score (FPC1)
+                of fasting plasma glucose (FPG), the FPC1 score of systolic blood pressure (SBP), the
+                third FPC score of high-density lipoprotein cholesterol (HDL), the FPC3 score of serum
+                creatinine (SCr), the FPC3 score of low-density lipop
+
+    Example 7
+      PMCID   : PMC10948976
+      Category: Full
+      Snippet : * Number of Features (f): 16   * Age   * Tumor size at OPD   * Stage   * Prior conization
+                * Tumor appearance   * Final histology   * Vaginal metastasis   * CT: Maximum tumor size
+                * CT: Parametrial metastasis   * CT: Pelvic lymph node enlargement   * CT: Vaginal
+                metastasis   * Menopausal status   * Parity   * Underlying disease   * FIGO stage  *
+                Training-Restricted Selection: Yes   * The author
+
+    Example 8
+      PMCID   : PMC8897225
+      Category: Full
+      Snippet : * Number of Features (f): 16   - The input features are three force measurements, four COP
+                signals, and nine accelerations.  * Training-Restricted Selection: Unclear   - The text
+                does not explicitly state whether feature selection was restricted to the training set
+                only.
+
+    Example 9
+      PMCID   : PMC7941561
+      Category: Full
+      Snippet : * Number of Features (f): 963 * Training-Restricted Selection: Unclear
+
+    Example 10
+      PMCID   : PMC7676934
+      Category: Full
+      Snippet : * Number of Features (f): 11,629 * Training-Restricted Selection: Yes
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC9347213
+      Category: Partial
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Unclear.
+
+    Example 2
+      PMCID   : PMC11865635
+      Category: Partial
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Unclear.
+
+    Example 3
+      PMCID   : PMC11625410
+      Category: Partial
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Unclear.
+
+    Example 4
+      PMCID   : PMC11874791
+      Category: Partial
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Yes. The authors explicitly state that feature selection was performed within
+                each k-fold to prevent data leakage and overfitting.
+
+    Example 5
+      PMCID   : PMC10583101
+      Category: Partial
+      Snippet : * **Number of Features (f)**: Not enough information is available. * **Training-Restricted
+                Selection**: Unclear. The authors mention that they used a 70% training set and a 30% test
+                set, but there is no explicit mention of nested cross-validation or other techniques to
+                prevent data leakage during feature selection.
+
+    Example 6
+      PMCID   : PMC9413214
+      Category: Partial
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Unclear.
+
+    Example 7
+      PMCID   : PMC7511449
+      Category: Partial
+      Snippet : * Number of Features (f): Not enough information is available * Training-Restricted
+                Selection: Not enough information is available
+
+    Example 8
+      PMCID   : PMC5521984
+      Category: Partial
+      Snippet : * Number of Features (f): 300   * The document is represented as a matrix D ∈ ℝn×d, where
+                d is the dimension of the word vectors. The word vector size d is 300.  * Training-
+                Restricted Selection: Unclear   * Not enough information is available to determine if
+                feature selection was restricted to the training set only.
+
+    Example 9
+      PMCID   : PMC10075196
+      Category: Partial
+      Snippet : * Number of Features (f): Not enough information is available * Training-Restricted
+                Selection: Unclear
+
+    Example 10
+      PMCID   : PMC9903217
+      Category: Partial
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Unclear.
+
+  [Missing]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC9980216
+      Category: Missing
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Not enough information is available.
+
+    Example 2
+      PMCID   : PMC10579490
+      Category: Missing
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Not enough information is available.
+
+    Example 3
+      PMCID   : PMC9588865
+      Category: Missing
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Not enough information is available.
+
+    Example 4
+      PMCID   : PMC11843979
+      Category: Missing
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Not enough information is available.
+
+    Example 5
+      PMCID   : PMC7422516
+      Category: Missing
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Not enough information is available.
+
+    Example 6
+      PMCID   : PMC9293610
+      Category: Missing
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Not enough information is available.
+
+    Example 7
+      PMCID   : PMC11739212
+      Category: Missing
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Not enough information is available.
+
+    Example 8
+      PMCID   : PMC9388181
+      Category: Missing
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Not enough information is available.
+
+    Example 9
+      PMCID   : PMC6224513
+      Category: Missing
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Not enough information is available.
+
+    Example 10
+      PMCID   : PMC7383774
+      Category: Missing
+      Snippet : * Number of Features (f): Not enough information is available. * Training-Restricted
+                Selection: Not enough information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Optimisation/fitting
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC8568050
+      Category: Full
+      Snippet : * **p > N: No**    The training set size (N) is 111,163 (70% of 158,804). The parameter
+                count (p) is not explicitly stated, but it can be inferred from the model architectures:
+                - Logistic Regression: p = 189 (features) + 1 (intercept) = 190.   - Balanced Random
+                Forest: p is determined by the number of trees and their depth. With 630 trees and a
+                maximum depth of 33, p is significantly less than N
+
+    Example 2
+      PMCID   : PMC8581823
+      Category: Full
+      Snippet : * **p > N: No**    The training set size (N) is 262 (524 AA patients split into two equal
+                parts). The model is a multi-layer perceptron (MLP) with 7 to 9 layers and an unspecified
+                number of neurons per layer. However, even with a conservative estimate of 10 neurons per
+                layer, the total number of parameters (p) would be significantly less than 262, assuming a
+                fully connected network. Therefore, p i
+
+    Example 3
+      PMCID   : PMC7665450
+      Category: Full
+      Snippet : * **p > N: No**    The study used Random Forest Regressors and Classifiers, which are
+                ensemble methods composed of multiple decision trees. The number of decision trees in the
+                ensemble is 100. Each decision tree has a variable number of nodes, but the depth of the
+                trees is not restricted, which means the number of parameters (p) can be large. However,
+                the training set size (N) is 2128 cycles, whic
+
+    Example 4
+      PMCID   : PMC11806858
+      Category: Full
+      Snippet : * **p > N: No**    The training set size (N) is 13,102. The XGBoost algorithm is used,
+                which is an ensemble of decision trees. The number of trees and the depth of each tree
+                determine the number of parameters (p). While the exact number of parameters is not
+                specified, XGBoost typically has a large number of parameters due to the ensemble nature.
+                However, given the large training set size and the u
+
+    Example 5
+      PMCID   : PMC11874791
+      Category: Full
+      Snippet : * **p > N**: No.   * The authors explicitly state that traditional statistical methods are
+                designed under the assumption that N > p. This implies that the number of observations (N)
+                is greater than the number of variables (p) in their dataset.  * **Over-fitting
+                Evidence**:   * The authors used k-fold cross-validation (k=5) to obtain an unbiased
+                estimate of out-of-sample performance. This approach
+
+    Example 6
+      PMCID   : PMC10948976
+      Category: Full
+      Snippet : * **p > N: No**    The study used seven supervised machine learning algorithms, including
+                logistic regression (LR), random forest (RF), support vector machine (SVM), adaptive
+                boosting (AdaBoost, ADA), gradient boosting (GB), extreme gradient boosting (XGB), and
+                category boosting (CB). The dataset consisted of 832 patients, with 199 having PLNM and
+                633 without. The number of parameters (p) in these
+
+    Example 7
+      PMCID   : PMC10583101
+      Category: Full
+      Snippet : * **p > N: No**    The study uses a Ridge Classifier, which is a linear model with a
+                regularization term. The number of parameters (p) in a linear model is determined by the
+                number of features plus one (for the bias term). The study mentions using a sparse feature
+                set, which likely includes a limited number of features. Given that the datasets involve
+                thousands of children (e.g., India 2015 with 6
+
+    Example 8
+      PMCID   : PMC8897225
+      Category: Full
+      Snippet : * **p > N: No**    The training set size is 90% of the total data. The total number of
+                samples is not explicitly stated, but the authors mention that the "Stand" activity makes
+                up ~50% of all data. Given that there are 18 activities, and assuming a roughly even
+                distribution among the remaining activities, the total number of samples is likely to be
+                significantly larger than the number of learnable
+
+    Example 9
+      PMCID   : PMC9413214
+      Category: Full
+      Snippet : * **p > N**: No.   * The study used 100 samples for training, and the number of features
+                was reduced to the top 2000 genes for the best performance, which is less than the number
+                of samples.  * **Over-fitting Evidence**:   * The study used cross-validation with 1000
+                replications of fourfold cross-validation.   * The study used regularization parameters
+                for several models (e.g., Linear SVM, RBF SVM
+
+    Example 10
+      PMCID   : PMC7941561
+      Category: Full
+      Snippet : * **p > N: No**    The study used a dataset of 452 cells (118 normal cells and 334
+                malignant cells). The feature sets used for classification had dimensions of 452 × 516 and
+                452 × 340. Since the number of features (516 and 340) is less than the number of samples
+                (452), the parameter count is not larger than the training set size.  * **Over-fitting
+                Evidence**: Five-fold cross-validation    The stud
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Partial
+      Snippet : * **p > N**: No.   * The random forest model was trained on a dataset of N=356 samples.
+                The number of parameters in a random forest model is typically much larger than the number
+                of training samples due to the ensemble of decision trees, each with its own set of
+                parameters. However, the specific parameter count is not disclosed, but it is reasonable
+                to assume that p > N given the nature of the mod
+
+    Example 2
+      PMCID   : PMC4407517
+      Category: Partial
+      Snippet : * **p > N: No**    The dataset used in the experiment is comprised of 25 women studied
+                over a 10-week period, resulting in 1601 instances. The specific models used in the study
+                are Bagging, Random Forest, NaïveBayes, and RBF Network. While the exact number of
+                parameters (p) for each model is not explicitly stated, we can infer the following:    -
+                Bagging and Random Forest are ensemble methods that
+
+    Example 3
+      PMCID   : PMC9347213
+      Category: Partial
+      Snippet : * **p > N: No**    The model has 336,425 trainable parameters. The training set size is
+                80% of the total dataset. Not enough information is available to determine the total
+                dataset size (N).  * **Over-fitting Evidence:**   * Dropout layers   * GaussianNoise layer
+
+    Example 4
+      PMCID   : PMC11865635
+      Category: Partial
+      Snippet : * **p > N: No**    The VGG16 model, which is used for transfer learning, has approximately
+                138 million parameters (p). The training dataset included 708 images of gallbladders with
+                AC (n = 45) and 866 images of normal gallbladders (n = 55), resulting in a total of 1574
+                training samples (N). Therefore, p is not larger than N.  * **Over-fitting Evidence: Not
+                enough information is available**    The
+
+    Example 5
+      PMCID   : PMC11625410
+      Category: Partial
+      Snippet : * **p > N: No**    The study does not provide explicit details on the number of learnable
+                parameters (p) for each model or the exact size of the training set (N). However, it is
+                mentioned that the final Random Forest (RF) model used 400 estimators (trees). Given that
+                RF models typically have a large number of parameters due to the number of trees and their
+                depth, it is unlikely that the parameter
+
+    Example 6
+      PMCID   : PMC7511449
+      Category: Partial
+      Snippet : * **p > N: No**    The study uses a structure-based approach that does not rely on
+                traditional machine learning models with learnable weights. Instead, it uses molecular
+                modeling techniques with Rosetta FlexPepDock and MODELLER. The training set sizes for
+                different alleles are explicitly mentioned:   - HLA-A*02-01: N=100   - HLA-B*44-03: N=40
+                - HLA-B*27-05: N=19   - HLA-A*23-01: N=16    Since th
+
+    Example 7
+      PMCID   : PMC9980216
+      Category: Partial
+      Snippet : * p > N: Not enough information is available  * Over-fitting Evidence: Not enough
+                information is available
+
+    Example 8
+      PMCID   : PMC8586384
+      Category: Partial
+      Snippet : * **p > N: No**    The DenseNet201 model used in the study has 8 million parameters. The
+                dataset consists of 1078 images, with a 75-15-10 split for training, testing, and
+                validation. Therefore, the training set size (N) is approximately 808 images. Since
+                8,000,000 > 808, the parameter count is larger than the training set size.  * **Over-
+                fitting Evidence**: Not enough information is available    T
+
+    Example 9
+      PMCID   : PMC4527478
+      Category: Partial
+      Snippet : * **p > N: No**    The text mentions that the classifiers can perform well even with
+                lesser training data. This suggests that the parameter count (p) is not larger than the
+                training set size (N). Additionally, the use of feature selection methods like Maximum
+                Relevance Minimum Redundancy (mRMR) and Mutual Information Quotient (MIQ) indicates an
+                effort to reduce dimensionality, further supporting t
+
+    Example 10
+      PMCID   : PMC10579490
+      Category: Partial
+      Snippet : * **p > N: No**    The dataset comprises 93 unique images, with 10 excluded due to AI
+                assessment failures, resulting in 83 images for final assessment. The specific parameter
+                count (p) of the AI model is not disclosed. However, given the relatively small dataset
+                size (N=83), it is unlikely that the parameter count exceeds the training set size.  *
+                **Over-fitting Evidence: Not enough information is
+
+  [Missing]  — 1 example(s) shown below
+
+    Example 1
+      PMCID   : PMC11102825
+      Category: Missing
+      Snippet : * p > N: Not enough information is available.  * Over-fitting Evidence: Not enough
+                information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Optimisation/meta
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC4407517
+      Category: Full
+      Snippet : * Meta-predictor: Yes.  * Constituent Algorithms:   * Bagging   * Random Forest   *
+                NaïveBayes   * RBF Network
+
+    Example 2
+      PMCID   : PMC11865635
+      Category: Full
+      Snippet : * Meta-predictor: Yes. * Constituent Algorithms:   * VGG16 architecture   * Convolutional
+                Neural Network (CNN) architecture
+
+    Example 3
+      PMCID   : PMC11874791
+      Category: Full
+      Snippet : * Meta-predictor: Yes. * Constituent Algorithms:   * Logistic Regression (LR)   * Random
+                Forest (RF)   * XGBoost (XGB)
+
+    Example 4
+      PMCID   : PMC9413214
+      Category: Full
+      Snippet : * Meta-predictor: Yes * Constituent Algorithms:   * Linear Support Vector Classification
+                (LinearSVC)   * Radial Basis Function Kernel Support Vector Machine (RBF SVM)   * Random
+                Forest   * Nearest Neighbors   * Gaussian Process   * Decision Tree   * Neural Network   *
+                AdaBoost
+
+    Example 5
+      PMCID   : PMC7676934
+      Category: Full
+      Snippet : * Meta-predictor: Yes. * Constituent Algorithms:   * Support Vector Machine (SVM)   *
+                L1-regularized Logistic Regression (L1-LR)   * Gradient Boosting Decision Trees (GBDT)   *
+                Random Forest (RF)   * XGBoost (XGB)
+
+    Example 6
+      PMCID   : PMC8832594
+      Category: Full
+      Snippet : * Meta-predictor: No. * Constituent Algorithms:   * Gradient Boosting Machine (GBM)   *
+                Decision Trees (as base-learners)   * Random Forest (used in the Boruta algorithm for
+                feature selection)
+
+    Example 7
+      PMCID   : PMC7511449
+      Category: Full
+      Snippet : * Meta-predictor: Yes. * Constituent Algorithms:   * NetMHCpan 4.0   * Structure-based
+                method
+
+    Example 8
+      PMCID   : PMC5521984
+      Category: Full
+      Snippet : * Meta-predictor: Yes.  * Constituent Algorithms:   * Naive Bayes (NB)   * Logistic
+                Regression (LR)   * Support Vector Machines (SVM)   * Support Vector Machines with Huber
+                Loss (SVM HL)   * AdaBoostM1 (Ada)   * AdaBoostM1 with Oversampling (Ada Over)   * Medical
+                Text Indexer (MTI)   * CNN-rand   * CNN-pre
+
+    Example 9
+      PMCID   : PMC9903217
+      Category: Full
+      Snippet : * Meta-predictor: Yes. * Constituent Algorithms:   * Eight light-weight variants of a
+                convolutional neural network (CNN) backbone architecture.
+
+    Example 10
+      PMCID   : PMC9338423
+      Category: Full
+      Snippet : * Meta-predictor: Yes * Constituent Algorithms:   * ResNet34   * Two additional residual
+                blocks
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Partial
+      Snippet : * Meta-predictor: No. * Constituent Algorithms:   * Not enough information is available.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Partial
+      Snippet : * Meta-predictor: No.  * Constituent Algorithms:   * Not enough information is available.
+
+    Example 3
+      PMCID   : PMC9347213
+      Category: Partial
+      Snippet : * Meta-predictor: No  * Constituent Algorithms:   * Not enough information is available
+
+    Example 4
+      PMCID   : PMC8581823
+      Category: Partial
+      Snippet : * Meta-predictor: No  * Constituent Algorithms:   * Not enough information is available
+
+    Example 5
+      PMCID   : PMC11625410
+      Category: Partial
+      Snippet : * Meta-predictor: Yes.  * Constituent Algorithms:   * amPEPpy   * Not enough information
+                is available for the remaining five models.
+
+    Example 6
+      PMCID   : PMC7665450
+      Category: Partial
+      Snippet : * Meta-predictor: No  * Constituent Algorithms:   * Not enough information is available
+
+    Example 7
+      PMCID   : PMC11806858
+      Category: Partial
+      Snippet : * Meta-predictor: No  * Constituent Algorithms:   * Not enough information is available
+
+    Example 8
+      PMCID   : PMC10948976
+      Category: Partial
+      Snippet : * Meta-predictor: No  * Constituent Algorithms:   * Not enough information is available
+
+    Example 9
+      PMCID   : PMC10583101
+      Category: Partial
+      Snippet : * **Meta-predictor**: No.  * **Constituent Algorithms**: Not enough information is
+                available.
+
+    Example 10
+      PMCID   : PMC8897225
+      Category: Partial
+      Snippet : * Meta-predictor: No  * Constituent Algorithms:   * Not enough information is available
+
+  [Missing]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC9980216
+      Category: Missing
+      Snippet : * Meta-predictor: Not enough information is available. * Constituent Algorithms:   * Not
+                enough information is available.
+
+    Example 2
+      PMCID   : PMC7550141
+      Category: Missing
+      Snippet : * Meta-predictor: Not enough information is available.  * Constituent Algorithms:   * Not
+                enough information is available.
+
+    Example 3
+      PMCID   : PMC9338198
+      Category: Missing
+      Snippet : * Meta-predictor: Not enough information is available.  * Constituent Algorithms:   * Not
+                enough information is available.
+
+    Example 4
+      PMCID   : PMC8108534
+      Category: Missing
+      Snippet : * Meta-predictor: Not enough information is available.  * Constituent Algorithms:   * Not
+                enough information is available.
+
+    Example 5
+      PMCID   : PMC11739212
+      Category: Missing
+      Snippet : * Meta-predictor: Not enough information is available. * Constituent Algorithms:   * Not
+                enough information is available.
+
+    Example 6
+      PMCID   : PMC10359547
+      Category: Missing
+      Snippet : * Meta-predictor: Not enough information is available.  * Constituent Algorithms:   * Not
+                enough information is available.
+
+    Example 7
+      PMCID   : PMC11252620
+      Category: Missing
+      Snippet : * Meta-predictor: Not enough information is available.  * Constituent Algorithms:   * Not
+                enough information is available.
+
+    Example 8
+      PMCID   : PMC11215191
+      Category: Missing
+      Snippet : * Meta-predictor: Not enough information is available.  * Constituent Algorithms:   * Not
+                enough information is available.
+
+    Example 9
+      PMCID   : PMC11864393
+      Category: Missing
+      Snippet : * Meta-predictor: Not enough information is available. * Constituent Algorithms:   * Not
+                enough information is available.
+
+    Example 10
+      PMCID   : PMC9577132
+      Category: Missing
+      Snippet : * Meta-predictor: Not enough information is available.  * Constituent Algorithms:   * Not
+                enough information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Optimisation/parameters
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC8586384
+      Category: Full
+      Snippet : * **Parameter Count (p)**:   * DenseNet201: 8M   * VGG16: 138M   * ResNet50V2: 23M   *
+                MobileNetV2: 3.5M  * **Architecture Selection**:   * The DenseNet architecture was
+                selected for its efficient use of parameters, reducing redundancy and complexity. The
+                study compared DenseNet with other architectures like VGG16, ResNet50V2, and MobileNetV2
+                to evaluate their performance. DenseNet201 was chosen d
+
+    Example 2
+      PMCID   : PMC11845296
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 3
+      PMCID   : PMC8982795
+      Category: Full
+      Snippet : * **Parameter Count (p)**:   * ConvNet: 112,801  * **Architecture Selection**:   * The
+                model architecture was selected through a grid search over a range of hyperparameters,
+                including the number and size of kernels, the number of training epochs, and the dropout
+                keep probability. This process involved evaluating 972 parameter combinations using 5-fold
+                cross-validation.
+
+    Example 4
+      PMCID   : PMC11278897
+      Category: Full
+      Snippet : Not a relevant AI or machine learning publication
+
+    Example 5
+      PMCID   : PMC6224513
+      Category: Full
+      Snippet : * **Parameter Count (p)**:   * 1.1M  * **Architecture Selection**:   * The architecture
+                was selected based on empirical experiments and comparisons with previous methods. The
+                authors utilized a deeply supervised strategy with auxiliary classifiers to alleviate the
+                vanishing gradient problem. The network is a variant of the U-Net, consisting of a
+                contracting path with 13 convolutional layers and an
+
+    Example 6
+      PMCID   : PMC9463539
+      Category: Full
+      Snippet : * **Parameter Count (p)**:   * ResNet18: 16,928 additional parameters   * ResNet34: 16,928
+                additional parameters   * ResNet50: 67,416 additional parameters  * **Architecture
+                Selection**:   * The authors used pre-trained ResNet18, ResNet34, and ResNet50 model
+                architectures from the torchvision library for all experiments. The selection of these
+                architectures was not explicitly detailed, but they ar
+
+    Example 7
+      PMCID   : PMC9420706
+      Category: Full
+      Snippet : * **Parameter Count (p)**:   * BERT-Base: 110M  * **Architecture Selection**:   * The BERT
+                model was chosen as it is a ubiquitous baseline in NLP experiments and has shown distinct
+                advantages over traditional word embedding methods like Glove or Word2Vec. The specific
+                variant used was BERT-Base, which contains 12 transformer block layers, 768 hidden units,
+                and 12 heads. The choice of BERT-Base was
+
+    Example 8
+      PMCID   : PMC8785156
+      Category: Full
+      Snippet : * **Parameter Count (p)**:   * 122,112  * **Architecture Selection**:   The model
+                architecture was selected based on initial analysis results. The hyper-parameter objective
+                function was updated, and a subsequent better model framework was examined. The
+                architecture includes a 5-layer network with different kernel sizes (1 × 12, 1 × 24, 1 ×
+                36, 1 × 48, and 1 × 60). The model performance was observe
+
+    Example 9
+      PMCID   : PMC9992284
+      Category: Full
+      Snippet : * **Parameter Count (p)**:   * UNet: 8.56M   * UNet++: 11.80M   * Mobile-CellNet: 0.25M  *
+                **Architecture Selection**:   * The Mobile-CellNet architecture was designed specifically
+                for cell segmentation and region of interest (RoI) extraction. It is based on the U-Net
+                architecture but includes modifications such as additional resolution levels and the use
+                of bottleneck residual blocks inspired by
+
+    Example 10
+      PMCID   : PMC4751423
+      Category: Full
+      Snippet : * **Parameter Count (p)**:   * SLIM "size 5" model: 15 (10 feature coefficients + 1 score
+                threshold + 4 sign constraints)   * SLIM "size 10" model: 31 (20 feature coefficients + 1
+                score threshold + 10 sign constraints)  * **Architecture Selection**:   * The model
+                architecture was selected based on domain knowledge and constraints. Two classes of SLIM
+                models were considered: a "size 5" class with a
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Partial
+      Snippet : * **Parameter Count (p)**: Not enough information is available.   * The paper does not
+                provide the count of learnable parameters (weights and biases) in the model.  *
+                **Architecture Selection**: Not enough information is available.   * The paper does not
+                provide details on how the model architecture was selected.
+
+    Example 2
+      PMCID   : PMC8568050
+      Category: Partial
+      Snippet : * **Parameter Count (p)**:   * Logistic Regression: Not enough information is available.
+                * Multilayer Perceptron: Not enough information is available.   * Balanced Random Forest:
+                Not enough information is available.  * **Architecture Selection**:   * The architecture
+                for the Multilayer Perceptron (MLP) model was selected based on hyperparameter tuning
+                using 10-fold cross-validation. The number o
+
+    Example 3
+      PMCID   : PMC4407517
+      Category: Partial
+      Snippet : * **Parameter Count (p)**:   * Not enough information is available.  * **Architecture
+                Selection**:   * Architecture Selection: The authors did not explicitly state how the
+                model architecture was selected. However, they used a combination of feature selection,
+                search methods, and classification algorithms to create 20 distinct feature selection sets
+                (FSS). They also selected nine classification alg
+
+    Example 4
+      PMCID   : PMC9347213
+      Category: Partial
+      Snippet : * **Parameter Count (p)**:   * 336,425  * **Architecture Selection**:   * Not enough
+                information is available.
+
+    Example 5
+      PMCID   : PMC11865635
+      Category: Partial
+      Snippet : * **Parameter Count (p)**:   * Not enough information is available.  * **Architecture
+                Selection**:   * The authors selected the VGG-16 architecture for transfer learning in
+                feature extraction. The U-Net architecture was chosen for segmentation tasks. The
+                selection appears to be based on the established performance of these architectures in
+                similar medical imaging tasks, rather than through a syste
+
+    Example 6
+      PMCID   : PMC8581823
+      Category: Partial
+      Snippet : * **Parameter Count (p)**:   * Not enough information is available.  * **Architecture
+                Selection**:   * The architecture was selected through optimization using the
+                “gp_minimize” function from the scikit-optimize 0.7.2 Python library. This function is a
+                Bayesian optimization algorithm that searches for the optimal set of hyperparameters,
+                including the number of layers and neurons per layer, to maxi
+
+    Example 7
+      PMCID   : PMC11625410
+      Category: Partial
+      Snippet : * **Parameter Count (p)**:   * Not enough information is available.  * **Architecture
+                Selection**:   * Architecture selection was performed using Bayesian search hyperparameter
+                tuning with the skopt Python package on the Stampede2 supercomputer. The process involved
+                10-fold cross-validation on the training set for each of the 30 candidate models, which
+                included six classifiers (Gaussian Process, K
+
+    Example 8
+      PMCID   : PMC7665450
+      Category: Partial
+      Snippet : * **Parameter Count (p)**:   * Not enough information is available.  * **Architecture
+                Selection**:   * Architecture Selection: The authors used Random Forest Regressors and
+                Classifiers, which are ensembles of decision trees. The decision to use these models was
+                likely based on their ability to handle non-linear relationships and interactions between
+                features, as well as their robustness to overfit
+
+    Example 9
+      PMCID   : PMC11806858
+      Category: Partial
+      Snippet : * **Parameter Count (p)**:   * Not enough information is available.  * **Architecture
+                Selection**:   * The architecture selection process is not explicitly detailed in the
+                provided text. The authors mention the use of 5-fold cross-validation within the
+                derivation cohort to optimize hyperparameters, but they do not specify the method used to
+                select the model architecture.
+
+    Example 10
+      PMCID   : PMC11874791
+      Category: Partial
+      Snippet : * **Parameter Count (p)**:   * Not enough information is available.  * **Architecture
+                Selection**:   * Architecture Selection: The study used both GridSearchCV and
+                BayesSearchCV for hyperparameter tuning. BayesSearchCV from the scikit-optimize library
+                was utilized, employing Bayesian Optimization to find parameters that maximize the scoring
+                function. Other algorithms considered for hyperparameter
+
+  [Missing]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC10802079
+      Category: Missing
+      Snippet : * **Parameter Count (p)**: Not enough information is available. * **Architecture
+                Selection**: Not enough information is available.
+
+    Example 2
+      PMCID   : PMC6398873
+      Category: Missing
+      Snippet : * **Parameter Count (p)**: Not enough information is available. * **Architecture
+                Selection**: Not enough information is available.
+
+    Example 3
+      PMCID   : PMC10348822
+      Category: Missing
+      Snippet : * **Parameter Count (p)**:   * Logistic Regression (Lasso): Not enough information is
+                available.   * XGBoost: Not enough information is available.  * **Architecture
+                Selection**:   * Logistic Regression (Lasso): Not enough information is available.   *
+                XGBoost: Not enough information is available.
+
+    Example 4
+      PMCID   : PMC10364915
+      Category: Missing
+      Snippet : * **Parameter Count (p)**: Not enough information is available. * **Architecture
+                Selection**: Not enough information is available.
+
+    Example 5
+      PMCID   : PMC11890425
+      Category: Missing
+      Snippet : * **Parameter Count (p)**: Not enough information is available.  * **Architecture
+                Selection**: Not enough information is available.
+
+    Example 6
+      PMCID   : PMC10560153
+      Category: Missing
+      Snippet : * **Parameter Count (p)**: Not enough information is available.  * **Architecture
+                Selection**: Not enough information is available.
+
+    Example 7
+      PMCID   : PMC10098758
+      Category: Missing
+      Snippet : * **Parameter Count (p)**: Not enough information is available. * **Architecture
+                Selection**: Not enough information is available.
+
+    Example 8
+      PMCID   : PMC11230954
+      Category: Missing
+      Snippet : * **Parameter Count (p)**: Not enough information is available. * **Architecture
+                Selection**: Not enough information is available.
+
+    Example 9
+      PMCID   : PMC11252620
+      Category: Missing
+      Snippet : * **Parameter Count (p)**: Not enough information is available. * **Architecture
+                Selection**: Not enough information is available.
+
+    Example 10
+      PMCID   : PMC8331277
+      Category: Missing
+      Snippet : * **Parameter Count (p)**: Not enough information is available. * **Architecture
+                Selection**: Not enough information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
+
+====================================================================================================
+FIELD: Optimisation/regularization
+====================================================================================================
+  [Full]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC8568050
+      Category: Full
+      Snippet : **Regularization Techniques:**  * **Dropout**: Applied in the Multilayer Perceptron (MLP)
+                model to prevent overfitting. A dropout rate of 0.5 was used. * **Early Stopping**: Used
+                in the MLP model to prevent overfitting by stopping training when performance on a
+                validation set ceases to improve. * **L2 Regularization**: Applied in the Logistic
+                Regression (LR) model using L2-norm for the penalty. *
+
+    Example 2
+      PMCID   : PMC9347213
+      Category: Full
+      Snippet : * Regularization Techniques:   * Dropout: Applied in several layers to prevent
+                overfitting.   * Batch Normalization: Used to aid numerical convergence and stabilize
+                learning.   * Gaussian Noise: Applied to introduce randomness and prevent overfitting.
+
+    Example 3
+      PMCID   : PMC8581823
+      Category: Full
+      Snippet : * Regularization Techniques:   * L2 regularization (alpha value optimized using
+                "gp_minimize" function from the scikit-optimise 0.7.2 python library).
+
+    Example 4
+      PMCID   : PMC11874791
+      Category: Full
+      Snippet : Regularization Techniques: * Synthetic Minority Over-sampling Technique (SMOTE) * Feature
+                Selection using Lasso, Logistic Regression, Random Forest, and XGBoost * Ensemble Feature
+                Selection using union aggregation method * k-Fold Cross-Validation (k=5) * Hyperparameter
+                tuning using GridSearchCV and BayesSearchCV
+
+    Example 5
+      PMCID   : PMC10583101
+      Category: Full
+      Snippet : * **Regularization Techniques**:   * Ridge Regularization: The Ridge Classifier was used,
+                which applies L2 regularization (also known as Ridge regularization) to penalize large
+                coefficients. This technique helps to prevent overfitting by adding a penalty equal to the
+                square of the magnitude of coefficients to the loss function.
+
+    Example 6
+      PMCID   : PMC7941561
+      Category: Full
+      Snippet : Regularization Techniques: * Five-fold cross-validation technique was used for testing the
+                classifiers. The entire dataset was divided into five parts, four parts were used for
+                classifier development (training set) and the other remaining part was used as a test set.
+                This technique was repeated five times (folds) to ensure that each part was used for
+                validation once. The attained classification ac
+
+    Example 7
+      PMCID   : PMC8832594
+      Category: Full
+      Snippet : Regularization Techniques: * **Shrinkage**: The GBM model used a shrinkage parameter of
+                0.01 to control the learning rate. * **Interaction Depth**: The interaction depth was set
+                to 3, limiting the complexity of the trees. * **Bag Fraction**: A bag fraction of 0.8 was
+                used, indicating that 80% of the data was used for training each tree. * **Minimum
+                Observations in Node**: The minimum number of obs
+
+    Example 8
+      PMCID   : PMC5521984
+      Category: Full
+      Snippet : **Regularization Techniques:**  * Dropout: The authors used dropout with a parameter p set
+                to 0.5 to prevent overfitting during training. * Early Stopping: The authors implemented
+                early stopping by monitoring the validation score and stopping training if there were 5
+                consecutive epochs without an increase in the validation score. The model was saved only
+                on epochs that had an increase in F-score o
+
+    Example 9
+      PMCID   : PMC9903217
+      Category: Full
+      Snippet : * Regularization Techniques:   * Early Stopping: The model training was halted when the
+                validation loss did not improve for 30 consecutive epochs, with a maximum limit of 150
+                epochs.   * Data Augmentation: On-the-fly augmentation techniques were applied during
+                training, including:     * Power law transform with gamma randomly chosen from the range
+                [0.9, 1.1].     * Rotation about the z-axis with a
+
+    Example 10
+      PMCID   : PMC10812839
+      Category: Full
+      Snippet : * Regularization Techniques:   * Early Stopping: The authors used early stopping to
+                prevent overfitting by identifying the epoch with the minimum mean-validation loss as the
+                optimal number of epochs for learning.
+
+  [Partial]  — 10 example(s) shown below
+
+    Example 1
+      PMCID   : PMC7659093
+      Category: Partial
+      Snippet : Regularization Techniques: Not enough information is available.
+
+    Example 2
+      PMCID   : PMC4407517
+      Category: Partial
+      Snippet : Regularization Techniques: Not enough information is available.
+
+    Example 3
+      PMCID   : PMC11865635
+      Category: Partial
+      Snippet : Regularization Techniques: * Not enough information is available
+
+    Example 4
+      PMCID   : PMC11625410
+      Category: Partial
+      Snippet : Regularization Techniques: * Not enough information is available.
+
+    Example 5
+      PMCID   : PMC7665450
+      Category: Partial
+      Snippet : Regularization Techniques: * Not enough information is available.
+
+    Example 6
+      PMCID   : PMC11806858
+      Category: Partial
+      Snippet : Regularization Techniques: * Not enough information is available.
+
+    Example 7
+      PMCID   : PMC10948976
+      Category: Partial
+      Snippet : Regularization Techniques: * Not enough information is available
+
+    Example 8
+      PMCID   : PMC8897225
+      Category: Partial
+      Snippet : Regularization Techniques: * Not enough information is available
+
+    Example 9
+      PMCID   : PMC9413214
+      Category: Partial
+      Snippet : Regularization Techniques: * L2 regularization (Linear SVM, RBF SVM, Neural Network) *
+                Early Stopping (Neural Network) * Not enough information is available for other models.
+
+    Example 10
+      PMCID   : PMC7676934
+      Category: Partial
+      Snippet : Regularization Techniques:  * L1 Regularization: Applied in the L1-LogisticRegression
+                model with penalty = 'l1'. * L2 Regularization: Implicitly applied in the SVM model with
+                kernel = "rbf" and C = 1.0. * Not enough information is available for other models.
+
+  [Missing]  — 6 example(s) shown below
+
+    Example 1
+      PMCID   : PMC8108534
+      Category: Missing
+      Snippet : **Regularization Techniques**: * Not enough information is available.
+
+    Example 2
+      PMCID   : PMC10646597
+      Category: Missing
+      Snippet : * Regularization Techniques:   * Not enough information is available.
+
+    Example 3
+      PMCID   : PMC11587024
+      Category: Missing
+      Snippet : **Regularization Techniques**: * Not enough information is available.
+
+    Example 4
+      PMCID   : PMC11547242
+      Category: Missing
+      Snippet : * **Regularization Techniques**:   * Not enough information is available.
+
+    Example 5
+      PMCID   : PMC4513962
+      Category: Missing
+      Snippet : **Regularization Techniques**: * Not enough information is available.
+
+    Example 6
+      PMCID   : PMC6309227
+      Category: Missing
+      Snippet : * **Regularization Techniques**:   * Not enough information is available.
+
+  [NA]  — No examples found
+
+  [Empty]  — No examples found
