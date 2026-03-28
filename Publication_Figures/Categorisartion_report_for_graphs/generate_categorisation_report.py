@@ -38,11 +38,11 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 NEG_DATA = os.path.join(
     SCRIPT_DIR,
-    "../Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Neg_Processed_2026-03-02_Updated_Metadata",
+    "../../Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Neg_Processed_2026-03-02_Updated_Metadata",
 )
 POS_DATA = os.path.join(
     SCRIPT_DIR,
-    "../Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Pos_Processed_2026-03-02",
+    "../../Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Pos_Processed_2026-03-02",
 )
 OUT_DIR = SCRIPT_DIR   # reports saved alongside this script in Publication_Figures/
 
@@ -236,7 +236,7 @@ def build_examples_df(df: pd.DataFrame, categories: list) -> pd.DataFrame:
             subset = g[g["Category"] == cat]
             sample = subset.head(EXAMPLES_PER_CATEGORY)
             for _, row in sample.iterrows():
-                snippet = row["RawValue"][:SNIPPET_LENGTH].replace("\n", " ").strip()
+                snippet = row["RawValue"].strip()
                 rows.append(
                     {
                         "Group": group,
@@ -274,8 +274,7 @@ def write_text_report(df_examples: pd.DataFrame,
     lines.append(
         "For each DOME field × category combination, up to "
         f"{EXAMPLES_PER_CATEGORY} examples are shown. "
-        "Each entry includes: PMCID | Category | Source text snippet (first "
-        f"{SNIPPET_LENGTH} chars)."
+        "Each entry includes: PMCID | Category | Full source text of the field value."
     )
     lines.append("")
 
@@ -300,10 +299,20 @@ def write_text_report(df_examples: pd.DataFrame,
                 lines.append(f"    Example {i}")
                 lines.append(f"      PMCID   : {row['PMCID']}")
                 lines.append(f"      Category: {row['Category']}")
-                snippet_wrapped = textwrap.wrap(row["Source_Snippet"], width=90)
-                lines.append(f"      Snippet : {snippet_wrapped[0] if snippet_wrapped else '(empty)'}")
-                for cont in snippet_wrapped[1:]:
-                    lines.append(f"                {cont}")
+                raw_lines = row["Source_Snippet"].splitlines()
+                display_lines = []
+                for raw_line in raw_lines:
+                    if raw_line.strip():
+                        wrapped = textwrap.wrap(raw_line, width=90)
+                        display_lines.extend(wrapped if wrapped else [raw_line])
+                    else:
+                        display_lines.append("")
+                if display_lines:
+                    lines.append(f"      Snippet : {display_lines[0]}")
+                    for cont in display_lines[1:]:
+                        lines.append(f"                {cont}")
+                else:
+                    lines.append(f"      Snippet : (empty)")
                 lines.append("")
 
     with open(out_path, "w", encoding="utf-8") as fh:
