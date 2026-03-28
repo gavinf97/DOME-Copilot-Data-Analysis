@@ -29,8 +29,14 @@ RANK_ORDER = ["A_Better", "Tie_High", "Tie_Low", "B_Better"]
 RANK_COLORS = {
     "A_Better": "#1f77b4",
     "Tie_High": "#2ca02c",
-    "Tie_Low": "#bcbd22",
+    "Tie_Low": "#d62728",
     "B_Better": "#ff7f0e",
+}
+RANK_LABELS = {
+    "A_Better": "Human better",
+    "Tie_High": "Tie high quality",
+    "Tie_Low": "Tie low quality",
+    "B_Better": "Copilot v2 Better",
 }
 RANK_SCORE = {"A_Better": -1, "Tie_High": 0, "Tie_Low": 0, "B_Better": 1}
 
@@ -73,24 +79,27 @@ def plot_field_outcomes(current_df):
 
     counts = counts.loc[counts.sum(axis=1).sort_values(ascending=True).index]
 
-    plt.figure(figsize=(12, max(7, 0.45 * len(counts))))
+    fig, ax = plt.subplots(figsize=(12, max(7, 0.45 * len(counts))))
     left = None
     for rank in RANK_ORDER:
         vals = counts[rank].to_numpy()
+        label = RANK_LABELS[rank]
         if left is None:
-            plt.barh(counts.index, vals, color=RANK_COLORS[rank], label=rank)
+            ax.barh(counts.index, vals, color=RANK_COLORS[rank], label=label)
             left = vals
         else:
-            plt.barh(counts.index, vals, left=left, color=RANK_COLORS[rank], label=rank)
+            ax.barh(counts.index, vals, left=left, color=RANK_COLORS[rank], label=label)
             left = left + vals
 
-    plt.title("AlphaFold2: Outcome Counts by Field (DOME fields)")
-    plt.xlabel("Count")
-    plt.ylabel("Field")
-    plt.legend(loc="lower right")
+    ax.set_xlabel("Publication Count", fontsize=16, fontweight='bold')
+    ax.set_ylabel("DOME Field", fontsize=16, fontweight='bold')
+    ax.set_xticks([0, 1])
+    ax.set_xlim(0, 1)
+    ax.margins(y=0)
+    ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.12), ncol=2, frameon=False)
     plt.tight_layout()
     out_path = os.path.join(PLOTS_DIR, "01_Field_Outcome_Stacked.png")
-    plt.savefig(out_path, dpi=300)
+    plt.savefig(out_path, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"Saved: {out_path}")
 
@@ -133,17 +142,21 @@ def plot_signed_field_comparison(current_df):
     print(f"Saved: {out_path}")
 
 
+DISPLAY_ORDER = ["B_Better", "A_Better", "Tie_High", "Tie_Low"]
+
+
 def plot_overall_distribution(current_df):
-    counts = current_df["Rank"].value_counts().reindex(RANK_ORDER, fill_value=0)
+    counts = current_df["Rank"].value_counts().reindex(DISPLAY_ORDER, fill_value=0)
     if counts.sum() == 0:
         print("No rows available for overall distribution plot.")
         return
 
+    display_labels = [RANK_LABELS[r] for r in counts.index]
+
     plt.figure(figsize=(8, 6))
-    bars = plt.bar(counts.index, counts.values, color=[RANK_COLORS[r] for r in counts.index])
-    plt.title("AlphaFold2: Overall Rank Distribution")
-    plt.xlabel("Rank")
-    plt.ylabel("Count")
+    bars = plt.bar(display_labels, counts.values, color=[RANK_COLORS[r] for r in counts.index])
+    plt.xlabel("Manual Review Result", fontsize=16, fontweight='bold', labelpad=14)
+    plt.ylabel("DOME Field Count", fontsize=16, fontweight='bold')
 
     for bar in bars:
         h = bar.get_height()
@@ -151,7 +164,7 @@ def plot_overall_distribution(current_df):
 
     plt.tight_layout()
     out_path = os.path.join(PLOTS_DIR, "03_Overall_Rank_Distribution.png")
-    plt.savefig(out_path, dpi=300)
+    plt.savefig(out_path, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"Saved: {out_path}")
 
