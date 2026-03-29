@@ -39,8 +39,16 @@ def perform_analysis(df):
     df = df.dropna(subset=['Rank'])
     df = df[df['Rank'].isin(rank_map.keys())]
     
+    # Explicitly exclude PMC5550971 - partial entry with only 3/21 DOME fields filled
+    df = df[df['PMCID'] != 'PMC5550971']
+
     # Filter out publication fields as they are not relevant for this analysis
     df = df[~df['Field'].str.startswith('publication/')]
+
+    # Verify: 30 publications x 21 DOME fields = 630 total field evaluations
+    assert df['PMCID'].nunique() == 30, f"Expected 30 PMCIDs, got {df['PMCID'].nunique()}"
+    assert len(df) == 630, f"Expected 630 non-pub evaluations (30x21), got {len(df)}"
+    print(f"Analysis data: {df['PMCID'].nunique()} publications x 21 DOME fields = {len(df)} evaluations")
 
     df['Score'] = df['Rank'].map(rank_map)
     

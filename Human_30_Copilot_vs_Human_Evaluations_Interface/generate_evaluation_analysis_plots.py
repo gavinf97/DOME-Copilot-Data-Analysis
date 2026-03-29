@@ -75,6 +75,13 @@ def load_evaluation_results():
     
     df = pd.read_csv(EVAL_RESULTS_FILE, sep='\t')
     print(f"Total evaluations loaded: {len(df)}")
+
+    # Explicitly exclude PMC5550971 - partial entry with only 3/21 DOME fields filled
+    df = df[df['PMCID'] != 'PMC5550971']
+    non_pub = df[~df['Field'].str.startswith('publication/')]
+    assert df['PMCID'].nunique() == 30, f"Expected 30 PMCIDs, got {df['PMCID'].nunique()}"
+    assert len(non_pub) == 630, f"Expected 630 non-pub field evaluations (30x21), got {len(non_pub)}"
+    print(f"After excluding partial PMC5550971: {df['PMCID'].nunique()} publications, {len(non_pub)} non-pub DOME field evaluations (30x21=630)")
     return df
 
 def plot_overall_rank_distribution(df):
