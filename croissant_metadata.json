@@ -1,0 +1,1114 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "dct": "http://purl.org/dc/terms/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "wd": "https://www.wikidata.org/wiki/"
+  },
+  "@type": "sc:Dataset",
+  "name": "DOME Copilot Data Analysis",
+  "description": "This dataset supports the DOME Copilot project, which evaluates the effectiveness of Large Language Models (LLMs) in automating the curation of machine learning experiment metadata from scientific publications using the DOME (Data, Optimization, Model, Evaluation) Registry schema. It contains: (1) expert human-curated DOME metadata annotations for 258 publications from the DOME Registry; (2) AI-generated (Copilot) DOME metadata for 222 benchmark and 1012 experimental cohort publications across two model versions (v0 and v2); (3) a 30-paper human-vs-AI comparative evaluation subset; (4) full-text PDFs and supplementary materials sourced from PubMed Central; and (5) publication metadata indices linking all resources by PMCID.",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://doi.org/10.5281/zenodo.18983120",
+  "version": "1.0.0",
+  "datePublished": "2026-03-30",
+  "dateCreated": "2025-12-04",
+  "dateModified": "2026-03-30",
+  "inLanguage": "en",
+  "keywords": [
+    "DOME Registry",
+    "machine learning metadata",
+    "automated curation",
+    "LLM evaluation",
+    "scientific publication mining",
+    "NLP benchmarking",
+    "BERTScore",
+    "ROUGE",
+    "METEOR",
+    "BLEU",
+    "PubMed Central",
+    "reproducibility",
+    "AI-assisted annotation",
+    "human-AI comparison"
+  ],
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Gavin Farrell",
+      "email": "contact@dome-ml.org"
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "DOME Registry",
+    "url": "https://dome-ml.org"
+  },
+  "isLiveDataset": false,
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "dome-copilot-data-package-zip",
+      "name": "DOME_Copilot_Data_Package.zip",
+      "description": "Complete packaged archive of all datasets, hosted on Zenodo.",
+      "contentUrl": "https://zenodo.org/records/18983120/files/DOME_Copilot_Data_Package.zip",
+      "encodingFormat": "application/zip"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "human-reviews-json",
+      "name": "DOME_Registry_Human_Reviews_258_20260205.json",
+      "description": "Core reference dataset containing 258 expert human-curated DOME metadata annotations from the DOME Registry.",
+      "containedIn": {"@id": "dome-copilot-data-package-zip"},
+      "contentUrl": "DOME_Registry_Human_Reviews_258_20260205.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "dataset-metadata-index-csv",
+      "name": "DOME_Copilot_Zenodo_Dataset_Package_Metadata.csv",
+      "description": "Comprehensive index mapping every PMCID in the dataset to the directories and resources where its data can be found.",
+      "containedIn": {"@id": "dome-copilot-data-package-zip"},
+      "contentUrl": "DOME_Copilot_Zenodo_Dataset_Package_Metadata.csv",
+      "encodingFormat": "text/csv"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "dome-222-metadata-tsv",
+      "name": "DOME_Registry_222_Metadata.tsv",
+      "description": "Publication metadata (title, authors, journal, year, DOI) for the 222 benchmark articles from the DOME Registry.",
+      "contentUrl": "Datasets_Metadata/DOME_Registry_222_Metadata.tsv",
+      "encodingFormat": "text/tab-separated-values"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "positive-1012-metadata-tsv",
+      "name": "Positive_1012_Metadata.tsv",
+      "description": "Publication metadata for the 1012 ML-relevant (positive) articles.",
+      "contentUrl": "Datasets_Metadata/Positive_1012_Metadata.tsv",
+      "encodingFormat": "text/tab-separated-values"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "negative-1012-metadata-tsv",
+      "name": "Negative_1012_Metadata.tsv",
+      "description": "Publication metadata for the 1012 non-ML (negative) control articles.",
+      "contentUrl": "Datasets_Metadata/Negative_1012_Metadata.tsv",
+      "encodingFormat": "text/tab-separated-values"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "copilot-222-v0-json-files",
+      "name": "Copilot_222_v0_Processed_2025-12-04",
+      "description": "222 Copilot v0 processed DOME metadata JSON files (one per publication).",
+      "containedIn": {"@id": "dome-copilot-data-package-zip"},
+      "encodingFormat": "application/json",
+      "includes": "Copilot_Processed_Datasets_JSON/Copilot_222_v0_Processed_2025-12-04/*.json"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "copilot-222-v2-json-files",
+      "name": "Copilot_222_v2_Processed_2026-03-02",
+      "description": "222 Copilot v2 processed DOME metadata JSON files (one per publication).",
+      "containedIn": {"@id": "dome-copilot-data-package-zip"},
+      "encodingFormat": "application/json",
+      "includes": "Copilot_Processed_Datasets_JSON/Copilot_222_v2_Processed_2026-03-02/*.json"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "copilot-1012-v2-pos-json-files",
+      "name": "Copilot_1012_v2_Pos_Processed_2026-03-02",
+      "description": "1012 Copilot v2 processed DOME metadata JSON files for ML-relevant (positive) publications.",
+      "containedIn": {"@id": "dome-copilot-data-package-zip"},
+      "encodingFormat": "application/json",
+      "includes": "Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Pos_Processed_2026-03-02/*.json"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "copilot-1012-v2-neg-json-files",
+      "name": "Copilot_1012_v2_Neg_Processed_2026-03-02",
+      "description": "1012 Copilot v2 processed DOME metadata JSON files for non-ML (negative) publications.",
+      "containedIn": {"@id": "dome-copilot-data-package-zip"},
+      "encodingFormat": "application/json",
+      "includes": "Copilot_Processed_Datasets_JSON/Copilot_1012_v2_Neg_Processed_2026-03-02/*.json"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "copilot-1012-v0-json-files",
+      "name": "Copilot_1012_v0_Processed_2026-01-15",
+      "description": "1012 Copilot v0 processed DOME metadata JSON files for ML-relevant publications.",
+      "containedIn": {"@id": "dome-copilot-data-package-zip"},
+      "encodingFormat": "application/json",
+      "includes": "Copilot_Processed_Datasets_JSON/Copilot_1012_v0_Processed_2026-01-15/*.json"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "dome-222-pdfs",
+      "name": "DOME_Registry_222_PMCID_PDFs",
+      "description": "Full-text PDFs and supplementary materials for the 222 DOME Registry benchmark articles, sourced from PubMed Central.",
+      "containedIn": {"@id": "dome-copilot-data-package-zip"},
+      "encodingFormat": "application/pdf",
+      "includes": "DOME_Registry_222_PMCID_PDFs_PMC_Full_Text_and_Supplementary/**/*.pdf"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "positive-1012-pdfs",
+      "name": "Positive_1012_PDFs",
+      "description": "Full-text PDFs and supplementary materials for the 1012 ML-relevant (positive) articles.",
+      "containedIn": {"@id": "dome-copilot-data-package-zip"},
+      "encodingFormat": "application/pdf",
+      "includes": "Positive_1012_PDFs_PMCID_Full_Text_and_Supplementary/**/*.pdf"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "negative-1012-pdfs",
+      "name": "Negative_1012_PDFs",
+      "description": "Full-text PDFs and supplementary materials for the 1012 non-ML (negative) articles.",
+      "containedIn": {"@id": "dome-copilot-data-package-zip"},
+      "encodingFormat": "application/pdf",
+      "includes": "Negative_1012_PDFs_PMCID_Full_Text_and_Supplementary/**/*.pdf"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "human-30-evaluation-files",
+      "name": "Human_30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs",
+      "description": "Source PDFs, human JSONs, and Copilot JSONs for the 30-paper human-vs-AI comparative evaluation subset.",
+      "containedIn": {"@id": "dome-copilot-data-package-zip"},
+      "encodingFormat": "application/json",
+      "includes": "Human_30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs/**/*"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "dataset-metadata-index",
+      "name": "Dataset Metadata Index",
+      "description": "Comprehensive index mapping each PMCID to the datasets and resources in which it appears.",
+      "key": {"@id": "dataset-metadata-index/pmcid"},
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "dataset-metadata-index/pmcid",
+          "name": "PMCID",
+          "description": "PubMed Central identifier for the publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dataset-metadata-index-csv"},
+            "extract": {"column": "PMCID"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dataset-metadata-index/copilot-processed",
+          "name": "Copilot_Processed_Datasets_JSON",
+          "description": "Whether the PMCID has Copilot-processed JSON output (Yes/No).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dataset-metadata-index-csv"},
+            "extract": {"column": "Copilot_Processed_Datasets_JSON"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dataset-metadata-index/dome-registry-supplementary",
+          "name": "DOME_Registry_PMC_Supplementary",
+          "description": "Whether the PMCID has DOME Registry 222 supplementary material (Yes/No).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dataset-metadata-index-csv"},
+            "extract": {"column": "DOME_Registry_PMC_Supplementary"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dataset-metadata-index/negative-supplementary",
+          "name": "Negative_PMC_Supplementary",
+          "description": "Whether the PMCID has negative 1012 supplementary material (Yes/No).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dataset-metadata-index-csv"},
+            "extract": {"column": "Negative_PMC_Supplementary"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dataset-metadata-index/positive-supplementary",
+          "name": "Positive_PMC_Supplementary",
+          "description": "Whether the PMCID has positive 1012 supplementary material (Yes/No).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dataset-metadata-index-csv"},
+            "extract": {"column": "Positive_PMC_Supplementary"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dataset-metadata-index/evaluation-30",
+          "name": "30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs",
+          "description": "Whether the PMCID is part of the 30-paper human evaluation subset (Yes/No).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dataset-metadata-index-csv"},
+            "extract": {"column": "30_Evaluation_Source_JSONs_Human_and_Copilot_Including_PDFs"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dataset-metadata-index/human-reviews",
+          "name": "DOME_Registry_Human_Reviews",
+          "description": "Whether the PMCID has expert human review annotations (Yes/No).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dataset-metadata-index-csv"},
+            "extract": {"column": "DOME_Registry_Human_Reviews_258_20260205.json"}
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "dome-222-publications",
+      "name": "DOME Registry 222 Publication Metadata",
+      "description": "Publication metadata for the 222 DOME Registry benchmark articles.",
+      "key": {"@id": "dome-222-publications/pmcid"},
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "dome-222-publications/title",
+          "name": "title",
+          "description": "Title of the publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dome-222-metadata-tsv"},
+            "extract": {"column": "title"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dome-222-publications/authors",
+          "name": "authors",
+          "description": "Authors of the publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dome-222-metadata-tsv"},
+            "extract": {"column": "authors"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dome-222-publications/journal",
+          "name": "journal",
+          "description": "Journal of publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dome-222-metadata-tsv"},
+            "extract": {"column": "journal"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dome-222-publications/year",
+          "name": "year",
+          "description": "Year of publication.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {"@id": "dome-222-metadata-tsv"},
+            "extract": {"column": "year"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dome-222-publications/pmid",
+          "name": "pmid",
+          "description": "PubMed identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dome-222-metadata-tsv"},
+            "extract": {"column": "pmid"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dome-222-publications/pmcid",
+          "name": "pmcid",
+          "description": "PubMed Central identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dome-222-metadata-tsv"},
+            "extract": {"column": "pmcid"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dome-222-publications/doi",
+          "name": "doi",
+          "description": "Digital Object Identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "dome-222-metadata-tsv"},
+            "extract": {"column": "doi"}
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "positive-1012-publications",
+      "name": "Positive 1012 Publication Metadata",
+      "description": "Publication metadata for the 1012 ML-relevant (positive) articles.",
+      "key": {"@id": "positive-1012-publications/pmcid"},
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "positive-1012-publications/title",
+          "name": "title",
+          "description": "Title of the publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "positive-1012-metadata-tsv"},
+            "extract": {"column": "title"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "positive-1012-publications/authors",
+          "name": "authors",
+          "description": "Authors of the publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "positive-1012-metadata-tsv"},
+            "extract": {"column": "authors"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "positive-1012-publications/journal",
+          "name": "journal",
+          "description": "Journal of publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "positive-1012-metadata-tsv"},
+            "extract": {"column": "journal"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "positive-1012-publications/year",
+          "name": "year",
+          "description": "Year of publication.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {"@id": "positive-1012-metadata-tsv"},
+            "extract": {"column": "year"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "positive-1012-publications/pmid",
+          "name": "pmid",
+          "description": "PubMed identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "positive-1012-metadata-tsv"},
+            "extract": {"column": "pmid"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "positive-1012-publications/pmcid",
+          "name": "pmcid",
+          "description": "PubMed Central identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "positive-1012-metadata-tsv"},
+            "extract": {"column": "pmcid"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "positive-1012-publications/doi",
+          "name": "doi",
+          "description": "Digital Object Identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "positive-1012-metadata-tsv"},
+            "extract": {"column": "doi"}
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "negative-1012-publications",
+      "name": "Negative 1012 Publication Metadata",
+      "description": "Publication metadata for the 1012 non-ML (negative) control articles.",
+      "key": {"@id": "negative-1012-publications/pmcid"},
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "negative-1012-publications/title",
+          "name": "title",
+          "description": "Title of the publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "negative-1012-metadata-tsv"},
+            "extract": {"column": "title"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "negative-1012-publications/authors",
+          "name": "authors",
+          "description": "Authors of the publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "negative-1012-metadata-tsv"},
+            "extract": {"column": "authors"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "negative-1012-publications/journal",
+          "name": "journal",
+          "description": "Journal of publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "negative-1012-metadata-tsv"},
+            "extract": {"column": "journal"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "negative-1012-publications/year",
+          "name": "year",
+          "description": "Year of publication.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {"@id": "negative-1012-metadata-tsv"},
+            "extract": {"column": "year"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "negative-1012-publications/pmid",
+          "name": "pmid",
+          "description": "PubMed identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "negative-1012-metadata-tsv"},
+            "extract": {"column": "pmid"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "negative-1012-publications/pmcid",
+          "name": "pmcid",
+          "description": "PubMed Central identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "negative-1012-metadata-tsv"},
+            "extract": {"column": "pmcid"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "negative-1012-publications/doi",
+          "name": "doi",
+          "description": "Digital Object Identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "negative-1012-metadata-tsv"},
+            "extract": {"column": "doi"}
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "human-reviews",
+      "name": "DOME Registry Human Reviews",
+      "description": "Expert human-curated DOME metadata annotations for 258 publications. Each record contains structured metadata across four DOME categories (Dataset, Optimization, Model, Evaluation) plus publication identifiers.",
+      "key": {"@id": "human-reviews/pmcid"},
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/pmcid",
+          "name": "pmcid",
+          "description": "PubMed Central identifier for the reviewed publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].publication.pmcid"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/pmid",
+          "name": "pmid",
+          "description": "PubMed identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].publication.pmid"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/title",
+          "name": "title",
+          "description": "Title of the publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].publication.title"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/doi",
+          "name": "doi",
+          "description": "Digital Object Identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].publication.doi"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/dataset-availability",
+          "name": "dataset_availability",
+          "description": "Human-annotated description of dataset availability.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].dataset.availability"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/dataset-provenance",
+          "name": "dataset_provenance",
+          "description": "Human-annotated description of dataset provenance.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].dataset.provenance"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/dataset-splits",
+          "name": "dataset_splits",
+          "description": "Human-annotated description of dataset splits.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].dataset.splits"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/dataset-redundancy",
+          "name": "dataset_redundancy",
+          "description": "Human-annotated description of dataset redundancy.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].dataset.redundancy"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/optimization-algorithm",
+          "name": "optimization_algorithm",
+          "description": "Human-annotated description of the optimization algorithm used.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].optimization.algorithm"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/optimization-parameters",
+          "name": "optimization_parameters",
+          "description": "Human-annotated description of optimization parameters.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].optimization.parameters"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/optimization-features",
+          "name": "optimization_features",
+          "description": "Human-annotated description of feature selection/engineering.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].optimization.features"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/optimization-fitting",
+          "name": "optimization_fitting",
+          "description": "Human-annotated description of model fitting approach.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].optimization.fitting"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/optimization-regularization",
+          "name": "optimization_regularization",
+          "description": "Human-annotated description of regularization techniques.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].optimization.regularization"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/optimization-encoding",
+          "name": "optimization_encoding",
+          "description": "Human-annotated description of data encoding.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].optimization.encoding"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/optimization-meta",
+          "name": "optimization_meta",
+          "description": "Human-annotated meta-information about optimization.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].optimization.meta"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/optimization-config",
+          "name": "optimization_config",
+          "description": "Human-annotated description of optimization configuration.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].optimization.config"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/model-output",
+          "name": "model_output",
+          "description": "Human-annotated description of model output type.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].model.output"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/model-availability",
+          "name": "model_availability",
+          "description": "Human-annotated description of model availability.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].model.availability"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/model-interpretability",
+          "name": "model_interpretability",
+          "description": "Human-annotated description of model interpretability.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].model.interpretability"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/model-duration",
+          "name": "model_duration",
+          "description": "Human-annotated description of model training/inference duration.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].model.duration"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/evaluation-method",
+          "name": "evaluation_method",
+          "description": "Human-annotated description of evaluation methodology.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].evaluation.method"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/evaluation-measure",
+          "name": "evaluation_measure",
+          "description": "Human-annotated description of evaluation metrics used.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].evaluation.measure"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/evaluation-comparison",
+          "name": "evaluation_comparison",
+          "description": "Human-annotated description of comparative evaluation.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].evaluation.comparison"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/evaluation-confidence",
+          "name": "evaluation_confidence",
+          "description": "Human-annotated description of confidence/uncertainty estimates.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].evaluation.confidence"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "human-reviews/evaluation-availability",
+          "name": "evaluation_availability",
+          "description": "Human-annotated description of evaluation results availability.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "human-reviews-json"},
+            "extract": {"jsonPath": "$[*].evaluation.availability"}
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "copilot-processed-entries",
+      "name": "Copilot Processed DOME Metadata",
+      "description": "AI-generated (Copilot) structured DOME metadata extracted from scientific publications. Each JSON file contains one record with publication identifiers and DOME category fields (Dataset, Optimization, Model, Evaluation) using flat dot-notation keys (e.g., 'publication/title', 'dataset/provenance').",
+      "key": {"@id": "copilot-processed-entries/pmcid"},
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/pmcid",
+          "name": "pmcid",
+          "description": "PubMed Central identifier for the processed publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['publication/pmcid']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/title",
+          "name": "title",
+          "description": "Title of the publication.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['publication/title']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/dataset-provenance",
+          "name": "dataset_provenance",
+          "description": "Copilot-extracted description of dataset provenance.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['dataset/provenance']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/dataset-splits",
+          "name": "dataset_splits",
+          "description": "Copilot-extracted description of dataset splits.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['dataset/splits']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/dataset-redundancy",
+          "name": "dataset_redundancy",
+          "description": "Copilot-extracted description of dataset redundancy.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['dataset/redundancy']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/dataset-availability",
+          "name": "dataset_availability",
+          "description": "Copilot-extracted description of dataset availability.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['dataset/availability']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/optimization-algorithm",
+          "name": "optimization_algorithm",
+          "description": "Copilot-extracted description of the optimization algorithm.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['optimization/algorithm']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/optimization-parameters",
+          "name": "optimization_parameters",
+          "description": "Copilot-extracted description of optimization parameters.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['optimization/parameters']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/optimization-features",
+          "name": "optimization_features",
+          "description": "Copilot-extracted description of feature selection/engineering.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['optimization/features']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/optimization-fitting",
+          "name": "optimization_fitting",
+          "description": "Copilot-extracted description of model fitting.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['optimization/fitting']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/optimization-regularization",
+          "name": "optimization_regularization",
+          "description": "Copilot-extracted description of regularization.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['optimization/regularization']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/optimization-encoding",
+          "name": "optimization_encoding",
+          "description": "Copilot-extracted description of data encoding.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['optimization/encoding']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/optimization-meta",
+          "name": "optimization_meta",
+          "description": "Copilot-extracted meta-information about optimization.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['optimization/meta']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/optimization-config",
+          "name": "optimization_config",
+          "description": "Copilot-extracted optimization configuration.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['optimization/config']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/model-output",
+          "name": "model_output",
+          "description": "Copilot-extracted model output type.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['model/output']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/model-availability",
+          "name": "model_availability",
+          "description": "Copilot-extracted model availability.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['model/availability']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/model-interpretability",
+          "name": "model_interpretability",
+          "description": "Copilot-extracted model interpretability description.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['model/interpretability']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/model-duration",
+          "name": "model_duration",
+          "description": "Copilot-extracted model training/inference duration.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['model/duration']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/evaluation-method",
+          "name": "evaluation_method",
+          "description": "Copilot-extracted evaluation methodology.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['evaluation/method']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/evaluation-measure",
+          "name": "evaluation_measure",
+          "description": "Copilot-extracted evaluation metrics.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['evaluation/measure']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/evaluation-comparison",
+          "name": "evaluation_comparison",
+          "description": "Copilot-extracted comparative evaluation.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['evaluation/comparison']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/evaluation-confidence",
+          "name": "evaluation_confidence",
+          "description": "Copilot-extracted confidence/uncertainty estimates.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['evaluation/confidence']"}
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "copilot-processed-entries/evaluation-availability",
+          "name": "evaluation_availability",
+          "description": "Copilot-extracted evaluation results availability.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {"@id": "copilot-222-v2-json-files"},
+            "extract": {"jsonPath": "$['evaluation/availability']"}
+          }
+        }
+      ]
+    }
+  ]
+}
