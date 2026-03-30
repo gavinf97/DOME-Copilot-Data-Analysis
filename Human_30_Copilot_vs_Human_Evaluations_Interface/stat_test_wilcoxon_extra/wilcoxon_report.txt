@@ -1,0 +1,122 @@
+Wilcoxon Signed-Rank Test Report: DOME Copilot vs Human Evaluation
+======================================================================
+
+## 1. Data & Methodology
+Data file : /home/gavinfarrell/PhD_Code/DOME-Copilot-Data-Analysis/Human_30_Copilot_vs_Human_Evaluations_Interface/evaluation_results.tsv
+Total observations: 630 (30 publications × 21 DOME fields)
+PMC5550971 excluded: partial entry with only 3/21 DOME fields filled.
+publication/* fields excluded: metadata extraction fields (title, authors, etc.)
+
+### Encoding
+  A_Better (Human Better)  →  -1
+  Tie_High / Tie_Low       →   0
+  B_Better (Copilot Better)→  +1
+
+### Test: One-Sample Wilcoxon Signed-Rank Test
+  H₀: median preference score = 0 (no systematic preference)
+  H₁: median ≠ 0 (two-sided)
+  Zero handling: 'wilcox' method — scores of 0 are discarded from ranking
+                 (classical treatment for genuine ties)
+  Effect size: r = Z / √N_nonzero  (ranges −1 to +1)
+  Field-level FDR correction: Benjamini-Hochberg (BH)
+
+======================================================================
+## 2. Global Wilcoxon Test
+  Total observations          : 630
+  Non-zero observations (used): 442
+  Zeros (ties, excluded)       : 188
+  Copilot Better (score = +1) : 375 (59.5%)
+  Human Better   (score = -1) : 67  (10.6%)
+  Mean score                  : 0.4889
+  Median score                : 1.0000
+
+  Wilcoxon W statistic        : 14840.5
+  p-value (Wilcoxon)          : 1.3458e-48
+  Effect size r               : -0.6038
+  Result: SIGNIFICANT (p < 0.05) — systematic preference favouring Copilot
+
+  [Reference] Binomial Sign Test p-value: 5.2670e-53
+
+======================================================================
+## 3. Per-Field Wilcoxon Test (sorted by Mean Score descending)
+   BH = Benjamini-Hochberg FDR-adjusted p-value
+   * = raw p < 0.05;  ** = BH-adjusted p < 0.05
+
+Field                               |   Mean |   N |  Nz |        W |     p-raw |      p-BH |      r | Sig
+----------------------------------------------------------------------------------------------------------
+optimization/regularization         |  0.833 |  30 |  25 |      0.0 |  5.73e-07 |  1.20e-05 | -0.874 | **
+evaluation/method                   |  0.800 |  30 |  30 |     46.5 |  1.18e-05 |  4.12e-05 | -0.698 | **
+optimization/encoding               |  0.800 |  30 |  28 |     29.0 |  5.74e-06 |  2.41e-05 | -0.749 | **
+evaluation/comparison               |  0.767 |  30 |  25 |     13.0 |  4.22e-06 |  2.22e-05 | -0.805 | **
+evaluation/confidence               |  0.767 |  30 |  23 |      0.0 |  1.62e-06 |  1.70e-05 | -0.875 | **
+dataset/provenance                  |  0.733 |  30 |  22 |      0.0 |  2.73e-06 |  1.91e-05 | -0.876 | **
+optimization/fitting                |  0.700 |  30 |  27 |     42.0 |  5.31e-05 |  1.12e-04 | -0.680 | **
+dataset/redundancy                  |  0.667 |  30 |  22 |     11.5 |  2.01e-05 |  6.02e-05 | -0.796 | **
+optimization/features               |  0.633 |  30 |  21 |     11.0 |  3.38e-05 |  7.89e-05 | -0.793 | **
+evaluation/measure                  |  0.633 |  30 |  21 |     11.0 |  3.38e-05 |  7.89e-05 | -0.793 | **
+model/output                        |  0.567 |  30 |  19 |     10.0 |  9.62e-05 |  1.84e-04 | -0.785 | **
+model/interpretability              |  0.467 |  30 |  18 |     19.0 |  9.67e-04 |  1.69e-03 | -0.683 | **
+model/duration                      |  0.400 |  30 |  14 |      7.5 |  1.34e-03 |  2.17e-03 | -0.755 | **
+optimization/parameters             |  0.367 |  30 |  19 |     40.0 |  1.16e-02 |  1.74e-02 | -0.508 | **
+dataset/availability                |  0.367 |  30 |  23 |     72.0 |  2.18e-02 |  2.86e-02 | -0.419 | **
+dataset/splits                      |  0.333 |  30 |  16 |     25.5 |  1.24e-02 |  1.74e-02 | -0.549 | **
+optimization/algorithm              |  0.167 |  30 |  19 |     70.0 |  2.51e-01 |  3.10e-01 | -0.231 |   
+optimization/config                 |  0.167 |  30 |  21 |     88.0 |  2.75e-01 |  3.21e-01 | -0.209 |   
+evaluation/availability             |  0.067 |  30 |  16 |     59.5 |  6.17e-01 |  6.48e-01 | -0.110 |   
+optimization/meta                   |  0.067 |  30 |  16 |     59.5 |  6.17e-01 |  6.48e-01 | -0.110 |   
+model/availability                  | -0.033 |  30 |  17 |     72.0 |  8.08e-01 |  8.08e-01 | -0.052 |   
+
+  * raw p < 0.05    ** BH-adjusted p < 0.05
+
+  Significant fields (raw p < 0.05):    16 / 21
+  Significant fields (BH-adj p < 0.05): 16 / 21
+
+======================================================================
+## 4. Per-Publication Wilcoxon Test (sorted by Mean Score descending)
+   Each publication has 21 field-level scores tested against median = 0
+
+PMCID           |   Mean |   N |  Nz |        W |     p-raw |      r | Sig
+--------------------------------------------------------------------------
+PMC6851483      |  0.857 |  21 |  18 |      0.0 |  2.21e-05 | -0.878 | *
+PMC4589233      |  0.810 |  21 |  17 |      0.0 |  3.74e-05 | -0.878 | *
+PMC6548586      |  0.762 |  21 |  18 |      9.5 |  1.62e-04 | -0.780 | *
+PMC3967921      |  0.762 |  21 |  16 |      0.0 |  6.33e-05 | -0.879 | *
+PMC4289375      |  0.762 |  21 |  18 |      9.5 |  1.62e-04 | -0.780 | *
+PMC4894951      |  0.667 |  21 |  14 |      0.0 |  1.83e-04 | -0.881 | *
+PMC6679781      |  0.667 |  21 |  18 |     19.0 |  9.67e-04 | -0.683 | *
+PMC2752621      |  0.667 |  21 |  18 |     19.0 |  9.67e-04 | -0.683 | *
+PMC5650527      |  0.667 |  21 |  16 |      8.5 |  4.65e-04 | -0.769 | *
+PMC4606520      |  0.667 |  21 |  16 |      8.5 |  4.65e-04 | -0.769 | *
+PMC5034704      |  0.571 |  21 |  14 |      7.5 |  1.34e-03 | -0.755 | *
+PMC5821114      |  0.571 |  21 |  12 |      0.0 |  5.32e-04 | -0.883 | *
+PMC5079830      |  0.571 |  21 |  16 |     17.0 |  2.70e-03 | -0.659 | *
+PMC11258913     |  0.524 |  21 |  13 |      7.0 |  2.28e-03 | -0.746 | *
+PMC7212484      |  0.476 |  21 |  14 |     15.0 |  7.53e-03 | -0.629 | *
+PMC8230313      |  0.476 |  21 |  14 |     15.0 |  7.53e-03 | -0.629 | *
+PMC3292016      |  0.429 |  21 |  15 |     24.0 |  2.01e-02 | -0.528 | *
+PMC12366053     |  0.429 |  21 |  19 |     50.0 |  3.89e-02 | -0.415 | *
+PMC7692026      |  0.429 |  21 |  11 |      6.0 |  6.66e-03 | -0.724 | *
+PMC7721480      |  0.429 |  21 |  11 |      6.0 |  6.66e-03 | -0.724 | *
+PMC10730818     |  0.381 |  21 |  16 |     34.0 |  4.55e-02 | -0.440 | *
+PMC10716825     |  0.381 |  21 |  12 |     13.0 |  2.09e-02 | -0.589 | *
+PMC5910428      |  0.333 |  21 |  11 |     12.0 |  3.48e-02 | -0.563 | *
+PMC6436896      |  0.333 |  21 |  13 |     21.0 |  5.22e-02 | -0.475 |  
+PMC11899596     |  0.333 |  21 |  15 |     32.0 |  7.07e-02 | -0.411 |  
+PMC10940896     |  0.238 |  21 |  13 |     28.0 |  1.66e-01 | -0.339 |  
+PMC4315323      |  0.190 |  21 |  14 |     37.5 |  2.85e-01 | -0.252 |  
+PMC4058174      |  0.190 |  21 |  12 |     26.0 |  2.48e-01 | -0.294 |  
+PMC7035778      |  0.143 |  21 |  13 |     35.0 |  4.05e-01 | -0.204 |  
+PMC11659980     | -0.048 |  21 |  15 |     56.0 |  7.96e-01 | -0.059 |  
+
+  Significant publications (raw p < 0.05): 23 / 30
+
+======================================================================
+## 5. Interpretation Notes
+  - The Wilcoxon Signed-Rank Test is non-parametric and does not assume
+    normality. It tests whether the median score distribution is symmetric
+    around zero.
+  - Effect size r ≈ 0.1 small, 0.3 medium, 0.5 large (Cohen 1988).
+  - For field-level tests, BH-adjusted p-values control the false discovery
+    rate at 5% across the 21 simultaneous comparisons.
+  - Per-publication tests use n=21 observations each; low power for
+    individual publications; interpret as exploratory.
