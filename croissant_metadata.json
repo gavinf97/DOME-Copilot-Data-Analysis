@@ -85,6 +85,7 @@
     "name": "DOME Registry",
     "url": "https://dome-ml.org"
   },
+  "citeAs": "Farrell, G. (2026). DOME Copilot Data Analysis: Evaluating LLM-Assisted Curation of Machine Learning Experiment Metadata [Data set]. Zenodo. https://doi.org/10.5281/zenodo.18983120",
   "isLiveDataset": false,
   "distribution": [
     {
@@ -93,7 +94,8 @@
       "name": "DOME_Copilot_Data_Package.zip",
       "description": "Complete packaged archive of all datasets, hosted on Zenodo.",
       "contentUrl": "https://zenodo.org/records/18983120/files/DOME_Copilot_Data_Package.zip",
-      "encodingFormat": "application/zip"
+      "encodingFormat": "application/zip",
+      "sha256": "f5189ea620f5e138c5c62c5484c958c94ecce2827cb8ec96dd475ea6e6879e52"
     },
     {
       "@type": "cr:FileObject",
@@ -119,7 +121,8 @@
       "name": "DOME_Registry_222_Metadata.tsv",
       "description": "Publication metadata (title, authors, journal, year, DOI) for the 222 benchmark articles from the DOME Registry.",
       "contentUrl": "Datasets_Metadata/DOME_Registry_222_Metadata.tsv",
-      "encodingFormat": "text/tab-separated-values"
+      "encodingFormat": "text/tab-separated-values",
+      "sha256": "f82b84c582fc70841dc8efa265db2e07e8540bb02ac869bbd2947b7df0f72a56"
     },
     {
       "@type": "cr:FileObject",
@@ -127,7 +130,8 @@
       "name": "Positive_1012_Metadata.tsv",
       "description": "Publication metadata for the 1012 ML-relevant (positive) articles.",
       "contentUrl": "Datasets_Metadata/Positive_1012_Metadata.tsv",
-      "encodingFormat": "text/tab-separated-values"
+      "encodingFormat": "text/tab-separated-values",
+      "sha256": "41a7ac6ec037a662f0506115156c16af37fac80f3128a5be7780af7b99bafe1d"
     },
     {
       "@type": "cr:FileObject",
@@ -135,7 +139,8 @@
       "name": "Negative_1012_Metadata.tsv",
       "description": "Publication metadata for the 1012 non-ML (negative) control articles.",
       "contentUrl": "Datasets_Metadata/Negative_1012_Metadata.tsv",
-      "encodingFormat": "text/tab-separated-values"
+      "encodingFormat": "text/tab-separated-values",
+      "sha256": "73855ca5eaad897623d53ae63b5e3f4b7df3086e83c52798285ad59c1d43140c"
     },
     {
       "@type": "cr:FileSet",
