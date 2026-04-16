@@ -42,7 +42,7 @@ The repository is organized into modular components, each with its own specific 
 *   **[Copilot_Processed_Viewer_JSON](Copilot_Processed_Viewer_JSON/)**: 
     Simple viewer utility (`json_viewer.py`) for inspecting Copilot-processed JSON output files.
 *   **[DOME_Copilot_v2_demo_video_20260330](DOME_Copilot_v2_demo_video_20260330/)**: 
-    Demo video (`DOME_Copilot_v2_AlphaFold2_demo.mp4`) of the Copilot v2 pipeline applied to the AlphaFold2 paper.
+    Demo video (`DOME_Copilot_v2_AlphaFold2_demo.mp4`) of the Copilot v2 pipeline applied to the AlphaFold2 paper. Also available to view on **[YouTube](https://youtu.be/iIMjrchceGg)**.
 
 ## 🔒 Privacy & Data Safety
 
