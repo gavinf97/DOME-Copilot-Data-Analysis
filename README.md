@@ -59,6 +59,8 @@ Due to size considerations and copyright restrictions, large supplementary mater
 Instead, the complete dataset package is permanently archived on **Zenodo**:
 **[Dataset DOI: 10.5281/zenodo.18983120](https://doi.org/10.5281/zenodo.18983120)**
 
+A machine-readable dataset descriptor following the [Croissant](https://mlcommons.org/croissant/) standard is provided at the root of this repository: **[croissant_metadata.json](croissant_metadata.json)**
+
 The Zenodo repository contains a packaged archive (`DOME_Copilot_Data_Package.zip`) with the following key components required for running pipelines in this repo:
 
 *   **`DOME_Copilot_Zenodo_Dataset_Package_Metadata.csv`**: Comprehensive index mapping every PMCID in the dataset to its resources.
@@ -84,6 +86,9 @@ Detailed usage instructions are provided within each sub-directory's README.
 ## 🔬 Research Context
 
 This code supports ongoing doctoral research into the reproducibility of machine learning experiments and the potential for automated metadata extraction to assist the DOME (Data, Optimization, Model, Evaluation) Registry initiative.
+
+The AI methods used in this project are formally registered and described on the DOME Registry:
+**[DOME Registry Report: registry.dome-ml.org/review/3koqekylfy](https://registry.dome-ml.org/review/3koqekylfy)**
 
 ## 📜 License
 
