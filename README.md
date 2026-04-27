@@ -90,6 +90,9 @@ This code supports ongoing doctoral research into the reproducibility of machine
 The AI methods used in this project are formally registered and described on the DOME Registry:
 **[DOME Registry Report: registry.dome-ml.org/review/3koqekylfy](https://registry.dome-ml.org/review/3koqekylfy)**
 
+The DOME Copilot itself is developed and maintained at:
+**[DOME Copilot (GitHub): IFCA-Advanced-Computing/dome-copilot](https://github.com/IFCA-Advanced-Computing/dome-copilot)**
+
 ## 📜 License
 
 **DOME Copilot Data Analysis** © 2026 is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
