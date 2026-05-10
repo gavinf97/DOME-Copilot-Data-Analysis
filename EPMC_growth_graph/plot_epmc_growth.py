@@ -26,9 +26,9 @@ def main():
 
     # ── Combined line (plotted first → top of legend) ──
     ax.plot(years, combined_counts,
-            marker="s", linewidth=2.5, linestyle="--",
+            marker="s", linewidth=2.5, linestyle="-",
             label="Combined (AI ∪ ML) — deduplicated",
-            color="black", markersize=7, zorder=3)
+            color="#003f5c", markersize=7, zorder=3)
 
     # ── Value labels on combined line ──
     for i, (x, y_val) in enumerate(zip(years, combined_counts)):
@@ -79,11 +79,11 @@ def main():
                 zorder=5
             )
         else:
-            is_high = (i % 2 == 0)
+            is_high = (i % 2 != 0)
             if is_high:
                 y_offset = 35
-                if x == 2018:
-                    y_offset = 40
+                if x == 2017:
+                    y_offset = 42
                 ax.annotate(
                     f"{y_val:,}",
                     xy=(x, y_val),
@@ -100,14 +100,20 @@ def main():
                 )
             else:
                 y_offset = 8  # Just above the dot, no line
+                custom_ha = "center"
+                custom_x_offset = 0
+                if x == 2000:
+                    custom_ha = "left"
+                    custom_x_offset = 0
+                
                 ax.annotate(
                     f"{y_val:,}",
                     xy=(x, y_val),
-                    xytext=(0, y_offset),
+                    xytext=(custom_x_offset, y_offset),
                     textcoords="offset points",
                     fontsize=fontsize,
                     fontweight="bold",
-                    ha="center", va="bottom",
+                    ha=custom_ha, va="bottom",
                     color="black",
                     bbox=dict(boxstyle="round,pad=0.2",
                               facecolor="white", edgecolor="none", alpha=0.9),
@@ -117,7 +123,8 @@ def main():
 
 
     # ── Axes ──
-    ax.set_xlim(min(years) - 0.5, max(years) + 0.5)
+    ax.set_xlim(min(years) - 0.1, max(years) + 0.1)
+    ax.set_ylim(bottom=0)  # y-axis starts exactly at 0
     ax.set_xticks(range(min(years), max(years) + 1))
     ax.tick_params(axis="x", rotation=45, labelsize=10)
     ax.yaxis.set_major_formatter(
