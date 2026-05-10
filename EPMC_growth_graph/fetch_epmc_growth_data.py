@@ -43,8 +43,7 @@ import requests
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-import matplotlib.pyplot as plt
-import matplotlib.ticker as mticker
+
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -240,83 +239,6 @@ def save_summary_csv(ml_uids, ai_uids, ml_hc, ai_hc,
     print(f"  📄 Summary → {filename}")
 
 
-# ── Plotting ────────────────────────────────────────────────────────────────
-
-def plot_results(ml_uids, ai_uids,
-                 output_file="epmc_publication_growth.png"):
-    """
-    Publication-quality growth graph with:
-      - Combined (deduplicated) line on top, with value labels
-      - Individual term lines
-      - Legend in visual stacking order (combined first)
-      - Hard x-axis bounds at 2000–2025
-      - Comma-formatted y-axis
-    """
-    all_years = sorted(set(ml_uids.keys()) | set(ai_uids.keys()))
-
-    ml_counts = [len(ml_uids.get(y, set())) for y in all_years]
-    ai_counts = [len(ai_uids.get(y, set())) for y in all_years]
-    combined_counts = [len(ml_uids.get(y, set()) | ai_uids.get(y, set()))
-                       for y in all_years]
-
-    fig, ax = plt.subplots(figsize=(16, 9))
-
-    # ── Combined line (plotted first → top of legend) ──
-    ax.plot(all_years, combined_counts,
-            marker="s", linewidth=2.5, linestyle="--",
-            label="Combined (AI ∪ ML) — deduplicated",
-            color="black", markersize=7, zorder=3)
-
-    # ── Value labels on combined line ──
-    max_count = max(combined_counts) if combined_counts else 1
-    offset = max_count * 0.025  # 2.5% of y-range above the point
-
-    for x, y_val in zip(all_years, combined_counts):
-        ax.annotate(
-            f"{y_val:,}",
-            xy=(x, y_val),
-            xytext=(0, 10),           # 10 points above the marker
-            textcoords="offset points",
-            fontsize=6.5,
-            fontweight="bold",
-            ha="center", va="bottom",
-            color="black",
-            bbox=dict(boxstyle="round,pad=0.15",
-                      facecolor="white", edgecolor="none", alpha=0.75),
-        )
-
-    # ── Individual lines ──
-    ax.plot(all_years, ml_counts,
-            marker="o", linewidth=2, label="Machine Learning",
-            color="#1f77b4", markersize=5, zorder=2)
-    ax.plot(all_years, ai_counts,
-            marker="o", linewidth=2, label="Artificial Intelligence",
-            color="#ff7f0e", markersize=5, zorder=2)
-
-    # ── Axes ──
-    ax.set_xlim(YEAR_FROM - 0.5, YEAR_TO + 0.5)
-    ax.set_xticks(range(YEAR_FROM, YEAR_TO + 1))
-    ax.tick_params(axis="x", rotation=45, labelsize=9)
-    ax.yaxis.set_major_formatter(
-        mticker.FuncFormatter(lambda v, _: f"{int(v):,}")
-    )
-
-    ax.set_xlabel("Year", fontsize=13, fontweight="bold")
-    ax.set_ylabel("Number of Publications", fontsize=13, fontweight="bold")
-    ax.set_title(
-        "Publication Growth: Machine Learning & Artificial Intelligence\n"
-        "Europe PMC — exact-phrase search, FIRST_PDATE, PMID-deduplicated (2000–2025)",
-        fontsize=14, fontweight="bold",
-    )
-
-    ax.legend(fontsize=11, loc="upper left", framealpha=0.9)
-    ax.grid(True, alpha=0.3)
-
-    fig.tight_layout()
-    filepath = os.path.join(SCRIPT_DIR, output_file)
-    fig.savefig(filepath, dpi=300, bbox_inches="tight")
-    print(f"\n  ✅ Plot saved to: {output_file}")
-    plt.close(fig)
 
 
 # ── Main ────────────────────────────────────────────────────────────────────
@@ -379,8 +301,7 @@ def main():
     # ── Phase 4: Save summary CSV ──
     save_summary_csv(ml_uids, ai_uids, ml_hc, ai_hc)
 
-    # ── Phase 5: Plot ──
-    plot_results(ml_uids, ai_uids)
+
 
     # ── Cleanup old files ──
     for old in ["epmc_publication_data.json"]:
