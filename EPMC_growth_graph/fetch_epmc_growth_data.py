@@ -74,21 +74,6 @@ def create_session():
 
 # ── Deep-pagination ID fetcher ───────────────────────────────────────────────
 
-def _make_uid(result):
-    """
-    Derive a unique publication identifier from an EPMC result dict.
-
-    Priority: PMID (most universal) → PMCID → source:id composite.
-    """
-    pmid = result.get("pmid", "")
-    pmcid = result.get("pmcid", "")
-    source = result.get("source", "")
-    rid = result.get("id", "")
-    if pmid:
-        return pmid, pmcid, pmid
-    if pmcid:
-        return pmcid, pmcid, pmid
-    return f"{source}:{rid}", pmcid, pmid
 
 
 def fetch_ids_for_year(session, term, year):
@@ -131,10 +116,13 @@ def fetch_ids_for_year(session, term, year):
             break
 
         for r in results:
-            uid, pmcid, pmid = _make_uid(r)
+            pmid = r.get("pmid", "")
+            if not pmid:
+                continue  # STRICTLY PMID ONLY as requested
+                
             records.append({
-                "uid": uid,
-                "pmcid": pmcid,
+                "uid": pmid,
+                "pmcid": r.get("pmcid", ""),
                 "pmid": pmid,
                 "year": year,
             })
@@ -178,16 +166,15 @@ def fetch_all_ids(term, year_from=YEAR_FROM, year_to=YEAR_TO):
                 yearly_uids[y].add(rec["uid"])
             all_records.extend(recs)
             collected = len(yearly_uids[y])
-            flag = " ✓" if collected == hc else f" (hitCount={hc:,})"
-            print(f"  {y}: {collected:>8,} IDs collected{flag}")
+            print(f"  {y}: {collected:>8,} PMIDs collected (from {hc:,} total EPMC hits)")
 
     session.close()
 
     # Print sorted summary
     total_collected = sum(len(v) for v in yearly_uids.values())
     total_hitcount = sum(yearly_hitcounts.values())
-    print(f"  TOTAL: {total_collected:,} IDs collected  "
-          f"(hitCount sum: {total_hitcount:,})")
+    print(f"  TOTAL: {total_collected:,} unique PMIDs collected  "
+          f"(total EPMC hits: {total_hitcount:,})")
 
     return dict(yearly_uids), yearly_hitcounts, all_records
 
