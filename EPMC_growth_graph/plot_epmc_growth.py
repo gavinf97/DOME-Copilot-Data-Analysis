@@ -40,9 +40,14 @@ def main():
                 xytext = (-15, 0)
                 ha = "right"
                 va = "center"
-            elif x in [2021, 2022, 2023]:
+            elif x in [2021, 2022]:
                 # 10:30 (top-left angle)
                 xytext = (-10, 10)
+                ha = "right"
+                va = "bottom"
+            elif x == 2023:
+                # 11:00 (more towards top, slightly left)
+                xytext = (-6, 12)
                 ha = "right"
                 va = "bottom"
             elif x == 2020:
@@ -74,31 +79,42 @@ def main():
                 zorder=5
             )
         else:
-            # Alternating higher and lower for early years
-            # Much larger offsets to accommodate the bigger text and clear the line
-            y_offset = 75 if i % 2 == 0 else 35
-            ax.annotate(
-                f"{y_val:,}",
-                xy=(x, y_val),
-                xytext=(0, y_offset),
-                textcoords="offset points",
-                fontsize=fontsize,
-                fontweight="bold",
-                ha="center", va="bottom",
-                color="black",
-                bbox=dict(boxstyle="round,pad=0.2",
-                          facecolor="white", edgecolor="none", alpha=0.9),
-                arrowprops=dict(arrowstyle="-", color="#555555", lw=1.2, shrinkA=0, shrinkB=4),
-                zorder=5
-            )
+            is_high = (i % 2 == 0)
+            if is_high:
+                y_offset = 35
+                if x == 2018:
+                    y_offset = 40
+                ax.annotate(
+                    f"{y_val:,}",
+                    xy=(x, y_val),
+                    xytext=(0, y_offset),
+                    textcoords="offset points",
+                    fontsize=fontsize,
+                    fontweight="bold",
+                    ha="center", va="bottom",
+                    color="black",
+                    bbox=dict(boxstyle="round,pad=0.2",
+                              facecolor="white", edgecolor="none", alpha=0.9),
+                    arrowprops=dict(arrowstyle="-", color="#555555", lw=1.2, shrinkA=0, shrinkB=4),
+                    zorder=5
+                )
+            else:
+                y_offset = 8  # Just above the dot, no line
+                ax.annotate(
+                    f"{y_val:,}",
+                    xy=(x, y_val),
+                    xytext=(0, y_offset),
+                    textcoords="offset points",
+                    fontsize=fontsize,
+                    fontweight="bold",
+                    ha="center", va="bottom",
+                    color="black",
+                    bbox=dict(boxstyle="round,pad=0.2",
+                              facecolor="white", edgecolor="none", alpha=0.9),
+                    zorder=5
+                )
 
-    # ── Individual lines ──
-    ax.plot(years, ml_counts,
-            marker="o", linewidth=2, label="Machine Learning",
-            color="#1f77b4", markersize=5, zorder=2)
-    ax.plot(years, ai_counts,
-            marker="o", linewidth=2, label="Artificial Intelligence",
-            color="#ff7f0e", markersize=5, zorder=2)
+
 
     # ── Axes ──
     ax.set_xlim(min(years) - 0.5, max(years) + 0.5)
@@ -110,11 +126,7 @@ def main():
 
     ax.set_xlabel("Year", fontsize=14, fontweight="bold")
     ax.set_ylabel("Number of Publications", fontsize=14, fontweight="bold")
-    ax.set_title(
-        "Publication Growth: Machine Learning & Artificial Intelligence\n"
-        "Europe PMC — exact-phrase search, FIRST_PDATE, PMID-deduplicated (2000–2025)",
-        fontsize=16, fontweight="bold",
-    )
+
 
     ax.legend(fontsize=12, loc="upper left", framealpha=0.9)
     ax.grid(True, alpha=0.3)
